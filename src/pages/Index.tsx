@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -79,11 +78,11 @@ const Index = () => {
     };
 
     try {
-        const response = await fetch(`https://whatsapp-data.p.rapidapi.com/profile_info?number=${cleanedPhoneNumber}`, {
+        const response = await fetch(`https://whatsprofile.p.rapidapi.com/profile?number=${cleanedPhoneNumber}`, {
             method: 'GET',
             headers: {
                 'x-rapidapi-key': RAPIDAPI_KEY,
-                'x-rapidapi-host': 'whatsapp-data.p.rapidapi.com'
+                'x-rapidapi-host': 'whatsprofile.p.rapidapi.com'
             }
         });
 
@@ -98,16 +97,15 @@ const Index = () => {
 
         const data = await response.json();
         console.log("Resposta da API do WhatsApp:", data);
-        console.log("Chaves da resposta:", Object.keys(data));
         
-        if (data && data.profilePic && data.name) {
+        if (data && data.status === 'success' && data.data && data.data.avatar && data.data.name) {
             setDiscoveredProfile({
-                name: data.name,
-                profilePic: data.profilePic
+                name: data.data.name,
+                profilePic: data.data.avatar
             });
             setShowConfirmation(true);
         } else {
-             const description = "A busca foi realizada, mas não encontramos um perfil público para este número. Verifique o número ou tente mais tarde.";
+             const description = data.message || "A busca foi realizada, mas não encontramos um perfil público para este número. Verifique o número ou tente mais tarde.";
              toast.info("Perfil não encontrado", { description });
              useFallback(description);
         }
