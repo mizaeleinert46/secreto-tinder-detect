@@ -2,17 +2,36 @@
 import React from "react";
 import { Zap, AlertCircle, Lock, Eye, TrendingUp, Users, CalendarClock, MapPin, MessageSquareQuote, AlertTriangle } from "lucide-react";
 
-const blurredImages = [
-  "/assets/photo-1649972904349-6e44c42644a7.jpg",
-  "https://images.unsplash.com/photo-1542103749-8ef59b94f475?w=400&q=80",
+// Data for men
+const manBlurredImages = [
   "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&q=80",
+  "https://images.unsplash.com/photo-1542103749-8ef59b94f475?w=400&q=80",
+  "https://images.unsplash.com/photo-1583195764339-32247b913e8b?w=400&q=80",
+];
+const manInfo = [
+    { icon: Zap, text: "Última Atividade", value: "Hoje, 2:17 AM", colorClass: "border-yellow-400 text-yellow-300"},
+    { icon: TrendingUp, text: "Popularidade", value: "Alta (Top 15%)", colorClass: "border-cyan-400 text-cyan-300"},
+    { icon: Users, text: "Novos Matches", value: "3 nas últimas 24h", colorClass: "border-pink-400 text-pink-300"},
+    { icon: MessageSquareQuote, text: "Análise de Conversa", value: "Iniciou 7 novas conversas", colorClass: "border-red-500 text-red-400"},
+    { icon: CalendarClock, text: "Horário de Uso", value: "Padrão Noturno (22h - 3h)", colorClass: "border-violet-400 text-violet-300"},
+    { icon: MapPin, text: "Localização Suspeita", value: "Login fora da cidade", colorClass: "border-orange-500 text-orange-400"},
 ];
 
-const fallbackImages = [
-  "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=400&q=80",
-  "https://images.unsplash.com/photo-1542103749-8ef59b94f475?w=400&q=80",
-  "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&q=80",
+// Data for women
+const womanBlurredImages = [
+  "https://images.unsplash.com/photo-1594744806548-9931a7ea13de?w=400&q=80",
+  "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=400&q=80",
+  "https://images.unsplash.com/photo-1552695845-4a0237de1e74?w=400&q=80",
 ];
+const womanInfo = [
+    { icon: Zap, text: "Última Atividade", value: "Hoje, 1:45 AM", colorClass: "border-yellow-400 text-yellow-300"},
+    { icon: TrendingUp, text: "Popularidade", value: "Muito Alta (Top 10%)", colorClass: "border-cyan-400 text-cyan-300"},
+    { icon: Users, text: "Novos Matches", value: "5 nas últimas 24h", colorClass: "border-pink-400 text-pink-300"},
+    { icon: MessageSquareQuote, text: "Análise de Conversa", value: "Respostas rápidas a homens", colorClass: "border-red-500 text-red-400"},
+    { icon: CalendarClock, text: "Horário de Uso", value: "Padrão Noturno (23h - 2h)", colorClass: "border-violet-400 text-violet-300"},
+    { icon: MapPin, text: "Localização Suspeita", value: "Login em bar popular", colorClass: "border-orange-500 text-orange-400"},
+];
+
 
 const InfoPill = ({ icon: Icon, text, value, colorClass }: { icon: React.ElementType, text: string, value: string, colorClass: string }) => (
   <div className={`flex items-center gap-3 p-3 rounded-lg bg-black/30 border-l-4 ${colorClass}`}>
@@ -24,7 +43,12 @@ const InfoPill = ({ icon: Icon, text, value, colorClass }: { icon: React.Element
   </div>
 );
 
-export default function DiscoveredProfileInfo() {
+export default function DiscoveredProfileInfo({ gender }: { gender: 'homem' | 'mulher' }) {
+  const isMan = gender === 'homem';
+  const blurredImages = isMan ? manBlurredImages : womanBlurredImages;
+  const infoData = isMan ? manInfo : womanInfo;
+  const fallbackImages = blurredImages; 
+
   const images = [
     { src: blurredImages[0], fallback: fallbackImages[0], label: "Foto de Perfil" },
     { src: blurredImages[1], fallback: fallbackImages[1], label: "Foto Oculta #1" },
@@ -73,12 +97,9 @@ export default function DiscoveredProfileInfo() {
         <div>
           <h4 className="text-xl font-semibold text-green-300 mb-4 border-b-2 border-green-400/20 pb-2">Análise de Atividade e Comportamento</h4>
           <div className="grid md:grid-cols-2 gap-4 font-mono">
-            <InfoPill icon={Zap} text="Última Atividade" value="Hoje, 2:17 AM" colorClass="border-yellow-400 text-yellow-300"/>
-            <InfoPill icon={TrendingUp} text="Popularidade" value="Alta (Top 15%)" colorClass="border-cyan-400 text-cyan-300"/>
-            <InfoPill icon={Users} text="Novos Matches" value="3 nas últimas 24h" colorClass="border-pink-400 text-pink-300"/>
-            <InfoPill icon={MessageSquareQuote} text="Análise de Conversa" value="Tons de Flerte Detectados" colorClass="border-red-500 text-red-400"/>
-            <InfoPill icon={CalendarClock} text="Horário de Uso" value="Padrão Noturno (22h - 3h)" colorClass="border-violet-400 text-violet-300"/>
-            <InfoPill icon={MapPin} text="Localização Suspeita" value="Login fora da cidade" colorClass="border-orange-500 text-orange-400"/>
+             {infoData.map((info, index) => (
+                <InfoPill key={index} icon={info.icon} text={info.text} value={info.value} colorClass={info.colorClass} />
+            ))}
           </div>
         </div>
 

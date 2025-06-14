@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -382,7 +381,7 @@ const Index = () => {
               Encontramos um perfil ativo vinculado a este número. Os detalhes estão ocultos para sua proteção.
             </p>
             <div className="mt-2">
-              <DiscoveredProfileInfo />
+              <DiscoveredProfileInfo gender={targetGender as 'homem' | 'mulher'} />
             </div>
 
             {/* O QUE VOCÊ VAI DESCOBRIR */}
