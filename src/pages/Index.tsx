@@ -93,10 +93,10 @@ const Index = () => {
         const data = await response.json();
         console.log("Resposta da API do WhatsApp:", data);
         
-        if (data && data.id && data.id.profilePic && data.id.name) {
+        if (data && data.profilePic && data.name) {
             setDiscoveredProfile({
-                name: data.id.name,
-                profilePic: data.id.profilePic
+                name: data.name,
+                profilePic: data.profilePic
             });
             setShowConfirmation(true);
         } else {
