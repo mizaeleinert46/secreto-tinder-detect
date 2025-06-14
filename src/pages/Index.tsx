@@ -97,31 +97,37 @@ const Index = () => {
         {!isScanning && !scanComplete && (
           <section className="animate-fade-in">
               {/* Branding nova */}
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-7 pt-6 lg:pt-8 pb-12">
-                <Target className="w-16 h-16 text-green-400 animate-glow-pulse drop-shadow-glow rotate-6" />
-                <div className="text-center space-y-1">
-                  <h1 className="font-black text-5xl sm:text-7xl md:text-8xl tracking-tight text-glow-hacker">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-9 pt-8 lg:pt-12 pb-12">
+                <Target className="w-20 h-20 text-green-400 animate-glow-pulse drop-shadow-glow rotate-6" />
+                <div className="text-center space-y-2">
+                  <h1 className="font-black text-5xl sm:text-7xl md:text-8xl tracking-tight text-glow-hacker animate-gradient-shift">
                     <span className="text-[#39ff14] drop-shadow-glow">TINDER</span>
-                    <span className="ml-2 text-pink-500/90 animate-gradient-shift font-extrabold">ESPIÃO</span>
+                    <span className="ml-2 text-pink-500/90 font-extrabold">ESPIÃO</span>
                   </h1>
-                  <span className="text-xl md:text-2xl font-semibold text-green-300/80 drop-shadow-glow block mt-2">A verdade aparece. Sempre.</span>
+                  <span className="text-2xl md:text-3xl font-semibold text-green-300/90 drop-shadow-glow block mt-2">
+                    Descubra segredos, revele verdades – sem deixar rastros.
+                  </span>
                 </div>
-                <Radar className="w-16 h-16 text-pink-400 animate-spin drop-shadow-glow -rotate-6" />
+                <Radar className="w-20 h-20 text-pink-400 animate-spin drop-shadow-glow -rotate-6" />
               </div>
               <div className="mx-auto text-center mb-10 max-w-2xl">
-                <p className="text-2xl text-gray-200 font-medium shadow-none mb-4"><span className="text-[#39ff14] font-bold">A maior plataforma de investigação confidencial no Tinder.</span></p>
-                <p className="text-lg md:text-xl text-pink-100/90 mb-2">Descubra agora se alguém possui perfil ativo ou encontros secretos.</p>
+                <p className="text-2xl text-gray-100/90 font-semibold mb-4">
+                  <span className="text-[#39ff14] font-extrabold">A elite das investigações confidenciais no Tinder.</span>
+                </p>
+                <p className="text-xl md:text-2xl text-pink-100/95 mb-2 font-medium">
+                  Exponha perfis ativos, atividades ocultas e conexões secretas em segundos.
+                </p>
               </div>
-              {/* Estatísticas-badges premium */}
-              <div className="flex flex-wrap gap-6 justify-center mt-8 mb-12">
-                <Badge className="backdrop-blur-xl shadow-green-700/50 border border-green-400 bg-green-950/60 text-green-100 px-7 py-4 text-xl font-bold">
-                  <Shield className="inline mr-2 w-6 h-6" /> 100% Anônimo
+              {/* Estatísticas-badges premium aprimoradas */}
+              <div className="flex flex-wrap gap-7 justify-center mt-8 mb-14">
+                <Badge className="backdrop-blur-xl shadow-green-700/50 border border-green-400 bg-green-950/70 text-green-100 px-9 py-4 text-xl font-bold flex gap-2 items-center">
+                  <Shield className="inline mr-1 w-6 h-6" /> 100% Anonimato Garantido
                 </Badge>
-                <Badge className="border border-pink-300/70 bg-gradient-to-r from-pink-900/60 via-fuchsia-800/60 to-pink-700/60 text-pink-100 px-7 py-4 text-xl font-bold glow-pink">
-                  <Zap className="inline mr-2 w-6 h-6" /> Resultado em segundos
+                <Badge className="border border-pink-400/80 bg-gradient-to-r from-pink-900/70 via-fuchsia-800/70 to-pink-700/80 text-pink-100 px-9 py-4 text-xl font-bold glow-pink flex gap-2 items-center">
+                  <Zap className="inline mr-1 w-6 h-6" /> Resultado Ultrarrápido
                 </Badge>
-                <Badge className="border border-violet-400 bg-gradient-to-r from-violet-900/60 via-[#181722]/90 to-violet-900/60 text-violet-100 px-7 py-4 text-xl font-bold">
-                  <Eye className="inline mr-2 w-6 h-6" /> Nenhum dado salvo
+                <Badge className="border border-violet-400/80 bg-gradient-to-r from-violet-900/70 via-[#181722]/90 to-violet-900/70 text-violet-100 px-9 py-4 text-xl font-bold flex gap-2 items-center">
+                  <Eye className="inline mr-1 w-6 h-6" /> Privacidade Total
                 </Badge>
               </div>
               {/* Card CTA - Busca */}
@@ -130,20 +136,22 @@ const Index = () => {
                   <CardTitle className="text-center text-3xl md:text-4xl font-black text-green-200 tracking-tight drop-shadow-glow">
                     <span className="flex items-center justify-center gap-3">
                       <Search className="w-8 h-8 animate-pulse" />
-                      <span>INICIAR ANÁLISE</span>
+                      <span>INICIAR RASTREAMENTO</span>
                       <Search className="w-8 h-8 animate-pulse" />
                     </span>
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-7 px-6 pb-10">
                   <div>
-                    <label className="block text-gray-300 text-lg font-semibold mb-2 text-center">Digite o WhatsApp suspeito:</label>
+                    <label className="block text-gray-300 text-lg font-semibold mb-2 text-center">
+                      WhatsApp suspeito para investigar:
+                    </label>
                     <Input 
                       type="tel"
-                      placeholder="(11) 99999-9999"
+                      placeholder="(11) 9XXXX-XXXX"
                       value={phoneNumber}
                       onChange={handlePhoneChange}
-                      className="bg-gray-900/90 border-2 border-pink-400/20 text-white text-center text-2xl h-16 font-mono focus:border-[#39ff14] focus:ring-pink-400/30 transition-all duration-300 hover:border-pink-400/50 rounded-xl"
+                      className="bg-gray-900/90 border-2 border-pink-400/20 text-white text-center text-2xl h-16 font-mono focus:border-[#39ff14] focus:ring-pink-400/30 transition-all duration-300 hover:border-pink-400/50 rounded-xl shadow-input"
                       maxLength={15}
                     />
                   </div>
@@ -153,23 +161,20 @@ const Index = () => {
                     className={`w-full py-6 text-2xl font-black tracking-wider rounded-xl shadow-2xl bg-gradient-to-r ${CTA_GRADIENT} hover:from-pink-600 hover:via-green-400 hover:to-[#c300ff] transition-all duration-300 transform hover:scale-105 uppercase glow-pink`}
                   >
                     <Radar className="mr-4 h-8 w-8 animate-spin" />
-                    Investigar agora
+                    Investigar Agora
                   </Button>
                   <div className="flex flex-col md:flex-row gap-3 justify-center pt-2">
                     <div className="flex items-center gap-2 text-green-400 text-base">
                       <Shield className="w-5 h-5" />
-                      Garantia de privacidade
+                      Operação sigilosa
                     </div>
                     <div className="flex items-center gap-2 text-pink-300 text-base">
                       <Eye className="w-5 h-5" />
-                      Processo invisível
+                      Invisibilidade garantida
                     </div>
                   </div>
                 </CardContent>
               </Card>
-              <div className="text-center mt-6">
-                <span className="text-gray-400 text-xs">⚡ Simulação para fins demonstrativos. Nenhum dado real exposto.</span>
-              </div>
           </section>
         )}
         {/* FASE DE SCAN */}
