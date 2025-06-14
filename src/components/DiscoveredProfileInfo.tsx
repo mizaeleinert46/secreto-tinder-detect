@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Zap, AlertCircle, Lock, Eye, TrendingUp, Users, CalendarClock, MapPin, MessageSquareQuote, AlertTriangle } from "lucide-react";
 
@@ -65,7 +64,7 @@ export default function DiscoveredProfileInfo({ gender }: { gender: 'homem' | 'm
 
   return (
     <div className="space-y-8">
-      <div className="relative mx-auto max-w-4xl rounded-2xl neon-frame-hacker bg-gradient-to-br from-[#1c0c16]/90 via-[#11131d]/95 to-[#0e1d13]/90 border-2 border-pink-500/30 shadow-2xl shadow-pink-500/10 p-6 md:p-10 overflow-hidden select-none backdrop-blur-sm">
+      <div className="relative mx-auto max-w-4xl rounded-2xl neon-frame-hacker bg-gradient-to-br from-[#0c1c11]/90 via-[#11131d]/95 to-[#0e1d13]/90 border-2 border-green-500/30 shadow-2xl shadow-green-500/20 p-6 md:p-10 overflow-hidden select-none backdrop-blur-sm">
         
         <div className="text-center mb-10">
           <h3 className="text-3xl md:text-4xl font-black text-pink-400 flex items-center justify-center gap-4 drop-shadow-glow">
@@ -82,13 +81,17 @@ export default function DiscoveredProfileInfo({ gender }: { gender: 'homem' | 'm
             {images.map((img, index) => (
               <div
                 key={index}
-                className="w-full aspect-[4/5] rounded-lg bg-black/50 overflow-hidden relative border border-pink-700/30 group transition-all duration-300 hover:border-pink-500 hover:shadow-xl hover:shadow-pink-500/20"
+                className={`w-full aspect-[4/5] rounded-lg bg-black/50 overflow-hidden relative group transition-all duration-300
+                  ${index === 1 
+                    ? 'border-2 border-cyan-400/50 shadow-lg shadow-cyan-400/20' 
+                    : 'border border-pink-700/30 hover:border-pink-500 hover:shadow-xl hover:shadow-pink-500/20'
+                  }`}
               >
                 <img
                   src={img.src}
                   onError={e => { (e.currentTarget as HTMLImageElement).src = img.fallback; }}
                   alt={img.label}
-                  className="w-full h-full object-cover blur-md scale-110 opacity-60 group-hover:blur-sm group-hover:opacity-80 transition-all duration-300"
+                  className="w-full h-full object-cover blur-lg scale-110 opacity-60 group-hover:blur-md group-hover:opacity-80 transition-all duration-300"
                   draggable={false}
                 />
                 <div className="absolute inset-0 bg-black/30 flex items-center justify-center text-center p-2">
@@ -115,7 +118,7 @@ export default function DiscoveredProfileInfo({ gender }: { gender: 'homem' | 'm
           </div>
         </div>
 
-        <div className="mt-10 pt-8 border-t-2 border-pink-500/20 text-center space-y-4">
+        <div className="mt-10 pt-8 border-t-2 border-green-500/20 text-center space-y-4">
             <div className="bg-red-900/60 border border-red-500/70 rounded-lg p-4 max-w-lg mx-auto shadow-lg shadow-red-900/50">
               <h5 className="text-lg font-bold text-red-300 flex items-center justify-center gap-2">
                 <AlertTriangle className="w-6 h-6 animate-pulse"/> Nível de Risco: Elevado

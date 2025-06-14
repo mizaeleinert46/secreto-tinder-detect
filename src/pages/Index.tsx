@@ -371,11 +371,15 @@ const Index = () => {
         {scanComplete && (
           <section className="text-center space-y-8 md:space-y-10 animate-fade-in">
             <div className="flex items-center justify-center gap-3 md:gap-4 mb-6 md:mb-9">
-              <AlertTriangle className="w-12 h-12 md:w-16 md:h-16 text-pink-500 animate-glow-pulse drop-shadow-glow" />
+              <div className="p-3 bg-black/30 rounded-lg border border-pink-500/30">
+                <AlertTriangle className="w-8 h-8 md:w-10 md:h-10 text-pink-400 animate-pulse" />
+              </div>
               <h2 className="text-3xl md:text-5xl font-black bg-gradient-to-r from-[#ec4899] via-violet-500 to-white bg-clip-text text-transparent animate-gradient-shift drop-shadow-glow tracking-tight">
                 ALERTA: ATIVIDADE SUSPEITA DETECTADA
               </h2>
-              <Eye className="w-12 h-12 md:w-16 md:h-16 text-violet-400 animate-glow-pulse drop-shadow-glow" />
+              <div className="p-3 bg-black/30 rounded-lg border border-violet-500/30">
+                <Eye className="w-8 h-8 md:w-10 md:h-10 text-violet-300 animate-pulse" />
+              </div>
             </div>
             <p className="text-xl md:text-2xl text-white mb-2 font-semibold drop-shadow-glow">
               Encontramos um perfil ativo vinculado a este número. Os detalhes estão ocultos para sua proteção.
