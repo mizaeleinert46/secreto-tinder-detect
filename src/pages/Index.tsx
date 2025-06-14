@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -58,12 +57,19 @@ const Index = () => {
     const cleanedPhoneNumber = phoneNumber.replace(/\D/g, '');
 
     const useFallback = () => {
+        const sampleNames = {
+            homem: ["Carlos Silva", "Lucas Souza", "Pedro Oliveira", "Mateus Santos", "Gabriel Costa", "Bruno Pereira", "Rafael Ferreira", "Felipe Almeida"],
+            mulher: ["Ana Julia", "Juliana Lima", "Camila Rodrigues", "Fernanda Alves", "Mariana Gomes", "Beatriz Martins", "Larissa Barbosa", "Amanda Ribeiro"]
+        };
+        const names = sampleNames[targetGender as 'homem' | 'mulher'];
+        const randomName = names[Math.floor(Math.random() * names.length)];
+
         toast.warning("Modo de Demonstração Ativado", {
             description: "Não foi possível conectar ao serviço real. Usando um perfil de exemplo para continuar."
         });
         setDiscoveredProfile({
-            name: "Perfil de Exemplo",
-            profilePic: `https://avatar.vercel.sh/${cleanedPhoneNumber}.png?text=Exemplo`
+            name: randomName,
+            profilePic: `https://picsum.photos/seed/${cleanedPhoneNumber}/400/400`
         });
         setShowConfirmation(true);
     };
