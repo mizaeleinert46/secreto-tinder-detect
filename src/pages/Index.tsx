@@ -5,6 +5,7 @@ import { Progress } from "@/components/ui/progress";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Search, Shield, Eye, AlertTriangle, Zap, Heart, Target, Radar } from "lucide-react";
+import HackerOverlay from "@/components/HackerOverlay";
 import HackerLinesBackground from "@/components/HackerLinesBackground";
 import TerminalTypingTitle from "@/components/TerminalTypingTitle";
 
@@ -65,14 +66,13 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden relative">
-      {/* Fundo hacker só durante a busca */}
-      {isScanning && <HackerLinesBackground />}
+      {/* Hacker Efeito EXCLUSIVO para busca */}
+      {isScanning && <HackerOverlay />}
 
       {/* Fundo preto sólido, retirando o gradiente colorido */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Tira blobs fortes coloridos, adiciona efeitos leves e discretos */}
+        {/* Remove blobs coloridos. Grid animado sutil */}
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-white/5 rounded-full blur-[120px]"></div>
-        {/* Grid animado sutil */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:60px_60px]"></div>
       </div>
 
@@ -200,62 +200,73 @@ const Index = () => {
           </div>
         )}
 
-        {/* Enhanced scanning process */}
+        {/* SCANNING PHASE (COMPLETAMENTE CYBERPUNK) */}
         {isScanning && (
-          <div className="text-center space-y-12 animate-fade-in">
+          <div className="text-center space-y-12 animate-fade-in relative z-30">
             <div className="space-y-8">
               <div className="flex items-center justify-center space-x-4">
-                <Radar className="w-16 h-16 text-pink-400 animate-spin" />
-                <h2 className="text-6xl font-black text-pink-400 animate-pulse">
+                <Radar className="w-16 h-16 text-green-400 animate-radar" />
+                <h2 className="text-6xl font-black text-green-400 animate-pulse text-shadow-hacker">
                   INVESTIGANDO
                 </h2>
-                <Target className="w-16 h-16 text-red-400 animate-pulse" />
+                <Target className="w-16 h-16 text-pink-400 animate-pulse" />
               </div>
-              <div className="text-3xl text-gray-300">
-                Alvo: <span className="text-yellow-400 font-mono bg-gray-800/60 px-6 py-3 rounded-xl border border-yellow-500/30">{phoneNumber}</span>
+              <div className="text-3xl text-green-300 font-mono drop-shadow-lg bg-black/60 px-10 py-4 rounded-xl border border-green-500/40 neon-frame-hacker shadow-neon">
+                Alvo: <span className="text-green-300 font-mono">{phoneNumber}</span>
               </div>
             </div>
 
-            <Card className="bg-gradient-to-br from-black/90 to-gray-900/70 border-pink-500/40 backdrop-blur-2xl max-w-4xl mx-auto shadow-2xl">
-              <CardContent className="p-12 space-y-10">
-                <Progress value={progress} className="w-full h-6 bg-gray-800 rounded-full overflow-hidden">
-                  <div className="h-full bg-gradient-to-r from-pink-500 to-red-500 transition-all duration-1000 ease-out rounded-full shadow-lg shadow-pink-500/50"></div>
-                </Progress>
-                
-                <div className="space-y-6">
-                  {scanningSteps.map((step, index) => (
-                    <div 
-                      key={index}
-                      className={`flex items-center space-x-6 p-6 rounded-2xl transition-all duration-700 ${
-                        index === currentStep 
-                          ? 'bg-gradient-to-r from-pink-900/60 to-red-900/60 border-2 border-pink-500/60 text-pink-400 shadow-2xl shadow-pink-500/30 scale-105' 
-                          : index < currentStep 
-                            ? 'bg-gray-800/60 text-gray-400 border border-gray-700/50' 
-                            : 'text-gray-600 border border-gray-800/30'
-                      }`}
-                    >
-                      <div className={`w-6 h-6 rounded-full flex-shrink-0 transition-all duration-500 ${
-                        index === currentStep 
-                          ? 'bg-gradient-to-r from-pink-400 to-red-400 animate-pulse shadow-lg shadow-pink-400/60' 
-                          : index < currentStep 
-                            ? 'bg-green-500 shadow-md' 
-                            : 'bg-gray-700'
-                      }`}></div>
-                      <span className="font-mono text-xl flex-grow text-left font-semibold">{step.text}</span>
-                      {index === currentStep && (
-                        <div className="ml-auto">
-                          <div className="animate-spin w-8 h-8 border-3 border-pink-400 border-t-transparent rounded-full"></div>
-                        </div>
-                      )}
+            <div className="flex justify-center items-center">
+              <div className="w-full max-w-4xl">
+                <div className="card-hacker-neon rounded-2xl shadow-2xl p-0">
+                  <div className="p-12 space-y-10">
+                    <div className="w-full">
+                      <div className="h-6 w-full rounded-full bg-black overflow-hidden border border-green-700/70 shadow-inner shadow-green-400/20">
+                        <div
+                          style={{
+                            width: `${progress}%`,
+                            transition: "width 1s cubic-bezier(.65,0,.45,1)",
+                          }}
+                          className="h-full rounded-full progress-hacker-neon"
+                        ></div>
+                      </div>
                     </div>
-                  ))}
+                    <div className="space-y-6">
+                      {scanningSteps.map((step, index) => (
+                        <div
+                          key={index}
+                          className={`flex items-center space-x-6 p-6 rounded-2xl transition-all duration-700 font-mono text-lg md:text-xl
+                            ${index === currentStep
+                              ? 'bg-gradient-to-r from-black to-green-950 border-2 border-green-400/70 text-green-300 shadow-lg scale-105 drop-shadow-glow'
+                              : index < currentStep
+                                ? 'bg-black/60 text-gray-400 border border-green-800/50'
+                                : 'text-green-700 border border-green-800/30'
+                            }`}
+                        >
+                          <div className={`w-6 h-6 rounded-full flex-shrink-0 transition-all duration-500
+                            ${index === currentStep
+                              ? 'bg-gradient-to-r from-green-400 to-pink-400 animate-heart-beat shadow-green-400/60'
+                              : index < currentStep
+                                ? 'bg-green-500 shadow-md'
+                                : 'bg-green-900'
+                            }`}
+                          ></div>
+                          <span className="font-mono flex-grow text-left font-semibold">{step.text}</span>
+                          {index === currentStep && (
+                            <div className="ml-auto">
+                              <div className="animate-radar w-8 h-8 border-4 border-green-400 border-t-transparent rounded-full"></div>
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                    <div className="text-center text-green-400 pt-4 font-mono text-xl md:text-2xl">
+                      <p>🎯 {Math.round(progress)}% CONCLUÍDO</p>
+                    </div>
+                  </div>
                 </div>
-                
-                <div className="text-center text-pink-400 pt-4">
-                  <p className="text-2xl font-mono font-bold">🎯 {Math.round(progress)}% CONCLUÍDO</p>
-                </div>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           </div>
         )}
 
