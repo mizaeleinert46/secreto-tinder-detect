@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -348,4 +347,45 @@ input:focus {
 .loading-dots::after {
   content: '...';
   animation: loading-dots 2s infinite;
+}
+
+/* HACKER/CYBERPUNK THEME ELEMENTS */
+@keyframes hackerFade {
+  0% { opacity: 0.06; }
+  50% { opacity: 0.21; text-shadow: 0 0 16px #93ffc6, 0 0 2px #39ff14; }
+  100% { opacity: 0.10; }
+}
+
+@keyframes terminalCursor {
+  0%, 60% { opacity: 1; }
+  61%, 100% { opacity: 0; }
+}
+
+.text-shadow-hacker {
+  text-shadow: 0 0 10px #28f31b, 0 0 18px #0aff66, 0 0 30px #13ff60;
+}
+
+.animate-terminal-cursor {
+  animation: terminalCursor 1.1s steps(2) infinite;
+}
+
+.neon-frame-hacker {
+  border: 3px solid #22ff6c;
+  box-shadow:
+    0 0 10px #22ff6c,
+    0 0 25px 3px #22ff6c,
+    0 0 40px 6px #1de17677;
+  border-radius: 1.5rem;
+  animation: neonFramePulse 2.5s infinite alternate;
+}
+
+@keyframes neonFramePulse {
+  0% { box-shadow: 0 0 10px #22ff6c, 0 0 25px 3px #22ff6c, 0 0 40px 6px #1de17677; }
+  100% { box-shadow: 0 0 18px #67ff99, 0 0 54px 20px #67ffc9, 0 0 80px 23px #22ff6c90; }
+}
+
+/* FINE-TUNE: Hacker lines background layering */
+.hacker-grid {
+  z-index: 0 !important;
+  pointer-events: none !important;
 }

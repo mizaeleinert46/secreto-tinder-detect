@@ -5,6 +5,8 @@ import { Progress } from "@/components/ui/progress";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Search, Shield, Eye, AlertTriangle, Zap, Heart, Target, Radar } from "lucide-react";
+import HackerLinesBackground from "@/components/HackerLinesBackground";
+import TerminalTypingTitle from "@/components/TerminalTypingTitle";
 
 const Index = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -63,6 +65,9 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden relative">
+      {/* Hacker green lines in the background */}
+      <HackerLinesBackground />
+
       {/* Fundo preto sólido, retirando o gradiente colorido */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Tira blobs fortes coloridos, adiciona efeitos leves e discretos */}
@@ -96,9 +101,10 @@ const Index = () => {
               <div className="flex items-center justify-center space-x-6 mb-8">
                 <Target className="w-16 h-16 text-pink-400 animate-pulse" />
                 <div className="text-center">
-                  <h1 className="text-7xl md:text-9xl font-black bg-gradient-to-r from-pink-400 via-red-400 to-pink-600 bg-clip-text text-transparent drop-shadow-2xl">
-                    TINDER
-                  </h1>
+                  <TerminalTypingTitle
+                    text="TINDER ESPIÃO"
+                    className="text-7xl md:text-9xl font-black block"
+                  />
                   <h2 className="text-4xl md:text-6xl font-bold text-red-400 -mt-4">
                     ESPIÃO
                   </h2>
@@ -107,8 +113,8 @@ const Index = () => {
               </div>
               
               <div className="space-y-6 max-w-4xl mx-auto">
-                <p className="text-2xl md:text-3xl font-bold text-pink-400 animate-pulse">
-                  🕵️ Descubra os segredos do seu amor
+                <p className="text-2xl md:text-3xl font-bold text-green-400 animate-pulse text-shadow-hacker">
+                  🕵️ Tema Hacker Ativado!
                 </p>
                 <p className="text-xl md:text-2xl text-gray-300 leading-relaxed">
                   Será que seu(sua) parceiro(a) está sendo 100% honesto(a)? 
@@ -145,8 +151,8 @@ const Index = () => {
               </Card>
             </div>
 
-            {/* Enhanced input section */}
-            <Card className="bg-gradient-to-br from-black/80 to-gray-900/50 border-gray-600/50 backdrop-blur-2xl shadow-2xl max-w-2xl mx-auto hover:shadow-xl transition-all duration-500 hover:scale-[1.02]">
+            {/* Enhanced input section with neon hacker frame */}
+            <Card className="bg-gradient-to-br from-black/80 to-gray-900/50 border-gray-600/50 backdrop-blur-2xl shadow-2xl max-w-2xl mx-auto hover:shadow-xl transition-all duration-500 hover:scale-[1.02] neon-frame-hacker">
               <CardHeader className="pb-6">
                 <CardTitle className="text-center text-yellow-400 text-3xl font-bold flex items-center justify-center space-x-3">
                   <Search className="w-8 h-8 animate-pulse" />
