@@ -341,6 +341,43 @@ const Index = () => {
             <div className="mt-2">
               <DiscoveredProfileInfo />
             </div>
+
+            {/* O QUE VOCÊ VAI DESCOBRIR */}
+            <div className="max-w-4xl mx-auto space-y-6 text-left animate-fade-in pt-8">
+              <h3 className="text-2xl md:text-4xl font-bold text-center text-green-300 drop-shadow-glow">
+                O que você vai descobrir ao desbloquear?
+              </h3>
+              <p className="text-center text-lg md:text-xl text-gray-200">
+                Por um pagamento único de <span className="font-bold text-yellow-300 text-2xl">R$19,90</span>, você terá acesso total e irrestrito a um dossiê completo. Chega de dúvidas.
+              </p>
+              <div className="grid md:grid-cols-2 gap-x-8 gap-y-4 p-6 bg-black/30 rounded-lg border border-gray-700">
+                <div className="flex items-center gap-3 text-lg text-gray-200">
+                  <CheckCircle className="w-6 h-6 text-green-400" />
+                  <span>Fotos e vídeos do perfil</span>
+                </div>
+                <div className="flex items-center gap-3 text-lg text-gray-200">
+                  <CheckCircle className="w-6 h-6 text-green-400" />
+                  <span>Descrição completa da bio (atual e antigas)</span>
+                </div>
+                <div className="flex items-center gap-3 text-lg text-gray-200">
+                  <CheckCircle className="w-6 h-6 text-green-400" />
+                  <span>Lista de matches e curtidas recentes</span>
+                </div>
+                <div className="flex items-center gap-3 text-lg text-gray-200">
+                  <CheckCircle className="w-6 h-6 text-green-400" />
+                  <span>O início de conversas suspeitas</span>
+                </div>
+                <div className="flex items-center gap-3 text-lg text-gray-200">
+                  <CheckCircle className="w-6 h-6 text-green-400" />
+                  <span>Nível de atividade e horários de uso</span>
+                </div>
+                <div className="flex items-center gap-3 text-lg text-gray-200">
+                  <CheckCircle className="w-6 h-6 text-green-400" />
+                  <span>Localizações recentes de login</span>
+                </div>
+              </div>
+            </div>
+
             {/* CALL TO ACTION */}
             <Card className="bg-gradient-to-br from-[#090f10]/90 via-[#27132b]/80 to-[#0e2021]/100 border-4 border-[#ec4899] neon-frame-hacker backdrop-blur-2xl max-w-4xl mx-auto shadow-[0_0_55px_2px_rgba(236,72,153,0.3)] mt-8 transition-all duration-300">
               <CardHeader>
@@ -354,10 +391,10 @@ const Index = () => {
                   <Button 
                     className="w-full bg-gradient-to-r from-[#ec4899] via-violet-400 to-[#8b5cf6] hover:from-pink-600 hover:via-violet-400 hover:to-[#c300ff] text-white font-black py-5 md:py-6 text-xl sm:text-2xl rounded-xl transition-all duration-300 transform hover:scale-105 shadow-2xl glow-pink uppercase tracking-wide"
                     onClick={() => {
-                      alert('💕 PERFIL DESBLOQUEADO! Todas as informações do perfil de relacionamento estão disponíveis para visualização.');
+                      alert('Você será redirecionado para a página de pagamento seguro para finalizar a compra.');
                     }}
                   >
-                    💕 VER O PERFIL SECRETO IMEDIATAMENTE
+                    🔥 DESBLOQUEAR DOSSIÊ COMPLETO POR R$19,90
                   </Button>
                   <Button 
                     variant="outline"
