@@ -95,45 +95,45 @@ const Index = () => {
         {!isScanning && !scanComplete && (
           <section className="animate-fade-in">
             {/* Header Premium */}
-            <div className="text-center space-y-12 pt-8 pb-20">
+            <div className="text-center space-y-12 pt-8 pb-12 md:pb-20">
               <div className="flex flex-col items-center space-y-8">
                 {/* Logo/Brand */}
-                <div className="flex items-center justify-center gap-6">
-                  <div className="rounded-full bg-gradient-to-tr from-pink-800/60 via-pink-500/50 to-pink-400/70 p-5 border-2 border-pink-400/40 shadow-pink-700/50 shadow-xl">
-                    <Heart className="w-14 h-14 text-pink-200" />
+                <div className="flex items-center justify-center gap-4 md:gap-6">
+                  <div className="rounded-full bg-gradient-to-tr from-pink-800/60 via-pink-500/50 to-pink-400/70 p-4 md:p-5 border-2 border-pink-400/40 shadow-pink-700/50 shadow-xl">
+                    <Heart className="w-10 h-10 md:w-14 md:h-14 text-pink-200" />
                   </div>
                   <div className="text-center">
-                    <h1 className="font-black text-6xl sm:text-7xl md:text-8xl tracking-tight leading-none">
+                    <h1 className="font-black text-5xl sm:text-6xl md:text-8xl tracking-tight leading-none">
                       <span className="text-[#ec4899] drop-shadow-[0_0_30px_rgba(236,72,153,0.5)]">TINDER</span>
                     </h1>
-                    <h2 className="font-black text-4xl sm:text-5xl md:text-6xl tracking-tight text-white/90 mt-2">
+                    <h2 className="font-black text-3xl sm:text-4xl md:text-6xl tracking-tight text-white/90 mt-1 md:mt-2">
                       ESPIÃO
                     </h2>
                   </div>
-                  <div className="rounded-full bg-gradient-to-tr from-violet-800/60 via-violet-500/50 to-violet-400/70 p-5 border-2 border-violet-400/40 shadow-violet-700/50 shadow-xl">
-                    <Eye className="w-14 h-14 text-violet-200" />
+                  <div className="rounded-full bg-gradient-to-tr from-violet-800/60 via-violet-500/50 to-violet-400/70 p-4 md:p-5 border-2 border-violet-400/40 shadow-violet-700/50 shadow-xl">
+                    <Eye className="w-10 h-10 md:w-14 md:h-14 text-violet-200" />
                   </div>
                 </div>
                 
                 <div className="space-y-6 max-w-4xl mx-auto">
-                  <p className="text-3xl md:text-4xl font-bold text-pink-300/90 drop-shadow-glow">
+                  <p className="text-2xl md:text-4xl font-bold text-pink-300/90 drop-shadow-glow">
                     A desconfiança te paralisa? Descubra se ele(a) está no Tinder.
                   </p>
-                  <p className="text-xl md:text-2xl text-gray-200/90 leading-relaxed">
+                  <p className="text-lg md:text-2xl text-gray-200/90 leading-relaxed">
                     Milhões de pessoas usam o Tinder para trair. Nossa tecnologia expõe perfis secretos e te dá a prova que você precisa. Chega de noites em claro e incerteza.
                   </p>
                 </div>
               </div>
 
               {/* Credibilidade Premium */}
-              <div className="flex flex-wrap gap-6 justify-center">
-                <Badge className="backdrop-blur-xl border border-pink-400/50 bg-pink-950/70 text-pink-100 px-6 py-3 text-lg font-semibold flex gap-3 items-center shadow-lg">
+              <div className="flex flex-wrap gap-4 md:gap-6 justify-center">
+                <Badge className="backdrop-blur-xl border border-pink-400/50 bg-pink-950/70 text-pink-100 px-4 py-2 text-base md:px-6 md:py-3 md:text-lg font-semibold flex gap-3 items-center shadow-lg">
                   <Shield className="w-5 h-5" /> 100% Seguro
                 </Badge>
-                <Badge className="border border-violet-400/50 bg-violet-950/70 text-violet-100 px-6 py-3 text-lg font-semibold flex gap-3 items-center shadow-lg">
+                <Badge className="border border-violet-400/50 bg-violet-950/70 text-violet-100 px-4 py-2 text-base md:px-6 md:py-3 md:text-lg font-semibold flex gap-3 items-center shadow-lg">
                   <CheckCircle className="w-5 h-5" /> Resultados Precisos
                 </Badge>
-                <Badge className="border border-green-400/50 bg-green-950/70 text-green-100 px-6 py-3 text-lg font-semibold flex gap-3 items-center shadow-lg">
+                <Badge className="border border-green-400/50 bg-green-950/70 text-green-100 px-4 py-2 text-base md:px-6 md:py-3 md:text-lg font-semibold flex gap-3 items-center shadow-lg">
                   <Lock className="w-5 h-5" /> Totalmente Anônimo
                 </Badge>
               </div>
@@ -142,24 +142,24 @@ const Index = () => {
               <div className="flex flex-col items-center space-y-4">
                 <div className="flex items-center gap-2">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-6 h-6 text-yellow-400 fill-yellow-400" />
+                    <Star key={i} className="w-5 h-5 md:w-6 md:h-6 text-yellow-400 fill-yellow-400" />
                   ))}
-                  <span className="text-xl font-bold text-white ml-2">4.9/5</span>
+                  <span className="text-lg md:text-xl font-bold text-white ml-2">4.9/5</span>
                 </div>
-                <p className="text-gray-300 text-lg">Junte-se às mais de <span className="font-bold text-white">7 mil pessoas</span> que usaram hoje para descobrir a verdade.</p>
-                <p className="text-gray-400 text-base">(+50.000 investigações de sucesso)</p>
+                <p className="text-base md:text-lg text-gray-300">Junte-se às mais de <span className="font-bold text-white">7 mil pessoas</span> que usaram hoje para descobrir a verdade.</p>
+                <p className="text-sm md:text-base text-gray-400">(+50.000 investigações de sucesso)</p>
               </div>
             </div>
 
             {/* Features Premium */}
-            <div className="grid md:grid-cols-3 gap-8 mb-20">
+            <div className="grid md:grid-cols-3 gap-6 md:gap-8 mb-16 md:mb-20">
               <Card className="bg-gradient-to-br from-pink-950/50 to-black/70 border border-pink-400/30 hover:border-pink-400/50 transition-all duration-300 shadow-xl hover:shadow-pink-500/20">
                 <CardHeader className="text-center pb-4">
-                  <Heart className="w-16 h-16 text-pink-400 mx-auto mb-6" />
-                  <CardTitle className="text-2xl text-pink-300 font-bold">Descubra a Verdade</CardTitle>
+                  <Heart className="w-12 h-12 md:w-16 md:h-16 text-pink-400 mx-auto mb-4 md:mb-6" />
+                  <CardTitle className="text-xl md:text-2xl text-pink-300 font-bold">Descubra a Verdade</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-300 text-center text-lg leading-relaxed">
+                  <p className="text-gray-300 text-center text-base md:text-lg leading-relaxed">
                     Mesmo que ele(a) use um nome falso ou outra foto, nosso sistema encontra. Descubra a verdade que tentam esconder de você.
                   </p>
                 </CardContent>
@@ -167,11 +167,11 @@ const Index = () => {
 
               <Card className="bg-gradient-to-br from-violet-950/50 to-black/70 border border-violet-400/30 hover:border-violet-400/50 transition-all duration-300 shadow-xl hover:shadow-violet-500/20">
                 <CardHeader className="text-center pb-4">
-                  <Database className="w-16 h-16 text-violet-400 mx-auto mb-6" />
-                  <CardTitle className="text-2xl text-violet-300 font-bold">Provas Irrefutáveis</CardTitle>
+                  <Database className="w-12 h-12 md:w-16 md:h-16 text-violet-400 mx-auto mb-4 md:mb-6" />
+                  <CardTitle className="text-xl md:text-2xl text-violet-300 font-bold">Provas Irrefutáveis</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-300 text-center text-lg leading-relaxed">
+                  <p className="text-gray-300 text-center text-base md:text-lg leading-relaxed">
                     Veja com quem ele(a) dá 'match', as fotos que usa e até o início das conversas. A verdade, na palma da sua mão.
                   </p>
                 </CardContent>
@@ -179,11 +179,11 @@ const Index = () => {
 
               <Card className="bg-gradient-to-br from-green-950/50 to-black/70 border border-green-400/30 hover:border-green-400/50 transition-all duration-300 shadow-xl hover:shadow-green-500/20">
                 <CardHeader className="text-center pb-4">
-                  <Shield className="w-16 h-16 text-green-400 mx-auto mb-6" />
-                  <CardTitle className="text-2xl text-green-300 font-bold">Proteja-se com Sigilo</CardTitle>
+                  <Shield className="w-12 h-12 md:w-16 md:h-16 text-green-400 mx-auto mb-4 md:mb-6" />
+                  <CardTitle className="text-xl md:text-2xl text-green-300 font-bold">Proteja-se com Sigilo</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-300 text-center text-lg leading-relaxed">
+                  <p className="text-gray-300 text-center text-base md:text-lg leading-relaxed">
                     Sua identidade é 100% protegida. Ele(a) NUNCA saberá que você investigou. Aja com segurança e recupere sua paz.
                   </p>
                 </CardContent>
@@ -192,22 +192,22 @@ const Index = () => {
 
             {/* Card de busca principal */}
             <Card className={`mx-auto max-w-3xl neon-frame-hacker shadow-2xl bg-gradient-to-br ${CARD_GRADIENT} hover:scale-[1.02] transition-transform duration-300`}>
-              <CardHeader className="pb-8 pt-12">
-                <p className="text-center text-2xl text-pink-400 font-semibold mb-4 animate-pulse">Você vai continuar na dúvida enquanto outros descobrem a verdade?</p>
-                <CardTitle className="text-center text-4xl md:text-5xl font-black text-white tracking-tight drop-shadow-glow">
-                  <span className="flex items-center justify-center gap-5">
-                    <Search className="w-12 h-12 animate-pulse text-pink-400" />
+              <CardHeader className="pb-6 md:pb-8 pt-8 md:pt-12">
+                <p className="text-center text-xl md:text-2xl text-pink-400 font-semibold mb-4 animate-pulse">Você vai continuar na dúvida enquanto outros descobrem a verdade?</p>
+                <CardTitle className="text-center text-3xl md:text-5xl font-black text-white tracking-tight drop-shadow-glow">
+                  <span className="flex items-center justify-center gap-3 md:gap-5">
+                    <Search className="w-8 h-8 md:w-12 md:h-12 animate-pulse text-pink-400" />
                     <span>Acabe com a Angústia</span>
-                    <Target className="w-12 h-12 animate-pulse text-violet-400" />
+                    <Target className="w-8 h-8 md:w-12 md:h-12 animate-pulse text-violet-400" />
                   </span>
                 </CardTitle>
-                <p className="text-center text-xl text-gray-300 mt-4">
+                <p className="text-center text-lg md:text-xl text-gray-300 mt-4">
                   Um simples número de telefone é tudo o que precisamos para revelar se a sua confiança está sendo traída.
                 </p>
               </CardHeader>
-              <CardContent className="space-y-8 px-10 pb-12">
+              <CardContent className="space-y-6 md:space-y-8 px-6 md:px-10 pb-8 md:pb-12">
                 <div>
-                  <label className="block text-gray-200 text-2xl font-bold mb-6 text-center">
+                  <label className="block text-gray-200 text-xl md:text-2xl font-bold mb-4 md:mb-6 text-center">
                     Número de telefone:
                   </label>
                   <Input 
@@ -215,37 +215,37 @@ const Index = () => {
                     placeholder="(11) 9XXXX-XXXX"
                     value={phoneNumber}
                     onChange={handlePhoneChange}
-                    className="bg-gray-900/80 border-3 border-pink-400/40 text-white text-center text-3xl h-20 font-mono focus:border-pink-400 focus:ring-pink-400/30 transition-all duration-300 hover:border-pink-400/60 rounded-2xl shadow-xl"
+                    className="bg-gray-900/80 border-3 border-pink-400/40 text-white text-center text-2xl md:text-3xl h-16 md:h-20 font-mono focus:border-pink-400 focus:ring-pink-400/30 transition-all duration-300 hover:border-pink-400/60 rounded-2xl shadow-xl"
                     maxLength={15}
                   />
                 </div>
-                <div className="text-center text-yellow-400 bg-yellow-900/50 border border-yellow-500 rounded-lg py-3 px-4 font-bold text-xl mb-4 shadow-lg animate-pulse">
-                  <AlertTriangle className="inline-block w-6 h-6 mr-2" /> Apenas 30 verificações gratuitas restantes hoje.
+                <div className="text-center text-yellow-400 bg-yellow-900/50 border border-yellow-500 rounded-lg py-3 px-4 font-bold text-base md:text-xl mb-4 shadow-lg animate-pulse">
+                  <AlertTriangle className="inline-block w-5 h-5 md:w-6 md:h-6 mr-2" /> Apenas 30 verificações gratuitas restantes hoje.
                 </div>
                 <Button 
                   onClick={handleScan}
                   disabled={phoneNumber.length < 14}
-                  className={`w-full py-8 text-3xl font-black tracking-wider rounded-2xl shadow-2xl bg-gradient-to-r ${CTA_GRADIENT} hover:from-pink-500 hover:via-violet-500 hover:to-pink-500 transition-all duration-300 transform hover:scale-105 uppercase`}
+                  className={`w-full py-6 md:py-8 text-2xl md:text-3xl font-black tracking-wider rounded-2xl shadow-2xl bg-gradient-to-r ${CTA_GRADIENT} hover:from-pink-500 hover:via-violet-500 hover:to-pink-500 transition-all duration-300 transform hover:scale-105 uppercase`}
                 >
-                  <Radar className="mr-4 h-10 w-10 animate-spin" />
+                  <Radar className="mr-3 md:mr-4 h-8 w-8 md:h-10 md:w-10 animate-spin" />
                   Expor a Verdade Agora
                 </Button>
                 <div className="text-center mt-4 p-3 bg-black/30 rounded-lg border border-gray-700 h-16 flex items-center justify-center">
-                  <p key={socialProofIndex} className="text-lg text-white animate-fade-in">
+                  <p key={socialProofIndex} className="text-base md:text-lg text-white animate-fade-in">
                     🔥 <span className="font-bold text-pink-400">{socialProofs[socialProofIndex].name}</span> {socialProofs[socialProofIndex].text}
                   </p>
                 </div>
-                <div className="flex flex-col md:flex-row gap-6 justify-center pt-2">
-                  <div className="flex items-center gap-3 text-pink-400 text-xl justify-center">
-                    <Shield className="w-7 h-7" />
+                <div className="flex flex-col md:flex-row gap-4 md:gap-6 justify-center pt-2">
+                  <div className="flex items-center gap-3 text-pink-400 text-base md:text-xl justify-center">
+                    <Shield className="w-6 h-6 md:w-7 md:h-7" />
                     Totalmente Anônimo
                   </div>
-                  <div className="flex items-center gap-3 text-violet-400 text-xl justify-center">
-                    <Lock className="w-7 h-7" />
+                  <div className="flex items-center gap-3 text-violet-400 text-base md:text-xl justify-center">
+                    <Lock className="w-6 h-6 md:w-7 md:h-7" />
                     Sem Rastros
                   </div>
-                  <div className="flex items-center gap-3 text-green-400 text-xl justify-center">
-                    <Zap className="w-7 h-7" />
+                  <div className="flex items-center gap-3 text-green-400 text-base md:text-xl justify-center">
+                    <Zap className="w-6 h-6 md:w-7 md:h-7" />
                     Resultados Instantâneos
                   </div>
                 </div>
@@ -261,25 +261,25 @@ const Index = () => {
               <HackerLinesBackground />
             </div>
             <div className="space-y-6 mb-10">
-              <div className="flex items-center justify-center gap-5">
+              <div className="flex items-center justify-center gap-4 md:gap-5">
                 <div className="rounded-full bg-gradient-to-tr from-pink-800/70 via-pink-500/60 to-pink-400/80 p-3 animate-glow-pulse border-2 border-pink-400 shadow-pink-700 shadow-md">
-                  <Radar className="w-14 h-14 text-pink-200 animate-radar" />
+                  <Radar className="w-12 h-12 md:w-14 md:h-14 text-pink-200 animate-radar" />
                 </div>
-                <h2 className="text-5xl md:text-6xl font-black text-pink-300 animate-pulse text-shadow-hacker drop-shadow-glow tracking-tighter">
+                <h2 className="text-4xl md:text-6xl font-black text-pink-300 animate-pulse text-shadow-hacker drop-shadow-glow tracking-tighter">
                   INVESTIGANDO
                 </h2>
                 <div className="rounded-full bg-gradient-to-tr from-violet-800/70 via-violet-500/60 to-violet-400/80 p-3 animate-glow-pulse border-2 border-violet-400 shadow-violet-500 shadow-md">
-                  <Database className="w-14 h-14 text-violet-200 animate-pulse" />
+                  <Database className="w-12 h-12 md:w-14 md:h-14 text-violet-200 animate-pulse" />
                 </div>
               </div>
-              <div className="mx-auto rounded-xl bg-black/60 border-l-4 border-pink-400 text-pink-200 px-6 py-2 shadow-inner font-mono max-w-md">
-                Analisando: <span className="font-bold text-lg text-[#ec4899]">{phoneNumber}</span>
+              <div className="mx-auto rounded-xl bg-black/60 border-l-4 border-pink-400 text-pink-200 px-4 py-2 md:px-6 shadow-inner font-mono max-w-md text-sm md:text-base">
+                Analisando: <span className="font-bold text-base md:text-lg text-[#ec4899]">{phoneNumber}</span>
               </div>
             </div>
             <div className="flex justify-center items-center">
               <div className="w-full max-w-4xl">
                 <div className="neon-frame-hacker shadow-2xl rounded-2xl p-0 bg-gradient-to-br from-black/70 via-pink-800/10 to-violet-900/10">
-                  <div className="p-10 sm:p-14 space-y-10">
+                  <div className="p-6 sm:p-10 md:p-14 space-y-8 md:space-y-10">
                     <div className="w-full">
                       <div className="h-6 w-full rounded-full bg-black overflow-hidden border border-pink-700 shadow-inner shadow-pink-400/20">
                         <div
@@ -291,11 +291,11 @@ const Index = () => {
                         ></div>
                       </div>
                     </div>
-                    <div className="space-y-5">
+                    <div className="space-y-4 md:space-y-5">
                       {scanningSteps.map((step, index) => (
                         <div
                           key={index}
-                          className={`flex items-center space-x-6 p-5 rounded-2xl transition-all duration-700 font-mono text-lg md:text-xl
+                          className={`flex items-center space-x-4 md:space-x-6 p-4 md:p-5 rounded-2xl transition-all duration-700 font-mono text-base md:text-xl
                             ${index === currentStep
                               ? 'bg-gradient-to-r from-[#181f1a]/70 to-pink-950 text-pink-200 border-2 border-pink-400/60 shadow-xl scale-105 drop-shadow-glow'
                               : index < currentStep
@@ -315,7 +315,7 @@ const Index = () => {
                         </div>
                       ))}
                     </div>
-                    <div className="text-center text-pink-400 pt-2 font-mono text-xl md:text-2xl">
+                    <div className="text-center text-pink-400 pt-2 font-mono text-lg md:text-2xl">
                       <p>📊 {Math.round(progress)}% CONCLUÍDO</p>
                     </div>
                   </div>
@@ -327,15 +327,15 @@ const Index = () => {
 
         {/* RESULTADOS */}
         {scanComplete && (
-          <section className="text-center space-y-10 animate-fade-in">
-            <div className="flex items-center justify-center gap-4 mb-9">
-              <AlertTriangle className="w-16 h-16 text-pink-500 animate-glow-pulse drop-shadow-glow" />
-              <h2 className="text-4xl md:text-5xl font-black bg-gradient-to-r from-[#ec4899] via-violet-500 to-white bg-clip-text text-transparent animate-gradient-shift drop-shadow-glow tracking-tight">
+          <section className="text-center space-y-8 md:space-y-10 animate-fade-in">
+            <div className="flex items-center justify-center gap-3 md:gap-4 mb-6 md:mb-9">
+              <AlertTriangle className="w-12 h-12 md:w-16 md:h-16 text-pink-500 animate-glow-pulse drop-shadow-glow" />
+              <h2 className="text-3xl md:text-5xl font-black bg-gradient-to-r from-[#ec4899] via-violet-500 to-white bg-clip-text text-transparent animate-gradient-shift drop-shadow-glow tracking-tight">
                 ALERTA: ATIVIDADE SUSPEITA DETECTADA
               </h2>
-              <Eye className="w-16 h-16 text-violet-400 animate-glow-pulse drop-shadow-glow" />
+              <Eye className="w-12 h-12 md:w-16 md:h-16 text-violet-400 animate-glow-pulse drop-shadow-glow" />
             </div>
-            <p className="text-2xl text-white mb-2 font-semibold drop-shadow-glow">
+            <p className="text-xl md:text-2xl text-white mb-2 font-semibold drop-shadow-glow">
               Encontramos um perfil ativo vinculado a este número. Os detalhes estão ocultos para sua proteção.
             </p>
             <div className="mt-2">
@@ -344,15 +344,15 @@ const Index = () => {
             {/* CALL TO ACTION */}
             <Card className="bg-gradient-to-br from-[#090f10]/90 via-[#27132b]/80 to-[#0e2021]/100 border-4 border-[#ec4899] neon-frame-hacker backdrop-blur-2xl max-w-4xl mx-auto shadow-[0_0_55px_2px_rgba(236,72,153,0.3)] mt-8 transition-all duration-300">
               <CardHeader>
-                <CardTitle className="text-[#ec4899] flex items-center justify-center space-x-4 text-2xl md:text-3xl font-bold animate-gradient-shift drop-shadow-glow">
-                  <Target className="w-8 h-8 animate-pulse text-violet-400" />
+                <CardTitle className="text-[#ec4899] flex items-center justify-center space-x-3 md:space-x-4 text-xl md:text-3xl font-bold animate-gradient-shift drop-shadow-glow">
+                  <Target className="w-7 h-7 md:w-8 md:h-8 animate-pulse text-violet-400" />
                   <span>A Verdade Está a Um Clique</span>
-                  <Heart className="w-8 h-8 animate-pulse text-pink-400" />
+                  <Heart className="w-7 h-7 md:w-8 md:h-8 animate-pulse text-pink-400" />
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-7 px-8 py-10">
+              <CardContent className="space-y-6 md:space-y-7 px-6 md:px-8 py-8 md:py-10">
                   <Button 
-                    className="w-full bg-gradient-to-r from-[#ec4899] via-violet-400 to-[#8b5cf6] hover:from-pink-600 hover:via-violet-400 hover:to-[#c300ff] text-white font-black py-6 text-2xl rounded-xl transition-all duration-300 transform hover:scale-105 shadow-2xl glow-pink uppercase tracking-wide"
+                    className="w-full bg-gradient-to-r from-[#ec4899] via-violet-400 to-[#8b5cf6] hover:from-pink-600 hover:via-violet-400 hover:to-[#c300ff] text-white font-black py-5 md:py-6 text-xl sm:text-2xl rounded-xl transition-all duration-300 transform hover:scale-105 shadow-2xl glow-pink uppercase tracking-wide"
                     onClick={() => {
                       alert('💕 PERFIL DESBLOQUEADO! Todas as informações do perfil de relacionamento estão disponíveis para visualização.');
                     }}
@@ -361,7 +361,7 @@ const Index = () => {
                   </Button>
                   <Button 
                     variant="outline"
-                    className="w-full border-2 border-[#ec4899] text-[#ec4899] hover:bg-[#161f13]/70 hover:text-white py-4 text-lg transition-all duration-300 hover:scale-105 rounded-lg font-bold shadow-input"
+                    className="w-full border-2 border-[#ec4899] text-[#ec4899] hover:bg-[#161f13]/70 hover:text-white py-4 text-base md:text-lg transition-all duration-300 hover:scale-105 rounded-lg font-bold shadow-input"
                     onClick={() => {
                       setPhoneNumber('');
                       setScanComplete(false);
