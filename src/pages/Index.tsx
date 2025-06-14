@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -7,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Search, Shield, Eye, AlertTriangle, Zap, Heart, Target, Radar } from "lucide-react";
 import HackerOverlay from "@/components/HackerOverlay";
 import DiscoveredProfileInfo from "@/components/DiscoveredProfileInfo";
+import HackerLinesBackground from "@/components/HackerLinesBackground";
 
 // Paleta de cores: preto, neon-green, pink, violet, with subtle gradients
 
@@ -175,6 +175,10 @@ const Index = () => {
         {/* FASE DE SCAN */}
         {isScanning && (
           <section className="text-center animate-fade-in relative z-30 pt-8">
+            {/* Adiciona fundo hacker verde */}
+            <div className="absolute inset-0 pointer-events-none z-0">
+              <HackerLinesBackground />
+            </div>
             <div className="space-y-6 mb-10">
               <div className="flex items-center justify-center gap-5">
                 <div className="rounded-full bg-gradient-to-tr from-green-800/70 via-green-500/60 to-green-400/80 p-3 animate-glow-pulse border-2 border-green-400 shadow-green-700 shadow-md">
