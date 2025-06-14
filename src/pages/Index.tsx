@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -442,9 +443,9 @@ const Index = () => {
                       }}
                     >
                       <DollarSign className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 mr-2" />
-                      DESBLOQUEAR DOSSIÊ COMPLETO POR R$19,90
+                      DESBLOQUEAR PERFIL COMPLETO POR R$19,90
                     </Button>
-                    <p className="text-center text-sm text-gray-400">Pagamento único e 100% seguro. Acesso vitalício ao relatório.</p>
+                    <p className="text-center text-sm text-gray-400">Pagamento único e 100% seguro. Acesso vitalício às informações.</p>
                   </div>
                   <Button 
                     variant="outline"
