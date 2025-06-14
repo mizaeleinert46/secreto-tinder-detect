@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -101,10 +100,10 @@ const Index = () => {
                 
                 <div className="space-y-6 max-w-4xl mx-auto">
                   <p className="text-3xl md:text-4xl font-bold text-pink-300/90 drop-shadow-glow">
-                    Descubra Perfis Secretos de Relacionamento
+                    A dúvida está te consumindo? Descubra a verdade.
                   </p>
                   <p className="text-xl md:text-2xl text-gray-200/90 leading-relaxed">
-                    Sistema profissional de investigação digital para análise de atividade em aplicativos de encontro
+                    Nossa tecnologia de ponta varre os principais aplicativos de relacionamento e revela perfis ocultos. Tenha a certeza que você merece, de forma 100% anônima e segura.
                   </p>
                 </div>
               </div>
@@ -139,11 +138,11 @@ const Index = () => {
               <Card className="bg-gradient-to-br from-pink-950/50 to-black/70 border border-pink-400/30 hover:border-pink-400/50 transition-all duration-300 shadow-xl hover:shadow-pink-500/20">
                 <CardHeader className="text-center pb-4">
                   <Heart className="w-16 h-16 text-pink-400 mx-auto mb-6" />
-                  <CardTitle className="text-2xl text-pink-300 font-bold">Perfis de Relacionamento</CardTitle>
+                  <CardTitle className="text-2xl text-pink-300 font-bold">Encontre Perfis Ocultos</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-gray-300 text-center text-lg leading-relaxed">
-                    Identifica perfis ativos em Tinder, Bumble, Happn e outros apps de encontro
+                    Nosso sistema cruza informações e localiza perfis em apps como Tinder, Happn e Badoo, mesmo que usem outro nome.
                   </p>
                 </CardContent>
               </Card>
@@ -151,11 +150,11 @@ const Index = () => {
               <Card className="bg-gradient-to-br from-violet-950/50 to-black/70 border border-violet-400/30 hover:border-violet-400/50 transition-all duration-300 shadow-xl hover:shadow-violet-500/20">
                 <CardHeader className="text-center pb-4">
                   <Database className="w-16 h-16 text-violet-400 mx-auto mb-6" />
-                  <CardTitle className="text-2xl text-violet-300 font-bold">Análise Completa</CardTitle>
+                  <CardTitle className="text-2xl text-violet-300 font-bold">Relatório Detalhado</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-gray-300 text-center text-lg leading-relaxed">
-                    Fotos, biografia, localização e histórico de atividade em tempo real
+                    Tenha acesso a fotos, última localização, 'matches' e até mesmo o início de conversas. A verdade, em detalhes.
                   </p>
                 </CardContent>
               </Card>
@@ -163,11 +162,11 @@ const Index = () => {
               <Card className="bg-gradient-to-br from-green-950/50 to-black/70 border border-green-400/30 hover:border-green-400/50 transition-all duration-300 shadow-xl hover:shadow-green-500/20">
                 <CardHeader className="text-center pb-4">
                   <Shield className="w-16 h-16 text-green-400 mx-auto mb-6" />
-                  <CardTitle className="text-2xl text-green-300 font-bold">Privacidade Total</CardTitle>
+                  <CardTitle className="text-2xl text-green-300 font-bold">Sigilo Absoluto</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-gray-300 text-center text-lg leading-relaxed">
-                    Investigação 100% anônima sem deixar rastros ou notificações
+                    Sua investigação é completamente confidencial. A pessoa investigada NUNCA saberá que foi você. Garantimos seu anonimato.
                   </p>
                 </CardContent>
               </Card>
@@ -179,12 +178,12 @@ const Index = () => {
                 <CardTitle className="text-center text-4xl md:text-5xl font-black text-white tracking-tight drop-shadow-glow">
                   <span className="flex items-center justify-center gap-5">
                     <Search className="w-12 h-12 animate-pulse text-pink-400" />
-                    <span>INVESTIGAR AGORA</span>
+                    <span>Chega de Dúvidas</span>
                     <Target className="w-12 h-12 animate-pulse text-violet-400" />
                   </span>
                 </CardTitle>
                 <p className="text-center text-xl text-gray-300 mt-4">
-                  Digite o número de telefone para descobrir perfis secretos
+                  Insira o número de telefone e nossa IA fará uma varredura completa em busca da verdade.
                 </p>
               </CardHeader>
               <CardContent className="space-y-8 px-10 pb-12">
