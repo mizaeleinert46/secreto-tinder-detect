@@ -33,15 +33,23 @@ const womanInfo = [
 ];
 
 
-const InfoPill = ({ icon: Icon, text, value, colorClass }: { icon: React.ElementType, text: string, value: string, colorClass: string }) => (
-  <div className={`flex items-center gap-3 p-3 rounded-lg bg-black/30 border-l-4 ${colorClass}`}>
-    <Icon className="w-6 h-6 shrink-0" />
-    <div className="text-sm">
-      <p className="text-gray-400">{text}</p>
-      <p className="font-bold text-base text-white">{value}</p>
-    </div>
-  </div>
-);
+const InfoPill = ({ icon: Icon, text, value, colorClass }: { icon: React.ElementType, text: string, value: string, colorClass: string }) => {
+    const borderColorClass = colorClass.split(' ')[0]; // ex: "border-yellow-400"
+    const textColorClass = colorClass.split(' ')[1]; // ex: "text-yellow-300"
+
+    return (
+        <div className={`relative overflow-hidden flex items-center gap-4 p-3 rounded-xl bg-black/50 border ${borderColorClass} transition-all duration-300 group hover:shadow-xl hover:scale-105`}>
+            <div className={`absolute -left-8 -top-8 w-24 h-24 rounded-full bg-gradient-radial from-white/10 to-transparent opacity-0 group-hover:opacity-50 group-hover:scale-[6] transition-transform duration-700`}/>
+            <div className={`flex-shrink-0 p-2 rounded-lg bg-black/60 border ${borderColorClass}`}>
+                <Icon className={`w-6 h-6 shrink-0 ${textColorClass}`} />
+            </div>
+            <div className="text-sm z-10">
+                <p className="text-gray-400">{text}</p>
+                <p className="font-bold text-base text-white">{value}</p>
+            </div>
+        </div>
+    );
+}
 
 export default function DiscoveredProfileInfo({ gender }: { gender: 'homem' | 'mulher' }) {
   const isMan = gender === 'homem';
@@ -57,22 +65,24 @@ export default function DiscoveredProfileInfo({ gender }: { gender: 'homem' | 'm
 
   return (
     <div className="space-y-8">
-      <div className="relative mx-auto max-w-4xl rounded-2xl neon-frame-hacker bg-gradient-to-br from-[#1c0c16]/90 via-[#11131d]/80 to-[#0e1d13]/90 border-2 border-pink-500/30 shadow-xl p-6 md:p-10 overflow-hidden select-none">
+      <div className="relative mx-auto max-w-4xl rounded-2xl neon-frame-hacker bg-gradient-to-br from-[#1c0c16]/90 via-[#11131d]/95 to-[#0e1d13]/90 border-2 border-pink-500/30 shadow-2xl shadow-pink-500/10 p-6 md:p-10 overflow-hidden select-none backdrop-blur-sm">
         
-        <div className="text-center mb-8">
-          <h3 className="text-2xl md:text-3xl font-bold text-pink-400 flex items-center justify-center gap-3">
-            <AlertCircle className="w-8 h-8"/> Dossiê Preliminar
+        <div className="text-center mb-10">
+          <h3 className="text-3xl md:text-4xl font-black text-pink-400 flex items-center justify-center gap-4 drop-shadow-glow">
+            <AlertCircle className="w-10 h-10 animate-pulse"/> Dossiê Preliminar
           </h3>
-          <p className="text-gray-300 mt-2">As informações a seguir foram detectadas e estão protegidas. Desbloqueie para ver os detalhes.</p>
+          <p className="text-gray-300 mt-3 text-lg">As informações a seguir foram detectadas e estão protegidas. Desbloqueie para ver os detalhes.</p>
         </div>
 
-        <div className="mb-8">
-          <h4 className="text-xl font-semibold text-green-300 mb-4 border-b-2 border-green-400/20 pb-2">Provas Visuais Encontradas</h4>
+        <div className="mb-10">
+          <h4 className="text-xl font-semibold text-green-300 mb-4 border-b-2 border-green-400/20 pb-2 flex items-center gap-2">
+            <Eye className="w-5 h-5"/> Provas Visuais Encontradas
+          </h4>
           <div className="grid grid-cols-3 gap-3 md:gap-4">
             {images.map((img, index) => (
               <div
                 key={index}
-                className="w-full aspect-[4/5] rounded-lg bg-black/50 overflow-hidden relative border border-pink-700/30 group"
+                className="w-full aspect-[4/5] rounded-lg bg-black/50 overflow-hidden relative border border-pink-700/30 group transition-all duration-300 hover:border-pink-500 hover:shadow-xl hover:shadow-pink-500/20"
               >
                 <img
                   src={img.src}
@@ -81,7 +91,7 @@ export default function DiscoveredProfileInfo({ gender }: { gender: 'homem' | 'm
                   className="w-full h-full object-cover blur-md scale-110 opacity-60 group-hover:blur-sm group-hover:opacity-80 transition-all duration-300"
                   draggable={false}
                 />
-                <div className="absolute inset-0 bg-black/20 flex items-center justify-center text-center p-2">
+                <div className="absolute inset-0 bg-black/30 flex items-center justify-center text-center p-2">
                   <span className="font-mono text-xs md:text-sm text-white bg-black/50 px-2 py-1 rounded">{img.label}</span>
                 </div>
                 <div className="absolute inset-0 scanlines-mix opacity-50"/>
@@ -95,7 +105,9 @@ export default function DiscoveredProfileInfo({ gender }: { gender: 'homem' | 'm
         </div>
         
         <div>
-          <h4 className="text-xl font-semibold text-green-300 mb-4 border-b-2 border-green-400/20 pb-2">Análise de Atividade e Comportamento</h4>
+          <h4 className="text-xl font-semibold text-green-300 mb-4 border-b-2 border-green-400/20 pb-2 flex items-center gap-2">
+            <TrendingUp className="w-5 h-5" /> Análise de Atividade e Comportamento
+          </h4>
           <div className="grid md:grid-cols-2 gap-4 font-mono">
              {infoData.map((info, index) => (
                 <InfoPill key={index} icon={info.icon} text={info.text} value={info.value} colorClass={info.colorClass} />
@@ -103,16 +115,16 @@ export default function DiscoveredProfileInfo({ gender }: { gender: 'homem' | 'm
           </div>
         </div>
 
-        <div className="mt-8 pt-6 border-t-2 border-pink-500/20 text-center space-y-4">
-            <div className="bg-red-900/50 border border-red-500/70 rounded-lg p-4 max-w-lg mx-auto">
+        <div className="mt-10 pt-8 border-t-2 border-pink-500/20 text-center space-y-4">
+            <div className="bg-red-900/60 border border-red-500/70 rounded-lg p-4 max-w-lg mx-auto shadow-lg shadow-red-900/50">
               <h5 className="text-lg font-bold text-red-300 flex items-center justify-center gap-2">
-                <AlertTriangle className="w-5 h-5"/> Nível de Risco: Elevado
+                <AlertTriangle className="w-6 h-6 animate-pulse"/> Nível de Risco: Elevado
               </h5>
               <p className="text-red-200 text-sm mt-1">
                 A atividade do perfil indica um alto risco de infidelidade e comportamento secreto.
               </p>
             </div>
-            <p className="text-lg text-gray-200">
+            <p className="text-lg text-gray-200 pt-4">
               O dossiê completo contém as conversas, nomes dos matches e localizações exatas. <span className="font-bold text-green-300">A verdade está nos detalhes.</span>
             </p>
         </div>
