@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -129,7 +130,8 @@ const Index = () => {
                   ))}
                   <span className="text-xl font-bold text-white ml-2">4.9/5</span>
                 </div>
-                <p className="text-gray-300 text-lg">Mais de 50.000 investigações realizadas com sucesso</p>
+                <p className="text-gray-300 text-lg">Junte-se às mais de <span className="font-bold text-white">7 mil pessoas</span> que usaram hoje para descobrir a verdade.</p>
+                <p className="text-gray-400 text-base">(+50.000 investigações de sucesso)</p>
               </div>
             </div>
 
@@ -175,6 +177,7 @@ const Index = () => {
             {/* Card de busca principal */}
             <Card className={`mx-auto max-w-3xl neon-frame-hacker shadow-2xl bg-gradient-to-br ${CARD_GRADIENT} hover:scale-[1.02] transition-transform duration-300`}>
               <CardHeader className="pb-8 pt-12">
+                <p className="text-center text-2xl text-pink-400 font-semibold mb-4 animate-pulse">Você vai continuar na dúvida enquanto outros descobrem a verdade?</p>
                 <CardTitle className="text-center text-4xl md:text-5xl font-black text-white tracking-tight drop-shadow-glow">
                   <span className="flex items-center justify-center gap-5">
                     <Search className="w-12 h-12 animate-pulse text-pink-400" />
@@ -200,6 +203,9 @@ const Index = () => {
                     maxLength={15}
                   />
                 </div>
+                <div className="text-center text-yellow-400 bg-yellow-900/50 border border-yellow-500 rounded-lg py-3 px-4 font-bold text-xl mb-4 shadow-lg animate-pulse">
+                  <AlertTriangle className="inline-block w-6 h-6 mr-2" /> Apenas 30 verificações gratuitas restantes hoje.
+                </div>
                 <Button 
                   onClick={handleScan}
                   disabled={phoneNumber.length < 14}
@@ -208,7 +214,10 @@ const Index = () => {
                   <Radar className="mr-4 h-10 w-10 animate-spin" />
                   Expor a Verdade Agora
                 </Button>
-                <div className="flex flex-col md:flex-row gap-6 justify-center pt-6">
+                <div className="text-center mt-4 p-3 bg-black/30 rounded-lg border border-gray-700">
+                  <p className="text-lg text-white">🔥 <span className="font-bold text-pink-400">@Carolzinha</span> usou e descobriu a verdade sobre o namorado em 3 minutos.</p>
+                </div>
+                <div className="flex flex-col md:flex-row gap-6 justify-center pt-2">
                   <div className="flex items-center gap-3 text-pink-400 text-xl justify-center">
                     <Shield className="w-7 h-7" />
                     Totalmente Anônimo
