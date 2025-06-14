@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -56,7 +57,7 @@ const Index = () => {
   const fetchProfileData = async () => {
     const cleanedPhoneNumber = phoneNumber.replace(/\D/g, '');
 
-    const useFallback = () => {
+    const useFallback = (reason?: string) => {
         const sampleNames = {
             homem: ["Carlos Silva", "Lucas Souza", "Pedro Oliveira", "Mateus Santos", "Gabriel Costa", "Bruno Pereira", "Rafael Ferreira", "Felipe Almeida"],
             mulher: ["Ana Julia", "Juliana Lima", "Camila Rodrigues", "Fernanda Alves", "Mariana Gomes", "Beatriz Martins", "Larissa Barbosa", "Amanda Ribeiro"]
@@ -64,9 +65,12 @@ const Index = () => {
         const names = sampleNames[targetGender as 'homem' | 'mulher'];
         const randomName = names[Math.floor(Math.random() * names.length)];
 
-        toast.warning("Modo de Demonstração Ativado", {
-            description: "Não foi possível conectar ao serviço real. Usando um perfil de exemplo para continuar."
-        });
+        if (!reason) {
+            toast.warning("Modo de Demonstração Ativado", {
+                description: "Não foi possível conectar ao serviço real. Usando um perfil de exemplo para continuar."
+            });
+        }
+        
         setDiscoveredProfile({
             name: randomName,
             profilePic: `https://picsum.photos/seed/${cleanedPhoneNumber}/400/400`
@@ -86,12 +90,15 @@ const Index = () => {
         if (!response.ok) {
             const errorText = await response.text();
             console.error("Erro da API:", response.status, errorText);
-            useFallback();
+            const description = `O serviço retornou um erro: ${response.status}. Isso pode acontecer se a chave da API for inválida, o limite de uso foi atingido ou o serviço está offline.`;
+            toast.error("Falha na comunicação com a API", { description });
+            useFallback(description);
             return;
         }
 
         const data = await response.json();
         console.log("Resposta da API do WhatsApp:", data);
+        console.log("Chaves da resposta:", Object.keys(data));
         
         if (data && data.profilePic && data.name) {
             setDiscoveredProfile({
@@ -100,12 +107,15 @@ const Index = () => {
             });
             setShowConfirmation(true);
         } else {
-             toast.info("Perfil não encontrado", { description: "Não achamos um perfil público. Usando dados de exemplo." });
-             useFallback();
+             const description = "A busca foi realizada, mas não encontramos um perfil público para este número. Verifique o número ou tente mais tarde.";
+             toast.info("Perfil não encontrado", { description });
+             useFallback(description);
         }
     } catch (error) {
         console.error("Falha ao buscar dados do perfil:", error);
-        useFallback();
+        const description = `Ocorreu um erro de rede ou de processamento ao tentar buscar o perfil. Verifique sua conexão.`;
+        toast.error("Erro na Requisição", { description });
+        useFallback(description);
     } finally {
         setIsFetchingProfile(false);
     }
