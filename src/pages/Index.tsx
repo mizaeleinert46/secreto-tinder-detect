@@ -56,7 +56,7 @@ const Index = () => {
     if (!scanComplete) return;
 
     const fetchProfileData = async () => {
-        if (!phoneNumber || !RAPIDAPI_KEY || RAPIDAPI_KEY === 'COLE_SUA_CHAVE_API_AQUI') {
+        if (!phoneNumber || !RAPIDAPI_KEY) {
             console.log("Nenhum número ou chave de API válida fornecida. Mostrando resultados padrão.");
             setTimeout(() => setShowResults(true), 1000);
             return;
