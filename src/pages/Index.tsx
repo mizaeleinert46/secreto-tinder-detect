@@ -4,12 +4,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Search, Shield, Eye, AlertTriangle, Zap, Heart, Target, Radar, Lock, Database, Signal } from "lucide-react";
+import { Search, Shield, Eye, AlertTriangle, Zap, Heart, Target, Radar, Lock, Database, Signal, CheckCircle, Star } from "lucide-react";
 import HackerOverlay from "@/components/HackerOverlay";
 import DiscoveredProfileInfo from "@/components/DiscoveredProfileInfo";
 import HackerLinesBackground from "@/components/HackerLinesBackground";
-
-// Paleta de cores: preto, neon-green, pink, violet, with subtle gradients
 
 const HACKER_GRADIENT = "from-[#051205]/95 via-[#11131d]/90 to-[#16051f]/90";
 const CTA_GRADIENT = "from-[#39ff14] via-[#c300ff] to-[#ec4899]";
@@ -68,141 +66,161 @@ const Index = () => {
   };
 
   return (
-    <div className={`min-h-screen bg-gradient-to-br ${HACKER_GRADIENT} text-white overflow-hidden relative font-mono`}>
-      {/* Efeito Hacker durante scanning */}
+    <div className={`min-h-screen bg-gradient-to-br ${HACKER_GRADIENT} text-white overflow-hidden relative font-sans`}>
       {isScanning && <HackerOverlay />}
-      {/* Fundo animado */}
+      
       <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-green-900/5 to-violet-900/10" />
-        {/* Grid cyber sutil */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(57,255,20,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(196,72,253,0.02)_1px,transparent_1px)] bg-[size:60px_60px]"/>
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[70vw] w-[70vw] rounded-full bg-gradient-radial from-[#16ffad11] via-[#ce30ff22] to-transparent blur-3xl opacity-40" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-pink-900/5 to-violet-900/10" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(236,72,153,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(139,92,246,0.02)_1px,transparent_1px)] bg-[size:80px_80px]"/>
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[60vw] w-[60vw] rounded-full bg-gradient-radial from-[#ec489920] via-[#8b5cf620] to-transparent blur-3xl opacity-30" />
       </div>
 
-      <div className="relative z-10 container mx-auto px-4 py-8 max-w-6xl">
-        {/* HEADER */}
+      <div className="relative z-10 container mx-auto px-4 py-8 max-w-7xl">
         {!isScanning && !scanComplete && (
           <section className="animate-fade-in">
-            {/* Hero Section */}
-            <div className="text-center space-y-8 pt-12 pb-16">
-              <div className="flex flex-col items-center space-y-6">
+            {/* Header Premium */}
+            <div className="text-center space-y-12 pt-8 pb-20">
+              <div className="flex flex-col items-center space-y-8">
+                {/* Logo/Brand */}
                 <div className="flex items-center justify-center gap-6">
-                  <div className="rounded-full bg-gradient-to-tr from-green-800/50 via-green-500/40 to-green-400/60 p-4 border-2 border-green-400/30 shadow-green-700/50 shadow-lg">
-                    <Database className="w-12 h-12 text-green-300" />
+                  <div className="rounded-full bg-gradient-to-tr from-pink-800/60 via-pink-500/50 to-pink-400/70 p-5 border-2 border-pink-400/40 shadow-pink-700/50 shadow-xl">
+                    <Heart className="w-14 h-14 text-pink-200" />
                   </div>
-                  <h1 className="font-black text-6xl sm:text-7xl md:text-8xl tracking-tight">
-                    <span className="text-[#39ff14] drop-shadow-glow">SOCIAL</span>
-                    <span className="ml-3 text-white/95 font-extrabold">INTEL</span>
-                  </h1>
-                  <div className="rounded-full bg-gradient-to-tr from-violet-800/50 via-violet-500/40 to-violet-400/60 p-4 border-2 border-violet-400/30 shadow-violet-700/50 shadow-lg">
-                    <Shield className="w-12 h-12 text-violet-300" />
+                  <div className="text-center">
+                    <h1 className="font-black text-6xl sm:text-7xl md:text-8xl tracking-tight leading-none">
+                      <span className="text-[#ec4899] drop-shadow-[0_0_30px_rgba(236,72,153,0.5)]">TINDER</span>
+                    </h1>
+                    <h2 className="font-black text-4xl sm:text-5xl md:text-6xl tracking-tight text-white/90 mt-2">
+                      ESPIÃO
+                    </h2>
+                  </div>
+                  <div className="rounded-full bg-gradient-to-tr from-violet-800/60 via-violet-500/50 to-violet-400/70 p-5 border-2 border-violet-400/40 shadow-violet-700/50 shadow-xl">
+                    <Eye className="w-14 h-14 text-violet-200" />
                   </div>
                 </div>
                 
-                <div className="space-y-4">
-                  <p className="text-2xl md:text-3xl font-bold text-green-300/90 drop-shadow-glow">
-                    Investigação Digital Profissional
+                <div className="space-y-6 max-w-4xl mx-auto">
+                  <p className="text-3xl md:text-4xl font-bold text-pink-300/90 drop-shadow-glow">
+                    Descubra Perfis Secretos de Relacionamento
                   </p>
-                  <p className="text-xl text-gray-200/90 max-w-3xl mx-auto leading-relaxed">
-                    Tecnologia avançada para análise de perfis digitais e verificação de atividade em redes sociais
+                  <p className="text-xl md:text-2xl text-gray-200/90 leading-relaxed">
+                    Sistema profissional de investigação digital para análise de atividade em aplicativos de encontro
                   </p>
                 </div>
               </div>
 
-              {/* Badges de credibilidade */}
-              <div className="flex flex-wrap gap-6 justify-center mt-12">
-                <Badge className="backdrop-blur-xl border border-green-400/50 bg-green-950/60 text-green-100 px-8 py-3 text-lg font-semibold flex gap-3 items-center">
-                  <Lock className="w-5 h-5" /> Segurança Certificada
+              {/* Credibilidade Premium */}
+              <div className="flex flex-wrap gap-6 justify-center">
+                <Badge className="backdrop-blur-xl border border-pink-400/50 bg-pink-950/70 text-pink-100 px-6 py-3 text-lg font-semibold flex gap-3 items-center shadow-lg">
+                  <Shield className="w-5 h-5" /> 100% Seguro
                 </Badge>
-                <Badge className="border border-violet-400/50 bg-violet-950/60 text-violet-100 px-8 py-3 text-lg font-semibold flex gap-3 items-center">
-                  <Signal className="w-5 h-5" /> Análise em Tempo Real
+                <Badge className="border border-violet-400/50 bg-violet-950/70 text-violet-100 px-6 py-3 text-lg font-semibold flex gap-3 items-center shadow-lg">
+                  <CheckCircle className="w-5 h-5" /> Resultados Precisos
                 </Badge>
-                <Badge className="border border-blue-400/50 bg-blue-950/60 text-blue-100 px-8 py-3 text-lg font-semibold flex gap-3 items-center">
-                  <Eye className="w-5 h-5" /> Privacidade Garantida
+                <Badge className="border border-green-400/50 bg-green-950/70 text-green-100 px-6 py-3 text-lg font-semibold flex gap-3 items-center shadow-lg">
+                  <Lock className="w-5 h-5" /> Totalmente Anônimo
                 </Badge>
+              </div>
+
+              {/* Avaliações */}
+              <div className="flex flex-col items-center space-y-4">
+                <div className="flex items-center gap-2">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-6 h-6 text-yellow-400 fill-yellow-400" />
+                  ))}
+                  <span className="text-xl font-bold text-white ml-2">4.9/5</span>
+                </div>
+                <p className="text-gray-300 text-lg">Mais de 50.000 investigações realizadas com sucesso</p>
               </div>
             </div>
 
-            {/* Seção de recursos */}
-            <div className="grid md:grid-cols-3 gap-8 mb-16">
-              <Card className="bg-gradient-to-br from-green-950/40 to-black/60 border border-green-400/20 hover:border-green-400/40 transition-all duration-300">
+            {/* Features Premium */}
+            <div className="grid md:grid-cols-3 gap-8 mb-20">
+              <Card className="bg-gradient-to-br from-pink-950/50 to-black/70 border border-pink-400/30 hover:border-pink-400/50 transition-all duration-300 shadow-xl hover:shadow-pink-500/20">
                 <CardHeader className="text-center pb-4">
-                  <Database className="w-12 h-12 text-green-400 mx-auto mb-4" />
-                  <CardTitle className="text-xl text-green-300">Análise Avançada</CardTitle>
+                  <Heart className="w-16 h-16 text-pink-400 mx-auto mb-6" />
+                  <CardTitle className="text-2xl text-pink-300 font-bold">Perfis de Relacionamento</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-300 text-center">
-                    Algoritmos proprietários para análise profunda de dados e identificação de perfis
+                  <p className="text-gray-300 text-center text-lg leading-relaxed">
+                    Identifica perfis ativos em Tinder, Bumble, Happn e outros apps de encontro
                   </p>
                 </CardContent>
               </Card>
 
-              <Card className="bg-gradient-to-br from-violet-950/40 to-black/60 border border-violet-400/20 hover:border-violet-400/40 transition-all duration-300">
+              <Card className="bg-gradient-to-br from-violet-950/50 to-black/70 border border-violet-400/30 hover:border-violet-400/50 transition-all duration-300 shadow-xl hover:shadow-violet-500/20">
                 <CardHeader className="text-center pb-4">
-                  <Shield className="w-12 h-12 text-violet-400 mx-auto mb-4" />
-                  <CardTitle className="text-xl text-violet-300">Máxima Segurança</CardTitle>
+                  <Database className="w-16 h-16 text-violet-400 mx-auto mb-6" />
+                  <CardTitle className="text-2xl text-violet-300 font-bold">Análise Completa</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-300 text-center">
-                    Criptografia de ponta e protocolos de segurança para proteger sua identidade
+                  <p className="text-gray-300 text-center text-lg leading-relaxed">
+                    Fotos, biografia, localização e histórico de atividade em tempo real
                   </p>
                 </CardContent>
               </Card>
 
-              <Card className="bg-gradient-to-br from-blue-950/40 to-black/60 border border-blue-400/20 hover:border-blue-400/40 transition-all duration-300">
+              <Card className="bg-gradient-to-br from-green-950/50 to-black/70 border border-green-400/30 hover:border-green-400/50 transition-all duration-300 shadow-xl hover:shadow-green-500/20">
                 <CardHeader className="text-center pb-4">
-                  <Zap className="w-12 h-12 text-blue-400 mx-auto mb-4" />
-                  <CardTitle className="text-xl text-blue-300">Resultados Instantâneos</CardTitle>
+                  <Shield className="w-16 h-16 text-green-400 mx-auto mb-6" />
+                  <CardTitle className="text-2xl text-green-300 font-bold">Privacidade Total</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-300 text-center">
-                    Processamento em tempo real com resultados precisos em segundos
+                  <p className="text-gray-300 text-center text-lg leading-relaxed">
+                    Investigação 100% anônima sem deixar rastros ou notificações
                   </p>
                 </CardContent>
               </Card>
             </div>
 
             {/* Card de busca principal */}
-            <Card className={`mx-auto max-w-2xl neon-frame-hacker shadow-2xl bg-gradient-to-br ${CARD_GRADIENT} hover:scale-105 transition-transform`}>
-              <CardHeader className="pb-6 pt-10">
-                <CardTitle className="text-center text-3xl md:text-4xl font-black text-white tracking-tight drop-shadow-glow">
-                  <span className="flex items-center justify-center gap-4">
-                    <Search className="w-10 h-10 animate-pulse text-green-400" />
-                    <span>INICIAR ANÁLISE</span>
-                    <Target className="w-10 h-10 animate-pulse text-violet-400" />
+            <Card className={`mx-auto max-w-3xl neon-frame-hacker shadow-2xl bg-gradient-to-br ${CARD_GRADIENT} hover:scale-[1.02] transition-transform duration-300`}>
+              <CardHeader className="pb-8 pt-12">
+                <CardTitle className="text-center text-4xl md:text-5xl font-black text-white tracking-tight drop-shadow-glow">
+                  <span className="flex items-center justify-center gap-5">
+                    <Search className="w-12 h-12 animate-pulse text-pink-400" />
+                    <span>INVESTIGAR AGORA</span>
+                    <Target className="w-12 h-12 animate-pulse text-violet-400" />
                   </span>
                 </CardTitle>
+                <p className="text-center text-xl text-gray-300 mt-4">
+                  Digite o número de telefone para descobrir perfis secretos
+                </p>
               </CardHeader>
-              <CardContent className="space-y-8 px-8 pb-12">
+              <CardContent className="space-y-8 px-10 pb-12">
                 <div>
-                  <label className="block text-gray-200 text-xl font-semibold mb-4 text-center">
-                    Número para análise:
+                  <label className="block text-gray-200 text-2xl font-bold mb-6 text-center">
+                    Número de telefone:
                   </label>
                   <Input 
                     type="tel"
                     placeholder="(11) 9XXXX-XXXX"
                     value={phoneNumber}
                     onChange={handlePhoneChange}
-                    className="bg-gray-900/80 border-2 border-green-400/30 text-white text-center text-2xl h-16 font-mono focus:border-green-400 focus:ring-green-400/20 transition-all duration-300 hover:border-green-400/50 rounded-xl shadow-lg"
+                    className="bg-gray-900/80 border-3 border-pink-400/40 text-white text-center text-3xl h-20 font-mono focus:border-pink-400 focus:ring-pink-400/30 transition-all duration-300 hover:border-pink-400/60 rounded-2xl shadow-xl"
                     maxLength={15}
                   />
                 </div>
                 <Button 
                   onClick={handleScan}
                   disabled={phoneNumber.length < 14}
-                  className={`w-full py-6 text-2xl font-black tracking-wider rounded-xl shadow-2xl bg-gradient-to-r ${CTA_GRADIENT} hover:from-green-500 hover:via-violet-500 hover:to-pink-500 transition-all duration-300 transform hover:scale-105 uppercase`}
+                  className={`w-full py-8 text-3xl font-black tracking-wider rounded-2xl shadow-2xl bg-gradient-to-r ${CTA_GRADIENT} hover:from-pink-500 hover:via-violet-500 hover:to-pink-500 transition-all duration-300 transform hover:scale-105 uppercase`}
                 >
-                  <Radar className="mr-4 h-8 w-8 animate-spin" />
-                  Analisar Agora
+                  <Radar className="mr-4 h-10 w-10 animate-spin" />
+                  Descobrir Perfis Secretos
                 </Button>
-                <div className="flex flex-col md:flex-row gap-4 justify-center pt-4">
-                  <div className="flex items-center gap-2 text-green-400 text-lg justify-center">
-                    <Shield className="w-6 h-6" />
-                    100% Anônimo
+                <div className="flex flex-col md:flex-row gap-6 justify-center pt-6">
+                  <div className="flex items-center gap-3 text-pink-400 text-xl justify-center">
+                    <Shield className="w-7 h-7" />
+                    Totalmente Anônimo
                   </div>
-                  <div className="flex items-center gap-2 text-violet-400 text-lg justify-center">
-                    <Lock className="w-6 h-6" />
-                    Dados Protegidos
+                  <div className="flex items-center gap-3 text-violet-400 text-xl justify-center">
+                    <Lock className="w-7 h-7" />
+                    Sem Rastros
+                  </div>
+                  <div className="flex items-center gap-3 text-green-400 text-xl justify-center">
+                    <Zap className="w-7 h-7" />
+                    Resultados Instantâneos
                   </div>
                 </div>
               </CardContent>
@@ -218,26 +236,26 @@ const Index = () => {
             </div>
             <div className="space-y-6 mb-10">
               <div className="flex items-center justify-center gap-5">
-                <div className="rounded-full bg-gradient-to-tr from-green-800/70 via-green-500/60 to-green-400/80 p-3 animate-glow-pulse border-2 border-green-400 shadow-green-700 shadow-md">
-                  <Radar className="w-14 h-14 text-green-200 animate-radar" />
+                <div className="rounded-full bg-gradient-to-tr from-pink-800/70 via-pink-500/60 to-pink-400/80 p-3 animate-glow-pulse border-2 border-pink-400 shadow-pink-700 shadow-md">
+                  <Radar className="w-14 h-14 text-pink-200 animate-radar" />
                 </div>
-                <h2 className="text-5xl md:text-6xl font-black text-green-300 animate-pulse text-shadow-hacker drop-shadow-glow tracking-tighter">
-                  PROCESSANDO
+                <h2 className="text-5xl md:text-6xl font-black text-pink-300 animate-pulse text-shadow-hacker drop-shadow-glow tracking-tighter">
+                  INVESTIGANDO
                 </h2>
                 <div className="rounded-full bg-gradient-to-tr from-violet-800/70 via-violet-500/60 to-violet-400/80 p-3 animate-glow-pulse border-2 border-violet-400 shadow-violet-500 shadow-md">
                   <Database className="w-14 h-14 text-violet-200 animate-pulse" />
                 </div>
               </div>
-              <div className="mx-auto rounded-xl bg-black/60 border-l-4 border-green-400 text-green-200 px-6 py-2 shadow-inner font-mono max-w-md">
-                Analisando: <span className="font-bold text-lg text-[#39ff14]">{phoneNumber}</span>
+              <div className="mx-auto rounded-xl bg-black/60 border-l-4 border-pink-400 text-pink-200 px-6 py-2 shadow-inner font-mono max-w-md">
+                Analisando: <span className="font-bold text-lg text-[#ec4899]">{phoneNumber}</span>
               </div>
             </div>
             <div className="flex justify-center items-center">
               <div className="w-full max-w-4xl">
-                <div className="neon-frame-hacker shadow-2xl rounded-2xl p-0 bg-gradient-to-br from-black/70 via-green-800/10 to-violet-900/10">
+                <div className="neon-frame-hacker shadow-2xl rounded-2xl p-0 bg-gradient-to-br from-black/70 via-pink-800/10 to-violet-900/10">
                   <div className="p-10 sm:p-14 space-y-10">
                     <div className="w-full">
-                      <div className="h-6 w-full rounded-full bg-black overflow-hidden border border-green-700 shadow-inner shadow-green-400/20">
+                      <div className="h-6 w-full rounded-full bg-black overflow-hidden border border-pink-700 shadow-inner shadow-pink-400/20">
                         <div
                           style={{
                             width: `${progress}%`,
@@ -253,25 +271,25 @@ const Index = () => {
                           key={index}
                           className={`flex items-center space-x-6 p-5 rounded-2xl transition-all duration-700 font-mono text-lg md:text-xl
                             ${index === currentStep
-                              ? 'bg-gradient-to-r from-[#181f1a]/70 to-green-950 text-green-200 border-2 border-green-400/60 shadow-xl scale-105 drop-shadow-glow'
+                              ? 'bg-gradient-to-r from-[#181f1a]/70 to-pink-950 text-pink-200 border-2 border-pink-400/60 shadow-xl scale-105 drop-shadow-glow'
                               : index < currentStep
-                                ? 'bg-black/60 text-gray-500 border border-green-800/50'
-                                : 'text-green-700 border border-green-900/20'
+                                ? 'bg-black/60 text-gray-500 border border-pink-800/50'
+                                : 'text-pink-700 border border-pink-900/20'
                             }`}
                         >
                           <div className={`w-5 h-5 rounded-full transition-all duration-500
                             ${index === currentStep
-                              ? 'bg-gradient-to-r from-green-400 to-[#ec4899] animate-heart-beat'
+                              ? 'bg-gradient-to-r from-pink-400 to-[#ec4899] animate-heart-beat'
                               : index < currentStep
-                                ? 'bg-green-500/50'
-                                : 'bg-green-900/20'
+                                ? 'bg-pink-500/50'
+                                : 'bg-pink-900/20'
                             }`}
                           ></div>
                           <span className="flex-grow text-left font-semibold">{step.text}</span>
                         </div>
                       ))}
                     </div>
-                    <div className="text-center text-green-400 pt-2 font-mono text-xl md:text-2xl">
+                    <div className="text-center text-pink-400 pt-2 font-mono text-xl md:text-2xl">
                       <p>📊 {Math.round(progress)}% CONCLUÍDO</p>
                     </div>
                   </div>
@@ -285,15 +303,15 @@ const Index = () => {
         {scanComplete && (
           <section className="text-center space-y-10 animate-fade-in">
             <div className="flex items-center justify-center gap-4 mb-9">
-              <AlertTriangle className="w-16 h-16 text-green-500 animate-glow-pulse drop-shadow-glow" />
-              <h2 className="text-4xl md:text-5xl font-black bg-gradient-to-r from-[#39ff14] via-violet-500 to-white bg-clip-text text-transparent animate-gradient-shift drop-shadow-glow tracking-tight">
+              <AlertTriangle className="w-16 h-16 text-pink-500 animate-glow-pulse drop-shadow-glow" />
+              <h2 className="text-4xl md:text-5xl font-black bg-gradient-to-r from-[#ec4899] via-violet-500 to-white bg-clip-text text-transparent animate-gradient-shift drop-shadow-glow tracking-tight">
                 PERFIL ENCONTRADO
               </h2>
               <Eye className="w-16 h-16 text-violet-400 animate-glow-pulse drop-shadow-glow" />
             </div>
             <p className="text-2xl text-white mb-2 font-semibold drop-shadow-glow">
-              Resultado da análise para:{" "}
-              <span className="text-[#39ff14] font-mono bg-black/70 px-5 py-2 rounded-lg border border-green-400 shadow-input">
+              Resultado da investigação para:{" "}
+              <span className="text-[#ec4899] font-mono bg-black/70 px-5 py-2 rounded-lg border border-pink-400 shadow-input">
                 {phoneNumber}
               </span>
             </p>
@@ -301,33 +319,33 @@ const Index = () => {
               <DiscoveredProfileInfo />
             </div>
             {/* CALL TO ACTION */}
-            <Card className="bg-gradient-to-br from-[#090f10]/90 via-[#27132b]/80 to-[#0e2021]/100 border-4 border-[#9dff44] neon-frame-hacker backdrop-blur-2xl max-w-4xl mx-auto shadow-[0_0_55px_2px_rgba(57,255,20,0.3)] mt-8 transition-all duration-300">
+            <Card className="bg-gradient-to-br from-[#090f10]/90 via-[#27132b]/80 to-[#0e2021]/100 border-4 border-[#ec4899] neon-frame-hacker backdrop-blur-2xl max-w-4xl mx-auto shadow-[0_0_55px_2px_rgba(236,72,153,0.3)] mt-8 transition-all duration-300">
               <CardHeader>
-                <CardTitle className="text-[#39ff14] flex items-center justify-center space-x-4 text-2xl md:text-3xl font-bold animate-gradient-shift drop-shadow-glow">
+                <CardTitle className="text-[#ec4899] flex items-center justify-center space-x-4 text-2xl md:text-3xl font-bold animate-gradient-shift drop-shadow-glow">
                   <Target className="w-8 h-8 animate-pulse text-violet-400" />
-                  <span>Acesso Completo aos Dados</span>
-                  <Database className="w-8 h-8 animate-pulse text-green-400" />
+                  <span>Ver Perfil Completo</span>
+                  <Heart className="w-8 h-8 animate-pulse text-pink-400" />
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-7 px-8 py-10">
                   <Button 
-                    className="w-full bg-gradient-to-r from-[#39ff14] via-violet-400 to-[#8b5cf6] hover:from-green-600 hover:via-violet-400 hover:to-[#c300ff] text-black font-black py-6 text-2xl rounded-xl transition-all duration-300 transform hover:scale-105 shadow-2xl glow-pink uppercase tracking-wide"
+                    className="w-full bg-gradient-to-r from-[#ec4899] via-violet-400 to-[#8b5cf6] hover:from-pink-600 hover:via-violet-400 hover:to-[#c300ff] text-white font-black py-6 text-2xl rounded-xl transition-all duration-300 transform hover:scale-105 shadow-2xl glow-pink uppercase tracking-wide"
                     onClick={() => {
-                      alert('🔓 ACESSO LIBERADO! Todas as informações disponíveis foram processadas e estão prontas para visualização.');
+                      alert('💕 PERFIL DESBLOQUEADO! Todas as informações do perfil de relacionamento estão disponíveis para visualização.');
                     }}
                   >
-                    🔓 ACESSAR RELATÓRIO COMPLETO
+                    💕 VER PERFIL SECRETO COMPLETO
                   </Button>
                   <Button 
                     variant="outline"
-                    className="w-full border-2 border-[#39ff14] text-[#39ff14] hover:bg-[#161f13]/70 hover:text-white py-4 text-lg transition-all duration-300 hover:scale-105 rounded-lg font-bold shadow-input"
+                    className="w-full border-2 border-[#ec4899] text-[#ec4899] hover:bg-[#161f13]/70 hover:text-white py-4 text-lg transition-all duration-300 hover:scale-105 rounded-lg font-bold shadow-input"
                     onClick={() => {
                       setPhoneNumber('');
                       setScanComplete(false);
                       setShowResults(false);
                     }}
                   >
-                    🔍 Nova Análise
+                    🔍 Nova Investigação
                   </Button>
               </CardContent>
             </Card>
