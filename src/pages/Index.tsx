@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -78,35 +79,35 @@ const Index = () => {
     };
 
     try {
-        const response = await fetch(`https://whatsprofile.p.rapidapi.com/profile?number=${cleanedPhoneNumber}`, {
+        const response = await fetch(`https://whatsapp-data1.p.rapidapi.com/picture/${cleanedPhoneNumber}`, {
             method: 'GET',
             headers: {
                 'x-rapidapi-key': RAPIDAPI_KEY,
-                'x-rapidapi-host': 'whatsprofile.p.rapidapi.com'
+                'x-rapidapi-host': 'whatsapp-data1.p.rapidapi.com'
             }
         });
 
         if (!response.ok) {
             const errorText = await response.text();
             console.error("Erro da API:", response.status, errorText);
-            const description = `O serviço retornou um erro: ${response.status}. Isso pode acontecer se a chave da API for inválida, o limite de uso foi atingido ou o serviço está offline.`;
+            const description = `O serviço retornou um erro: ${response.status}. Isso pode acontecer se o número não for válido ou o serviço estiver offline.`;
             toast.error("Falha na comunicação com a API", { description });
             useFallback(description);
             return;
         }
 
-        const data = await response.json();
-        console.log("Resposta da API do WhatsApp:", data);
-        
-        if (data && data.status === 'success' && data.data && data.data.avatar && data.data.name) {
+        const contentType = response.headers.get('content-type');
+        if (contentType && contentType.startsWith('image')) {
+            const blob = await response.blob();
+            const imageUrl = URL.createObjectURL(blob);
             setDiscoveredProfile({
-                name: data.data.name,
-                profilePic: data.data.avatar
+                name: "Usuário do WhatsApp",
+                profilePic: imageUrl
             });
             setShowConfirmation(true);
         } else {
-             const description = data.message || "A busca foi realizada, mas não encontramos um perfil público para este número. Verifique o número ou tente mais tarde.";
-             toast.info("Perfil não encontrado", { description });
+             const description = "Não foi possível carregar a foto do perfil. O usuário pode não ter uma ou o perfil é privado.";
+             toast.info("Foto não encontrada", { description });
              useFallback(description);
         }
     } catch (error) {
