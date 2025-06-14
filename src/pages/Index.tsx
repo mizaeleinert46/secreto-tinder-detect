@@ -1,10 +1,9 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Search, Shield, Eye, AlertTriangle, Zap, Heart, Target, Radar, Lock, Database, Signal, CheckCircle, Star } from "lucide-react";
+import { Search, Shield, Eye, AlertTriangle, Zap, Heart, Target, Radar, Lock, Database, Signal, CheckCircle, Star, DollarSign } from "lucide-react";
 import HackerOverlay from "@/components/HackerOverlay";
 import DiscoveredProfileInfo from "@/components/DiscoveredProfileInfo";
 import HackerLinesBackground from "@/components/HackerLinesBackground";
@@ -388,14 +387,18 @@ const Index = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-6 md:space-y-7 px-6 md:px-8 py-8 md:py-10">
-                  <Button 
-                    className="w-full bg-gradient-to-r from-[#ec4899] via-violet-400 to-[#8b5cf6] hover:from-pink-600 hover:via-violet-400 hover:to-[#c300ff] text-white font-black py-5 md:py-6 text-xl sm:text-2xl rounded-xl transition-all duration-300 transform hover:scale-105 shadow-2xl glow-pink uppercase tracking-wide"
-                    onClick={() => {
-                      alert('Você será redirecionado para a página de pagamento seguro para finalizar a compra.');
-                    }}
-                  >
-                    🔥 DESBLOQUEAR DOSSIÊ COMPLETO POR R$19,90
-                  </Button>
+                  <div className="flex flex-col items-center gap-4">
+                    <Button 
+                      className="w-full bg-gradient-to-r from-[#ec4899] via-violet-400 to-[#8b5cf6] hover:from-pink-600 hover:via-violet-400 hover:to-[#c300ff] text-white font-black py-5 md:py-6 text-xl sm:text-2xl rounded-xl transition-all duration-300 transform hover:scale-105 shadow-2xl glow-pink uppercase tracking-wide"
+                      onClick={() => {
+                        alert('Você será redirecionado para a página de pagamento seguro para finalizar a compra.');
+                      }}
+                    >
+                      <DollarSign className="w-7 h-7 md:w-8 md:h-8 mr-2" />
+                      DESBLOQUEAR DOSSIÊ COMPLETO POR R$19,90
+                    </Button>
+                    <p className="text-center text-sm text-gray-400">Pagamento único e 100% seguro. Acesso vitalício ao relatório.</p>
+                  </div>
                   <Button 
                     variant="outline"
                     className="w-full border-2 border-[#ec4899] text-[#ec4899] hover:bg-[#161f13]/70 hover:text-white py-4 text-base md:text-lg transition-all duration-300 hover:scale-105 rounded-lg font-bold shadow-input"
