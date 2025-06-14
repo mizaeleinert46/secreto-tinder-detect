@@ -253,27 +253,32 @@ const Index = () => {
           <section className="text-center space-y-10 animate-fade-in">
             <div className="flex items-center justify-center gap-4 mb-9">
               <AlertTriangle className="w-16 h-16 text-pink-500 animate-glow-pulse drop-shadow-glow" />
-              <h2 className="text-4xl md:text-5xl font-black text-pink-400/95 animate-pulse drop-shadow-glow tracking-tight">
+              <h2 className="text-4xl md:text-5xl font-black bg-gradient-to-r from-[#39ff14] via-pink-500 to-[#7c3aed] bg-clip-text text-transparent animate-gradient-shift drop-shadow-glow tracking-tight">
                 PERFIL ENCONTRADO
               </h2>
               <Eye className="w-16 h-16 text-violet-400 animate-glow-pulse drop-shadow-glow" />
             </div>
-            <p className="text-2xl text-gray-200 mb-2">
-              Resultado da análise para: <span className="text-[#39ff14] font-mono bg-black/60 px-5 py-2 rounded-lg border border-green-300/30">{phoneNumber}</span>
+            <p className="text-2xl text-white mb-2 font-semibold drop-shadow-glow">
+              Resultado da análise para:{" "}
+              <span className="text-[#39ff14] font-mono bg-black/70 px-5 py-2 rounded-lg border border-green-400 shadow-input">
+                {phoneNumber}
+              </span>
             </p>
-            <DiscoveredProfileInfo />
+            <div className="mt-2">
+              <DiscoveredProfileInfo />
+            </div>
             {/* CALL TO ACTION */}
-            <Card className="bg-gradient-to-br from-pink-900/30 to-green-900/30 border-2 border-pink-500/50 neon-frame-hacker backdrop-blur-2xl max-w-4xl mx-auto shadow-2xl mt-8">
+            <Card className="bg-gradient-to-br from-[#090f10]/90 via-[#27132b]/80 to-[#0e2021]/100 border-4 border-[#9dff44] neon-frame-hacker backdrop-blur-2xl max-w-4xl mx-auto shadow-[0_0_55px_2px_rgba(57,255,20,0.3)] mt-8 transition-all duration-300">
               <CardHeader>
-                <CardTitle className="text-pink-300 flex items-center justify-center space-x-4 text-2xl md:text-3xl font-bold animate-gradient-shift">
-                  <Target className="w-8 h-8 animate-pulse" />
+                <CardTitle className="text-[#39ff14] flex items-center justify-center space-x-4 text-2xl md:text-3xl font-bold animate-gradient-shift drop-shadow-glow">
+                  <Target className="w-8 h-8 animate-pulse text-pink-400" />
                   <span>Quer ver todas as FOTOS, MATCHES e CONVERSAS?</span>
-                  <Heart className="w-8 h-8 animate-pulse" />
+                  <Heart className="w-8 h-8 animate-pulse text-[#ff0080]" />
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-7 px-8 py-10">
                   <Button 
-                    className={`w-full bg-gradient-to-r from-pink-600 via-green-400 to-pink-700 hover:from-green-400 hover:via-pink-600 hover:to-[#c300ff] text-white font-black py-6 text-2xl rounded-xl transition-all duration-300 transform hover:scale-105 shadow-2xl glow-pink uppercase`}
+                    className="w-full bg-gradient-to-r from-[#39ff14] via-pink-400 to-[#8b5cf6] hover:from-pink-600 hover:via-green-400 hover:to-[#c300ff] text-black font-black py-6 text-2xl rounded-xl transition-all duration-300 transform hover:scale-105 shadow-2xl glow-pink uppercase tracking-wide"
                     onClick={() => {
                       alert('🔓 ACESSO LIBERADO! Em um sistema real, aqui seriam exibidas todas as evidências encontradas: fotos do perfil, conversas, matches e atividade detalhada.');
                     }}
@@ -281,8 +286,8 @@ const Index = () => {
                     🚨 LIBERAR TUDO AGORA!
                   </Button>
                   <Button 
-                    variant="outline" 
-                    className="w-full border-2 border-gray-600 text-gray-300 hover:bg-gray-800 hover:text-white py-4 text-lg transition-all duration-300 hover:scale-105 rounded-lg"
+                    variant="outline"
+                    className="w-full border-2 border-[#39ff14] text-[#39ff14] hover:bg-[#161f13]/70 hover:text-white py-4 text-lg transition-all duration-300 hover:scale-105 rounded-lg font-bold shadow-input"
                     onClick={() => {
                       setPhoneNumber('');
                       setScanComplete(false);
@@ -293,7 +298,7 @@ const Index = () => {
                   </Button>
               </CardContent>
             </Card>
-            <div className="text-center text-gray-500 text-sm pt-6 pb-2 italic opacity-80">
+            <div className="text-center text-gray-500 text-xs pt-6 pb-2 italic opacity-70">
               ⚠️ Nenhum dado real é violado nesta simulação. Sua privacidade é prioridade.
             </div>
           </section>
