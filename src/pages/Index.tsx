@@ -75,7 +75,7 @@ const Index = () => {
     };
 
     try {
-        const response = await fetch(`https://whatsapp-data.p.rapidapi.com/getProfileInformation?number=${cleanedPhoneNumber}`, {
+        const response = await fetch(`https://whatsapp-data.p.rapidapi.com/profile_info?number=${cleanedPhoneNumber}`, {
             method: 'GET',
             headers: {
                 'x-rapidapi-key': RAPIDAPI_KEY,
