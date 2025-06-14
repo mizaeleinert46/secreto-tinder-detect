@@ -65,8 +65,8 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden relative">
-      {/* Hacker green lines in the background */}
-      <HackerLinesBackground />
+      {/* Fundo hacker só durante a busca */}
+      {isScanning && <HackerLinesBackground />}
 
       {/* Fundo preto sólido, retirando o gradiente colorido */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
