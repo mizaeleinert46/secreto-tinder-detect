@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -55,6 +56,18 @@ const Index = () => {
 
   const fetchProfileData = async () => {
     const cleanedPhoneNumber = phoneNumber.replace(/\D/g, '');
+
+    const useFallback = () => {
+        toast.warning("Modo de Demonstração Ativado", {
+            description: "Não foi possível conectar ao serviço real. Usando um perfil de exemplo para continuar."
+        });
+        setDiscoveredProfile({
+            name: "Perfil de Exemplo",
+            profilePic: `https://avatar.vercel.sh/${cleanedPhoneNumber}.png?text=Exemplo`
+        });
+        setShowConfirmation(true);
+    };
+
     try {
         const response = await fetch(`https://whatsapp-data.p.rapidapi.com/getProfileInformation?number=${cleanedPhoneNumber}`, {
             method: 'GET',
@@ -67,28 +80,26 @@ const Index = () => {
         if (!response.ok) {
             const errorText = await response.text();
             console.error("Erro da API:", response.status, errorText);
-            toast.error("Erro ao buscar perfil", { description: "Não foi possível conectar ao serviço. Tente novamente." });
-            setDiscoveredProfile(null);
+            useFallback();
             return;
         }
 
         const data = await response.json();
         console.log("Resposta da API do WhatsApp:", data);
         
-        if (data.id && data.id.profilePic && data.id.name) {
+        if (data && data.id && data.id.profilePic && data.id.name) {
             setDiscoveredProfile({
                 name: data.id.name,
                 profilePic: data.id.profilePic
             });
             setShowConfirmation(true);
         } else {
-             setDiscoveredProfile(null);
-             toast.info("Perfil não encontrado", { description: "Não encontramos um perfil público do WhatsApp para este número. Verifique e tente novamente." });
+             toast.info("Perfil não encontrado", { description: "Não achamos um perfil público. Usando dados de exemplo." });
+             useFallback();
         }
     } catch (error) {
         console.error("Falha ao buscar dados do perfil:", error);
-        toast.error("Erro de Conexão", { description: "Ocorreu um problema ao tentar buscar os dados. Verifique sua conexão." });
-        setDiscoveredProfile(null);
+        useFallback();
     } finally {
         setIsFetchingProfile(false);
     }
