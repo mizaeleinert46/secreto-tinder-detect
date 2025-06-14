@@ -298,9 +298,6 @@ const Index = () => {
                   </Button>
               </CardContent>
             </Card>
-            <div className="text-center text-gray-500 text-xs pt-6 pb-2 italic opacity-70">
-              ⚠️ Nenhum dado real é violado nesta simulação. Sua privacidade é prioridade.
-            </div>
           </section>
         )}
       </div>
