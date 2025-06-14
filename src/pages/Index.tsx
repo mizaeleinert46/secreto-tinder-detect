@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -20,6 +20,7 @@ const Index = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [progress, setProgress] = useState(0);
   const [showResults, setShowResults] = useState(false);
+  const [socialProofIndex, setSocialProofIndex] = useState(0);
 
   const scanningSteps = [
     { text: "🔐 Iniciando protocolo de quebra de sigilo...", duration: 1400 },
@@ -28,6 +29,21 @@ const Index = () => {
     { text: "🔍 Revelando perfis, fotos e matches ocultos...", duration: 1200 },
     { text: "⚡ Compilando dossiê completo da atividade...", duration: 1600 },
   ];
+
+  const socialProofs = [
+    { name: '@Juh_Almeida', text: 'acabou de descobrir um perfil secreto.' },
+    { name: '@Lucas_S2', text: 'revelou os matches ocultos da namorada.' },
+    { name: '@Fer_Souza', text: 'confirmou suas suspeitas em menos de 5 minutos.' },
+    { name: '@Ricardo92', text: 'pegou a traição no flagra com nosso app.' },
+    { name: '@Bia_oliveira', text: 'viu as conversas que tentaram esconder dela.' },
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSocialProofIndex((prevIndex) => (prevIndex + 1) % socialProofs.length);
+    }, 4000); // Muda a cada 4 segundos
+    return () => clearInterval(interval);
+  }, [socialProofs.length]);
 
   const handleScan = () => {
     if (!phoneNumber.trim()) return;
@@ -214,8 +230,10 @@ const Index = () => {
                   <Radar className="mr-4 h-10 w-10 animate-spin" />
                   Expor a Verdade Agora
                 </Button>
-                <div className="text-center mt-4 p-3 bg-black/30 rounded-lg border border-gray-700">
-                  <p className="text-lg text-white">🔥 <span className="font-bold text-pink-400">@Carolzinha</span> usou e descobriu a verdade sobre o namorado em 3 minutos.</p>
+                <div className="text-center mt-4 p-3 bg-black/30 rounded-lg border border-gray-700 h-16 flex items-center justify-center">
+                  <p key={socialProofIndex} className="text-lg text-white animate-fade-in">
+                    🔥 <span className="font-bold text-pink-400">{socialProofs[socialProofIndex].name}</span> {socialProofs[socialProofIndex].text}
+                  </p>
                 </div>
                 <div className="flex flex-col md:flex-row gap-6 justify-center pt-2">
                   <div className="flex items-center gap-3 text-pink-400 text-xl justify-center">
