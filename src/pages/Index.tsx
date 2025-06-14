@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -557,8 +556,8 @@ const Index = () => {
                     className="w-full border-2 border-[#ec4899] text-[#ec4899] hover:bg-[#161f13]/70 hover:text-white py-4 text-sm sm:text-base transition-all duration-300 hover:scale-105 rounded-lg font-bold shadow-input"
                     onClick={() => {
                       setPhoneNumber('');
-                      setScanComplete(false);
                       setShowResults(false);
+                      setDiscoveredProfile(null);
                     }}
                   >
                     <Search className="mr-2" /> Fazer Nova Investigação
