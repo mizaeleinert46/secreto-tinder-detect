@@ -1,12 +1,15 @@
+
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Search, Shield, Eye, AlertTriangle, Zap, Heart, Target, Radar, Lock, Database, Signal, CheckCircle, Star, DollarSign } from "lucide-react";
+import { Search, Shield, Eye, AlertTriangle, Zap, Heart, Target, Radar, Lock, Database, Signal, CheckCircle, Star, DollarSign, User } from "lucide-react";
 import HackerOverlay from "@/components/HackerOverlay";
 import DiscoveredProfileInfo from "@/components/DiscoveredProfileInfo";
 import HackerLinesBackground from "@/components/HackerLinesBackground";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Label } from "@/components/ui/label";
 
 const HACKER_GRADIENT = "from-[#051205]/95 via-[#11131d]/90 to-[#16051f]/90";
 const CTA_GRADIENT = "from-[#39ff14] via-[#c300ff] to-[#ec4899]";
@@ -14,6 +17,7 @@ const CARD_GRADIENT = "from-[#152e1a]/90 via-[#351b44]/90 to-[#181722]/90";
 
 const Index = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [targetGender, setTargetGender] = useState('mulher');
   const [isScanning, setIsScanning] = useState(false);
   const [scanComplete, setScanComplete] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
@@ -205,6 +209,46 @@ const Index = () => {
                 </p>
               </CardHeader>
               <CardContent className="space-y-6 md:space-y-8 px-6 md:px-10 pb-8 md:pb-12">
+                <div>
+                  <Label className="block text-gray-200 text-xl md:text-2xl font-bold mb-4 text-center">
+                    Quem você quer investigar?
+                  </Label>
+                  <RadioGroup
+                    value={targetGender}
+                    onValueChange={setTargetGender}
+                    className="grid grid-cols-2 gap-4"
+                  >
+                    <div>
+                      <RadioGroupItem value="homem" id="r1" className="sr-only" />
+                      <Label
+                        htmlFor="r1"
+                        className={`flex items-center justify-center p-4 rounded-2xl cursor-pointer transition-all duration-300 border-2 text-xl font-bold ${
+                          targetGender === 'homem'
+                            ? 'bg-pink-500/20 border-pink-400 text-white shadow-[0_0_15px_rgba(236,72,153,0.4)]'
+                            : 'bg-gray-900/50 border-gray-700 hover:border-pink-400/50 text-gray-400'
+                        }`}
+                      >
+                        <User className="mr-3 h-6 w-6" />
+                        Homem
+                      </Label>
+                    </div>
+                    <div>
+                      <RadioGroupItem value="mulher" id="r2" className="sr-only" />
+                      <Label
+                        htmlFor="r2"
+                        className={`flex items-center justify-center p-4 rounded-2xl cursor-pointer transition-all duration-300 border-2 text-xl font-bold ${
+                          targetGender === 'mulher'
+                            ? 'bg-pink-500/20 border-pink-400 text-white shadow-[0_0_15px_rgba(236,72,153,0.4)]'
+                            : 'bg-gray-900/50 border-gray-700 hover:border-pink-400/50 text-gray-400'
+                        }`}
+                      >
+                        <User className="mr-3 h-6 w-6" />
+                        Mulher
+                      </Label>
+                    </div>
+                  </RadioGroup>
+                </div>
+
                 <div>
                   <label className="block text-gray-200 text-xl md:text-2xl font-bold mb-4 md:mb-6 text-center">
                     Número de telefone:
