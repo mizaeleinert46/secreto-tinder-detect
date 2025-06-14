@@ -224,9 +224,9 @@ const Index = () => {
                 <Button 
                   onClick={handleScan}
                   disabled={phoneNumber.length < 14}
-                  className={`w-full py-6 md:py-8 text-2xl md:text-3xl font-black tracking-wider rounded-2xl shadow-2xl bg-gradient-to-r ${CTA_GRADIENT} hover:from-pink-500 hover:via-violet-500 hover:to-pink-500 transition-all duration-300 transform hover:scale-105 uppercase`}
+                  className={`w-full py-5 md:py-8 text-xl md:text-3xl font-black tracking-wider rounded-2xl shadow-2xl bg-gradient-to-r ${CTA_GRADIENT} hover:from-pink-500 hover:via-violet-500 hover:to-pink-500 transition-all duration-300 transform hover:scale-105 uppercase`}
                 >
-                  <Radar className="mr-3 md:mr-4 h-8 w-8 md:h-10 md:w-10 animate-spin" />
+                  <Radar className="mr-3 md:mr-4 h-6 w-6 md:h-10 md:w-10 animate-spin" />
                   Expor a Verdade Agora
                 </Button>
                 <div className="text-center mt-4 p-3 bg-black/30 rounded-lg border border-gray-700 h-16 flex items-center justify-center">
@@ -389,26 +389,26 @@ const Index = () => {
               <CardContent className="space-y-6 md:space-y-7 px-6 md:px-8 py-8 md:py-10">
                   <div className="flex flex-col items-center gap-4">
                     <Button 
-                      className="w-full bg-gradient-to-r from-[#ec4899] via-violet-400 to-[#8b5cf6] hover:from-pink-600 hover:via-violet-400 hover:to-[#c300ff] text-white font-black py-5 md:py-6 text-xl sm:text-2xl rounded-xl transition-all duration-300 transform hover:scale-105 shadow-2xl glow-pink uppercase tracking-wide"
+                      className="w-full bg-gradient-to-r from-[#ec4899] via-violet-400 to-[#8b5cf6] hover:from-pink-600 hover:via-violet-400 hover:to-[#c300ff] text-white font-black py-5 md:py-6 text-base sm:text-lg md:text-xl rounded-xl transition-all duration-300 transform hover:scale-105 shadow-2xl glow-pink uppercase tracking-wide px-2"
                       onClick={() => {
                         alert('Você será redirecionado para a página de pagamento seguro para finalizar a compra.');
                       }}
                     >
-                      <DollarSign className="w-7 h-7 md:w-8 md:h-8 mr-2" />
+                      <DollarSign className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 mr-2" />
                       DESBLOQUEAR DOSSIÊ COMPLETO POR R$19,90
                     </Button>
                     <p className="text-center text-sm text-gray-400">Pagamento único e 100% seguro. Acesso vitalício ao relatório.</p>
                   </div>
                   <Button 
                     variant="outline"
-                    className="w-full border-2 border-[#ec4899] text-[#ec4899] hover:bg-[#161f13]/70 hover:text-white py-4 text-base md:text-lg transition-all duration-300 hover:scale-105 rounded-lg font-bold shadow-input"
+                    className="w-full border-2 border-[#ec4899] text-[#ec4899] hover:bg-[#161f13]/70 hover:text-white py-4 text-sm sm:text-base transition-all duration-300 hover:scale-105 rounded-lg font-bold shadow-input"
                     onClick={() => {
                       setPhoneNumber('');
                       setScanComplete(false);
                       setShowResults(false);
                     }}
                   >
-                    🔍 Fazer Nova Investigação
+                    <Search /> Fazer Nova Investigação
                   </Button>
               </CardContent>
             </Card>
