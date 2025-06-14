@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -14,8 +15,8 @@ const HACKER_GRADIENT = "from-[#051205]/95 via-[#11131d]/90 to-[#16051f]/90";
 const CTA_GRADIENT = "from-[#39ff14] via-[#c300ff] to-[#ec4899]";
 const CARD_GRADIENT = "from-[#152e1a]/90 via-[#351b44]/90 to-[#181722]/90";
 
-// IMPORTANTE: Substitua o valor abaixo pela sua chave de API real da RapidAPI.
-const RAPIDAPI_KEY = 'COLE_SUA_CHAVE_API_AQUI';
+// Chave de API da RapidAPI.
+const RAPIDAPI_KEY = '1642a29e2emsha9cbf0936523495p14fdf5jsnefd16264d115';
 
 const Index = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
