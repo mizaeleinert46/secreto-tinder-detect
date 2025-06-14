@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Zap, AlertCircle, Lock, Eye, TrendingUp, Users, CalendarClock, MapPin, MessageSquareQuote, AlertTriangle } from "lucide-react";
 
@@ -50,14 +51,23 @@ const InfoPill = ({ icon: Icon, text, value, colorClass }: { icon: React.Element
     );
 }
 
-export default function DiscoveredProfileInfo({ gender }: { gender: 'homem' | 'mulher' }) {
+export default function DiscoveredProfileInfo({ 
+  gender,
+  profileData
+}: { 
+  gender: 'homem' | 'mulher',
+  profileData: { name: string; profilePic: string; } | null;
+}) {
   const isMan = gender === 'homem';
   const blurredImages = isMan ? manBlurredImages : womanBlurredImages;
   const infoData = isMan ? manInfo : womanInfo;
   const fallbackImages = blurredImages; 
 
+  const profileName = profileData?.name || "Desconhecido";
+  const profilePicture = profileData?.profilePic || blurredImages[0];
+
   const images = [
-    { src: blurredImages[0], fallback: fallbackImages[0], label: "Foto de Perfil" },
+    { src: profilePicture, fallback: fallbackImages[0], label: profileData ? "Foto de Perfil (Real)" : "Foto de Perfil" },
     { src: blurredImages[1], fallback: fallbackImages[1], label: "Foto Oculta #1" },
     { src: blurredImages[2], fallback: fallbackImages[2], label: "Foto Oculta #2" },
   ];
@@ -68,9 +78,9 @@ export default function DiscoveredProfileInfo({ gender }: { gender: 'homem' | 'm
         
         <div className="text-center mb-10">
           <h3 className="text-3xl md:text-4xl font-black text-pink-400 flex items-center justify-center gap-4 drop-shadow-glow">
-            <AlertCircle className="w-10 h-10 animate-pulse"/> Perfil Detectado
+            <AlertCircle className="w-10 h-10 animate-pulse"/> {profileData ? `Perfil de ${profileName} Detectado` : "Perfil Detectado"}
           </h3>
-          <p className="text-gray-300 mt-3 text-lg">As informações a seguir foram detectadas e estão protegidas. Desbloqueie para ver os detalhes.</p>
+          <p className="text-gray-300 mt-3 text-lg">As informações a seguir foram detectadas. {profileData ? "Encontramos uma correspondência exata." : "Alguns dados estão protegidos."}</p>
         </div>
 
         <div className="mb-10">
@@ -82,23 +92,29 @@ export default function DiscoveredProfileInfo({ gender }: { gender: 'homem' | 'm
               <div
                 key={index}
                 className={`w-full aspect-[4/5] rounded-lg bg-black/50 overflow-hidden relative group transition-all duration-300
-                  ${index === 1 
-                    ? 'border-2 border-cyan-400/50 shadow-lg shadow-cyan-400/20' 
-                    : 'border border-pink-700/30 hover:border-pink-500 hover:shadow-xl hover:shadow-pink-500/20'
+                  ${index === 0 && profileData
+                    ? 'border-2 border-pink-400/80 shadow-lg shadow-pink-400/40'
+                    : index === 1 
+                      ? 'border-2 border-cyan-400/50 shadow-lg shadow-cyan-400/20' 
+                      : 'border border-pink-700/30 hover:border-pink-500 hover:shadow-xl hover:shadow-pink-500/20'
                   }`}
               >
                 <img
                   src={img.src}
                   onError={e => { (e.currentTarget as HTMLImageElement).src = img.fallback; }}
                   alt={img.label}
-                  className="w-full h-full object-cover blur-lg scale-110 opacity-60 group-hover:blur-md group-hover:opacity-80 transition-all duration-300"
+                  className={`w-full h-full object-cover transition-all duration-300 ${
+                    (index === 0 && profileData) 
+                    ? 'scale-105' 
+                    : 'blur-lg scale-110 opacity-60 group-hover:blur-md group-hover:opacity-80'
+                  }`}
                   draggable={false}
                 />
                 <div className="absolute inset-0 bg-black/30 flex items-center justify-center text-center p-2">
                   <span className="font-mono text-xs md:text-sm text-white bg-black/50 px-2 py-1 rounded">{img.label}</span>
                 </div>
-                <div className="absolute inset-0 scanlines-mix opacity-50"/>
-                <Lock className="absolute top-2 right-2 w-5 h-5 text-white animate-pulse" />
+                 {!(index === 0 && profileData) && <div className="absolute inset-0 scanlines-mix opacity-50"/>}
+                 {!(index === 0 && profileData) && <Lock className="absolute top-2 right-2 w-5 h-5 text-white animate-pulse" />}
               </div>
             ))}
           </div>

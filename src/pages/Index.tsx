@@ -18,12 +18,14 @@ const CARD_GRADIENT = "from-[#152e1a]/90 via-[#351b44]/90 to-[#181722]/90";
 const Index = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [targetGender, setTargetGender] = useState('mulher');
+  const [apiKey, setApiKey] = useState('');
   const [isScanning, setIsScanning] = useState(false);
   const [scanComplete, setScanComplete] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const [progress, setProgress] = useState(0);
   const [showResults, setShowResults] = useState(false);
   const [socialProofIndex, setSocialProofIndex] = useState(0);
+  const [discoveredProfile, setDiscoveredProfile] = useState<{name: string, profilePic: string} | null>(null);
 
   const scanningSteps = [
     { text: "🔐 Iniciando protocolo de quebra de sigilo...", duration: 1400 },
@@ -48,6 +50,56 @@ const Index = () => {
     return () => clearInterval(interval);
   }, [socialProofs.length]);
 
+  useEffect(() => {
+    if (!scanComplete) return;
+
+    const fetchProfileData = async () => {
+        if (!phoneNumber || !apiKey) {
+            console.log("Nenhum número ou chave de API, mostrando resultados padrão.");
+            setTimeout(() => setShowResults(true), 1000);
+            return;
+        }
+
+        const cleanedPhoneNumber = phoneNumber.replace(/\D/g, '');
+        try {
+            const response = await fetch(`https://whatsapp-data.p.rapidapi.com/getProfileInformation?number=${cleanedPhoneNumber}`, {
+                method: 'GET',
+                headers: {
+                    'x-rapidapi-key': apiKey,
+                    'x-rapidapi-host': 'whatsapp-data.p.rapidapi.com'
+                }
+            });
+
+            if (!response.ok) {
+                const errorText = await response.text();
+                console.error("Erro da API:", response.status, errorText);
+                setDiscoveredProfile(null);
+                return;
+            }
+
+            const data = await response.json();
+            console.log("Resposta da API do WhatsApp:", data);
+            
+            if (data.id && data.id.profilePic && data.id.name) {
+                setDiscoveredProfile({
+                    name: data.id.name,
+                    profilePic: data.id.profilePic
+                });
+            } else {
+                 setDiscoveredProfile(null);
+            }
+        } catch (error) {
+            console.error("Falha ao buscar dados do perfil:", error);
+            setDiscoveredProfile(null);
+        } finally {
+            setTimeout(() => setShowResults(true), 1000);
+        }
+    };
+
+    fetchProfileData();
+
+  }, [scanComplete, phoneNumber, apiKey]);
+
   const handleScan = () => {
     if (!phoneNumber.trim()) return;
     setIsScanning(true);
@@ -55,6 +107,7 @@ const Index = () => {
     setProgress(0);
     setScanComplete(false);
     setShowResults(false);
+    setDiscoveredProfile(null);
 
     scanningSteps.forEach((step, index) => {
       setTimeout(() => {
@@ -64,7 +117,6 @@ const Index = () => {
           setTimeout(() => {
             setIsScanning(false);
             setScanComplete(true);
-            setTimeout(() => setShowResults(true), 1000);
           }, step.duration);
         }
       }, scanningSteps.slice(0, index).reduce((acc, s) => acc + s.duration, 0));
@@ -262,6 +314,21 @@ const Index = () => {
                     maxLength={15}
                   />
                 </div>
+                <div>
+                  <label className="block text-gray-200 text-base md:text-lg font-bold mb-2 text-center">
+                    Sua Chave da RapidAPI (Opcional):
+                  </label>
+                  <Input 
+                    type="password"
+                    placeholder="Cole sua chave de API aqui para ver a foto real"
+                    value={apiKey}
+                    onChange={(e) => setApiKey(e.target.value)}
+                    className="bg-gray-900/80 border-2 border-violet-400/40 text-white text-center text-lg h-12 font-mono focus:border-violet-400 focus:ring-violet-400/30 transition-all duration-300 hover:border-violet-400/60 rounded-xl"
+                  />
+                   <p className="text-center text-xs text-gray-400 mt-2">
+                    Para buscar a foto e nome real do WhatsApp. <a href="https://rapidapi.com/hub" target="_blank" rel="noopener noreferrer" className="text-violet-400 underline">Obtenha uma chave aqui.</a>
+                  </p>
+                </div>
                 <div className="text-center text-yellow-400 bg-yellow-900/50 border border-yellow-500 rounded-lg py-3 px-4 font-bold text-base md:text-xl mb-4 shadow-lg animate-pulse">
                   <AlertTriangle className="inline-block w-5 h-5 md:w-6 md:h-6 mr-2" /> Apenas 30 verificações gratuitas restantes hoje.
                 </div>
@@ -270,7 +337,7 @@ const Index = () => {
                   disabled={phoneNumber.length < 14}
                   className={`w-full py-5 md:py-8 text-xl md:text-3xl font-black tracking-wider rounded-2xl shadow-2xl bg-gradient-to-r ${CTA_GRADIENT} hover:from-pink-500 hover:via-violet-500 hover:to-pink-500 transition-all duration-300 transform hover:scale-105 uppercase`}
                 >
-                  <Radar className="mr-3 md:mr-4 h-6 w-6 md:h-10 md:w-10 animate-spin" />
+                  <Radar className="mr-3 md:mr-4 h-6 w-6 md:h-10 md:h-10 animate-spin" />
                   Expor a Verdade Agora
                 </Button>
                 <div className="text-center mt-4 p-3 bg-black/30 rounded-lg border border-gray-700 h-16 flex items-center justify-center">
@@ -369,7 +436,7 @@ const Index = () => {
         )}
 
         {/* RESULTADOS */}
-        {scanComplete && (
+        {showResults && (
           <section className="text-center space-y-8 md:space-y-10 animate-fade-in">
             <div className="flex items-center justify-center gap-3 md:gap-4 mb-6 md:mb-9">
               <div className="p-3 bg-black/30 rounded-lg border border-pink-500/30">
@@ -386,7 +453,10 @@ const Index = () => {
               Encontramos um perfil ativo vinculado a este número. Os detalhes estão ocultos para sua proteção.
             </p>
             <div className="mt-2">
-              <DiscoveredProfileInfo gender={targetGender as 'homem' | 'mulher'} />
+              <DiscoveredProfileInfo 
+                gender={targetGender as 'homem' | 'mulher'} 
+                profileData={discoveredProfile}
+              />
             </div>
 
             {/* O QUE VOCÊ VAI DESCOBRIR */}
@@ -452,11 +522,12 @@ const Index = () => {
                     className="w-full border-2 border-[#ec4899] text-[#ec4899] hover:bg-[#161f13]/70 hover:text-white py-4 text-sm sm:text-base transition-all duration-300 hover:scale-105 rounded-lg font-bold shadow-input"
                     onClick={() => {
                       setPhoneNumber('');
+                      setApiKey('');
                       setScanComplete(false);
                       setShowResults(false);
                     }}
                   >
-                    <Search /> Fazer Nova Investigação
+                    <Search className="mr-2" /> Fazer Nova Investigação
                   </Button>
               </CardContent>
             </Card>
