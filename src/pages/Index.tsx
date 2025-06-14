@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -57,27 +56,6 @@ const Index = () => {
   const fetchProfileData = async () => {
     const cleanedPhoneNumber = phoneNumber.replace(/\D/g, '');
 
-    const useFallback = (reason?: string) => {
-        const sampleNames = {
-            homem: ["Carlos Silva", "Lucas Souza", "Pedro Oliveira", "Mateus Santos", "Gabriel Costa", "Bruno Pereira", "Rafael Ferreira", "Felipe Almeida"],
-            mulher: ["Ana Julia", "Juliana Lima", "Camila Rodrigues", "Fernanda Alves", "Mariana Gomes", "Beatriz Martins", "Larissa Barbosa", "Amanda Ribeiro"]
-        };
-        const names = sampleNames[targetGender as 'homem' | 'mulher'];
-        const randomName = names[Math.floor(Math.random() * names.length)];
-
-        if (!reason) {
-            toast.warning("Modo de Demonstração Ativado", {
-                description: "Não foi possível conectar ao serviço real. Usando um perfil de exemplo para continuar."
-            });
-        }
-        
-        setDiscoveredProfile({
-            name: randomName,
-            profilePic: `https://picsum.photos/seed/${cleanedPhoneNumber}/400/400`
-        });
-        setShowConfirmation(true);
-    };
-
     try {
         const response = await fetch(`https://whatsapp-data1.p.rapidapi.com/picture/${cleanedPhoneNumber}`, {
             method: 'GET',
@@ -90,9 +68,8 @@ const Index = () => {
         if (!response.ok) {
             const errorText = await response.text();
             console.error("Erro da API:", response.status, errorText);
-            const description = `O serviço retornou um erro: ${response.status}. Isso pode acontecer se o número não for válido ou o serviço estiver offline.`;
-            toast.error("Falha na comunicação com a API", { description });
-            useFallback(description);
+            const description = `A busca falhou. O número pode não ter foto pública ou o serviço está indisponível. Tente outro número.`;
+            toast.error("Perfil não encontrado", { description });
             return;
         }
 
@@ -106,15 +83,13 @@ const Index = () => {
             });
             setShowConfirmation(true);
         } else {
-             const description = "Não foi possível carregar a foto do perfil. O usuário pode não ter uma ou o perfil é privado.";
+             const description = "Não encontramos uma foto de perfil pública para este número. O perfil pode ser privado ou não ter foto.";
              toast.info("Foto não encontrada", { description });
-             useFallback(description);
         }
     } catch (error) {
         console.error("Falha ao buscar dados do perfil:", error);
-        const description = `Ocorreu um erro de rede ou de processamento ao tentar buscar o perfil. Verifique sua conexão.`;
+        const description = `Ocorreu um erro de rede ao tentar buscar o perfil. Verifique sua conexão e tente novamente.`;
         toast.error("Erro na Requisição", { description });
-        useFallback(description);
     } finally {
         setIsFetchingProfile(false);
     }
