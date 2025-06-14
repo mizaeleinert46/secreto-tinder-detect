@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -15,10 +14,12 @@ const HACKER_GRADIENT = "from-[#051205]/95 via-[#11131d]/90 to-[#16051f]/90";
 const CTA_GRADIENT = "from-[#39ff14] via-[#c300ff] to-[#ec4899]";
 const CARD_GRADIENT = "from-[#152e1a]/90 via-[#351b44]/90 to-[#181722]/90";
 
+// IMPORTANTE: Substitua o valor abaixo pela sua chave de API real da RapidAPI.
+const RAPIDAPI_KEY = 'COLE_SUA_CHAVE_API_AQUI';
+
 const Index = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [targetGender, setTargetGender] = useState('mulher');
-  const [apiKey, setApiKey] = useState('');
   const [isScanning, setIsScanning] = useState(false);
   const [scanComplete, setScanComplete] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
@@ -54,8 +55,8 @@ const Index = () => {
     if (!scanComplete) return;
 
     const fetchProfileData = async () => {
-        if (!phoneNumber || !apiKey) {
-            console.log("Nenhum número ou chave de API, mostrando resultados padrão.");
+        if (!phoneNumber || !RAPIDAPI_KEY || RAPIDAPI_KEY === 'COLE_SUA_CHAVE_API_AQUI') {
+            console.log("Nenhum número ou chave de API válida fornecida. Mostrando resultados padrão.");
             setTimeout(() => setShowResults(true), 1000);
             return;
         }
@@ -65,7 +66,7 @@ const Index = () => {
             const response = await fetch(`https://whatsapp-data.p.rapidapi.com/getProfileInformation?number=${cleanedPhoneNumber}`, {
                 method: 'GET',
                 headers: {
-                    'x-rapidapi-key': apiKey,
+                    'x-rapidapi-key': RAPIDAPI_KEY,
                     'x-rapidapi-host': 'whatsapp-data.p.rapidapi.com'
                 }
             });
@@ -98,7 +99,7 @@ const Index = () => {
 
     fetchProfileData();
 
-  }, [scanComplete, phoneNumber, apiKey]);
+  }, [scanComplete, phoneNumber]);
 
   const handleScan = () => {
     if (!phoneNumber.trim()) return;
@@ -314,21 +315,6 @@ const Index = () => {
                     maxLength={15}
                   />
                 </div>
-                <div>
-                  <label className="block text-gray-200 text-base md:text-lg font-bold mb-2 text-center">
-                    Sua Chave da RapidAPI (Opcional):
-                  </label>
-                  <Input 
-                    type="password"
-                    placeholder="Cole sua chave de API aqui para ver a foto real"
-                    value={apiKey}
-                    onChange={(e) => setApiKey(e.target.value)}
-                    className="bg-gray-900/80 border-2 border-violet-400/40 text-white text-center text-lg h-12 font-mono focus:border-violet-400 focus:ring-violet-400/30 transition-all duration-300 hover:border-violet-400/60 rounded-xl"
-                  />
-                   <p className="text-center text-xs text-gray-400 mt-2">
-                    Para buscar a foto e nome real do WhatsApp. <a href="https://rapidapi.com/hub" target="_blank" rel="noopener noreferrer" className="text-violet-400 underline">Obtenha uma chave aqui.</a>
-                  </p>
-                </div>
                 <div className="text-center text-yellow-400 bg-yellow-900/50 border border-yellow-500 rounded-lg py-3 px-4 font-bold text-base md:text-xl mb-4 shadow-lg animate-pulse">
                   <AlertTriangle className="inline-block w-5 h-5 md:w-6 md:h-6 mr-2" /> Apenas 30 verificações gratuitas restantes hoje.
                 </div>
@@ -522,7 +508,6 @@ const Index = () => {
                     className="w-full border-2 border-[#ec4899] text-[#ec4899] hover:bg-[#161f13]/70 hover:text-white py-4 text-sm sm:text-base transition-all duration-300 hover:scale-105 rounded-lg font-bold shadow-input"
                     onClick={() => {
                       setPhoneNumber('');
-                      setApiKey('');
                       setScanComplete(false);
                       setShowResults(false);
                     }}
