@@ -4,12 +4,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Search, Shield, Eye, AlertTriangle, Zap, Heart, Target, Radar, Lock, Database, Signal, CheckCircle, Star, DollarSign, User } from "lucide-react";
+import { Search, Shield, Eye, AlertTriangle, Zap, Heart, Target, Radar, Lock, Database, Signal, CheckCircle, Star, DollarSign, User, XCircle } from "lucide-react";
 import HackerOverlay from "@/components/HackerOverlay";
 import DiscoveredProfileInfo from "@/components/DiscoveredProfileInfo";
 import HackerLinesBackground from "@/components/HackerLinesBackground";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
+import { toast } from "sonner";
 
 const HACKER_GRADIENT = "from-[#051205]/95 via-[#11131d]/90 to-[#16051f]/90";
 const CTA_GRADIENT = "from-[#39ff14] via-[#c300ff] to-[#ec4899]";
@@ -21,8 +22,9 @@ const RAPIDAPI_KEY = '1642a29e2emsha9cbf0936523495p14fdf5jsnefd16264d115';
 const Index = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [targetGender, setTargetGender] = useState('mulher');
+  const [isFetchingProfile, setIsFetchingProfile] = useState(false);
+  const [showConfirmation, setShowConfirmation] = useState(false);
   const [isScanning, setIsScanning] = useState(false);
-  const [scanComplete, setScanComplete] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const [progress, setProgress] = useState(0);
   const [showResults, setShowResults] = useState(false);
@@ -52,64 +54,62 @@ const Index = () => {
     return () => clearInterval(interval);
   }, [socialProofs.length]);
 
-  useEffect(() => {
-    if (!scanComplete) return;
+  const fetchProfileData = async () => {
+    const cleanedPhoneNumber = phoneNumber.replace(/\D/g, '');
+    try {
+        const response = await fetch(`https://whatsapp-data.p.rapidapi.com/getProfileInformation?number=${cleanedPhoneNumber}`, {
+            method: 'GET',
+            headers: {
+                'x-rapidapi-key': RAPIDAPI_KEY,
+                'x-rapidapi-host': 'whatsapp-data.p.rapidapi.com'
+            }
+        });
 
-    const fetchProfileData = async () => {
-        if (!phoneNumber || !RAPIDAPI_KEY) {
-            console.log("Nenhum número ou chave de API válida fornecida. Mostrando resultados padrão.");
-            setTimeout(() => setShowResults(true), 1000);
+        if (!response.ok) {
+            const errorText = await response.text();
+            console.error("Erro da API:", response.status, errorText);
+            toast.error("Erro ao buscar perfil", { description: "Não foi possível conectar ao serviço. Tente novamente." });
+            setDiscoveredProfile(null);
             return;
         }
 
-        const cleanedPhoneNumber = phoneNumber.replace(/\D/g, '');
-        try {
-            const response = await fetch(`https://whatsapp-data.p.rapidapi.com/getProfileInformation?number=${cleanedPhoneNumber}`, {
-                method: 'GET',
-                headers: {
-                    'x-rapidapi-key': RAPIDAPI_KEY,
-                    'x-rapidapi-host': 'whatsapp-data.p.rapidapi.com'
-                }
+        const data = await response.json();
+        console.log("Resposta da API do WhatsApp:", data);
+        
+        if (data.id && data.id.profilePic && data.id.name) {
+            setDiscoveredProfile({
+                name: data.id.name,
+                profilePic: data.id.profilePic
             });
-
-            if (!response.ok) {
-                const errorText = await response.text();
-                console.error("Erro da API:", response.status, errorText);
-                setDiscoveredProfile(null);
-                return;
-            }
-
-            const data = await response.json();
-            console.log("Resposta da API do WhatsApp:", data);
-            
-            if (data.id && data.id.profilePic && data.id.name) {
-                setDiscoveredProfile({
-                    name: data.id.name,
-                    profilePic: data.id.profilePic
-                });
-            } else {
-                 setDiscoveredProfile(null);
-            }
-        } catch (error) {
-            console.error("Falha ao buscar dados do perfil:", error);
-            setDiscoveredProfile(null);
-        } finally {
-            setTimeout(() => setShowResults(true), 1000);
+            setShowConfirmation(true);
+        } else {
+             setDiscoveredProfile(null);
+             toast.info("Perfil não encontrado", { description: "Não encontramos um perfil público do WhatsApp para este número. Verifique e tente novamente." });
         }
-    };
+    } catch (error) {
+        console.error("Falha ao buscar dados do perfil:", error);
+        toast.error("Erro de Conexão", { description: "Ocorreu um problema ao tentar buscar os dados. Verifique sua conexão." });
+        setDiscoveredProfile(null);
+    } finally {
+        setIsFetchingProfile(false);
+    }
+  };
 
+  const handleFetchProfile = () => {
+    if (!phoneNumber.trim() || isFetchingProfile) return;
+    setIsFetchingProfile(true);
+    setShowConfirmation(false);
+    setShowResults(false);
+    setDiscoveredProfile(null);
     fetchProfileData();
+  };
 
-  }, [scanComplete, phoneNumber]);
-
-  const handleScan = () => {
-    if (!phoneNumber.trim()) return;
+  const handleStartScan = () => {
+    setShowConfirmation(false);
     setIsScanning(true);
     setCurrentStep(0);
     setProgress(0);
-    setScanComplete(false);
     setShowResults(false);
-    setDiscoveredProfile(null);
 
     scanningSteps.forEach((step, index) => {
       setTimeout(() => {
@@ -118,11 +118,16 @@ const Index = () => {
         if (index === scanningSteps.length - 1) {
           setTimeout(() => {
             setIsScanning(false);
-            setScanComplete(true);
+            setShowResults(true);
           }, step.duration);
         }
       }, scanningSteps.slice(0, index).reduce((acc, s) => acc + s.duration, 0));
     });
+  };
+  
+  const handleCancelConfirmation = () => {
+      setShowConfirmation(false);
+      setDiscoveredProfile(null);
   };
 
   const formatPhoneNumber = (value: string) => {
@@ -140,7 +145,7 @@ const Index = () => {
 
   return (
     <div className={`min-h-screen bg-gradient-to-br ${HACKER_GRADIENT} text-white overflow-hidden relative font-sans`}>
-      {isScanning && <HackerOverlay />}
+      {(isScanning || isFetchingProfile) && <HackerOverlay />}
       
       <div className="absolute inset-0 pointer-events-none z-0">
         <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-pink-900/5 to-violet-900/10" />
@@ -149,7 +154,7 @@ const Index = () => {
       </div>
 
       <div className="relative z-10 container mx-auto px-4 py-8 max-w-7xl">
-        {!isScanning && !scanComplete && (
+        {!isScanning && !showResults && !showConfirmation && (
           <section className="animate-fade-in">
             {/* Header Premium */}
             <div className="text-center space-y-12 pt-8 pb-12 md:pb-20">
@@ -320,12 +325,12 @@ const Index = () => {
                   <AlertTriangle className="inline-block w-5 h-5 md:w-6 md:h-6 mr-2" /> Apenas 30 verificações gratuitas restantes hoje.
                 </div>
                 <Button 
-                  onClick={handleScan}
-                  disabled={phoneNumber.length < 14}
+                  onClick={handleFetchProfile}
+                  disabled={phoneNumber.length < 14 || isFetchingProfile}
                   className={`w-full py-5 md:py-8 text-xl md:text-3xl font-black tracking-wider rounded-2xl shadow-2xl bg-gradient-to-r ${CTA_GRADIENT} hover:from-pink-500 hover:via-violet-500 hover:to-pink-500 transition-all duration-300 transform hover:scale-105 uppercase`}
                 >
-                  <Radar className="mr-3 md:mr-4 h-6 w-6 md:h-10 md:h-10 animate-spin" />
-                  Expor a Verdade Agora
+                  <Radar className={`mr-3 md:mr-4 h-6 w-6 md:h-10 md:h-10 ${isFetchingProfile ? 'animate-spin' : ''}`} />
+                  {isFetchingProfile ? "BUSCANDO PERFIL..." : "EXPOR A VERDADE AGORA"}
                 </Button>
                 <div className="text-center mt-4 p-3 bg-black/30 rounded-lg border border-gray-700 h-16 flex items-center justify-center">
                   <p key={socialProofIndex} className="text-base md:text-lg text-white animate-fade-in">
@@ -345,6 +350,49 @@ const Index = () => {
                     <Zap className="w-6 h-6 md:w-7 md:h-7" />
                     Resultados Instantâneos
                   </div>
+                </div>
+              </CardContent>
+            </Card>
+          </section>
+        )}
+        
+        {/* TELA DE CONFIRMAÇÃO */}
+        {showConfirmation && discoveredProfile && (
+          <section className="animate-fade-in flex flex-col items-center justify-center min-h-[80vh] relative z-20">
+            <Card className={`mx-auto max-w-xl neon-frame-hacker shadow-2xl bg-gradient-to-br ${CARD_GRADIENT} transition-transform duration-300`}>
+              <CardHeader>
+                <CardTitle className="text-center text-3xl font-black text-white">
+                  <span className="flex items-center justify-center gap-3">
+                    <User className="w-8 h-8 text-pink-400" />
+                    <span>Encontramos este perfil</span>
+                    <Eye className="w-8 h-8 text-violet-400" />
+                  </span>
+                </CardTitle>
+                <p className="text-center text-lg text-gray-300 pt-2">
+                  Este é o perfil que você deseja investigar?
+                </p>
+              </CardHeader>
+              <CardContent className="flex flex-col items-center space-y-6 pt-4">
+                <div className="relative">
+                  <img
+                    src={discoveredProfile.profilePic}
+                    alt="Foto do perfil"
+                    className="w-40 h-40 rounded-full border-4 border-pink-400 shadow-lg shadow-pink-500/30 object-cover"
+                    onError={(e) => { (e.currentTarget as HTMLImageElement).src = `https://avatar.vercel.sh/${phoneNumber}.png`; }}
+                  />
+                  <CheckCircle className="absolute -bottom-2 -right-2 w-10 h-10 text-green-400 bg-gray-900 rounded-full p-1 border-2 border-gray-800" />
+                </div>
+                <div className="text-center">
+                  <p className="text-2xl font-bold text-white">{discoveredProfile.name}</p>
+                  <p className="text-lg text-gray-400 font-mono">{phoneNumber}</p>
+                </div>
+                <div className="w-full space-y-4 pt-4">
+                  <Button onClick={handleStartScan} className="w-full py-5 text-lg font-bold bg-green-500 hover:bg-green-600 transition-all transform hover:scale-105">
+                    <CheckCircle className="mr-2 h-6 w-6" /> Sim, é essa pessoa. Investigar!
+                  </Button>
+                  <Button onClick={handleCancelConfirmation} variant="outline" className="w-full py-4 text-lg font-bold border-pink-500 text-pink-400 hover:bg-pink-900/50 hover:text-white transition-all transform hover:scale-105">
+                    <XCircle className="mr-2 h-6 w-6" /> Não, tentar outro número
+                  </Button>
                 </div>
               </CardContent>
             </Card>
