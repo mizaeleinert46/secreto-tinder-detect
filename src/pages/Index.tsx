@@ -169,7 +169,7 @@ const Index = () => {
 
               <Card className="bg-gradient-to-br from-violet-950/50 to-black/70 border border-violet-400/30 hover:border-violet-400/50 transition-all duration-300 shadow-xl hover:shadow-violet-500/20">
                 <CardHeader className="text-center pb-4">
-                  <Database className="w-12 h-12 md:w-16 md:h-16 text-violet-400 mx-auto mb-4 md:mb-6" />
+                  <Database className="w-12 h-12 md:w-16 md:h-12 text-violet-400 mx-auto mb-4 md:mb-6" />
                   <CardTitle className="text-xl md:text-2xl text-violet-300 font-bold">Provas Irrefutáveis</CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -436,7 +436,7 @@ const Index = () => {
               <CardContent className="space-y-6 md:space-y-7 px-6 md:px-8 py-8 md:py-10">
                   <div className="flex flex-col items-center gap-4">
                     <Button 
-                      className="w-full bg-gradient-to-r from-[#ec4899] via-violet-400 to-[#8b5cf6] hover:from-pink-600 hover:via-violet-400 hover:to-[#c300ff] text-white font-black py-5 md:py-6 text-base sm:text-lg md:text-xl rounded-xl transition-all duration-300 transform hover:scale-105 shadow-2xl glow-pink uppercase tracking-wide px-2"
+                      className="w-full bg-gradient-to-r from-[#ec4899] via-violet-400 to-[#8b5cf6] hover:from-pink-600 hover:via-violet-400 hover:to-[#c300ff] text-white font-black py-5 md:py-6 text-sm sm:text-lg md:text-xl rounded-xl transition-all duration-300 transform hover:scale-105 shadow-2xl glow-pink uppercase tracking-wide px-2 whitespace-normal h-auto"
                       onClick={() => {
                         alert('Você será redirecionado para a página de pagamento seguro para finalizar a compra.');
                       }}

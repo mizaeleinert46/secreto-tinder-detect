@@ -68,7 +68,7 @@ export default function DiscoveredProfileInfo({ gender }: { gender: 'homem' | 'm
         
         <div className="text-center mb-10">
           <h3 className="text-3xl md:text-4xl font-black text-pink-400 flex items-center justify-center gap-4 drop-shadow-glow">
-            <AlertCircle className="w-10 h-10 animate-pulse"/> Dossiê Preliminar
+            <AlertCircle className="w-10 h-10 animate-pulse"/> Perfil Detectado
           </h3>
           <p className="text-gray-300 mt-3 text-lg">As informações a seguir foram detectadas e estão protegidas. Desbloqueie para ver os detalhes.</p>
         </div>
