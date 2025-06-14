@@ -8,6 +8,7 @@ import { Search, Shield, Eye, AlertTriangle, Zap, Heart, Target, Radar } from "l
 import HackerOverlay from "@/components/HackerOverlay";
 import HackerLinesBackground from "@/components/HackerLinesBackground";
 import TerminalTypingTitle from "@/components/TerminalTypingTitle";
+import DiscoveredProfileInfo from "@/components/DiscoveredProfileInfo";
 
 const Index = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -285,8 +286,10 @@ const Index = () => {
                 Investigação completa para: <span className="text-yellow-400 font-mono bg-gray-800/60 px-6 py-3 rounded-xl border border-yellow-500/30">{phoneNumber}</span>
               </p>
             </div>
+            {/* NOVA SEÇÃO AVANÇADA DE PERFIL DESCOBERTO */}
+            <DiscoveredProfileInfo />
 
-            <Card className="bg-gradient-to-br from-red-900/40 to-pink-900/30 border-2 border-red-500/60 backdrop-blur-2xl max-w-5xl mx-auto shadow-2xl">
+            <Card className="bg-gradient-to-br from-red-900/40 to-pink-900/30 border-2 border-red-500/60 backdrop-blur-2xl max-w-5xl mx-auto shadow-2xl mt-16">
               <CardHeader>
                 <CardTitle className="text-red-400 flex items-center justify-center space-x-4 text-3xl">
                   <Target className="w-10 h-10" />
@@ -295,48 +298,12 @@ const Index = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-10 p-10">
-                <div className="grid md:grid-cols-2 gap-8">
-                  <div className="bg-gradient-to-br from-black/70 to-gray-900/50 p-8 rounded-2xl border-2 border-pink-500/30 hover:border-pink-400/50 transition-all duration-300">
-                    <div className="text-gray-400 mb-3 text-lg">Status no Tinder</div>
-                    <div className="text-3xl font-bold text-pink-400 flex items-center space-x-3">
-                      <Heart className="w-8 h-8" />
-                      <span>💕 PERFIL ATIVO</span>
-                    </div>
-                  </div>
-                  <div className="bg-gradient-to-br from-black/70 to-gray-900/50 p-8 rounded-2xl border-2 border-orange-500/30 hover:border-orange-400/50 transition-all duration-300">
-                    <div className="text-gray-400 mb-3 text-lg">Último Acesso</div>
-                    <div className="text-3xl font-bold text-orange-400 flex items-center space-x-3">
-                      <Zap className="w-8 h-8" />
-                      <span>🔥 Há 8 dias</span>
-                    </div>
-                  </div>
-                  <div className="bg-gradient-to-br from-black/70 to-gray-900/50 p-8 rounded-2xl border-2 border-purple-500/30 hover:border-purple-400/50 transition-all duration-300">
-                    <div className="text-gray-400 mb-3 text-lg">Matches Encontrados</div>
-                    <div className="text-3xl font-bold text-purple-400 flex items-center space-x-3">
-                      <Target className="w-8 h-8" />
-                      <span>💜 7 matches</span>
-                    </div>
-                  </div>
-                  <div className="bg-gradient-to-br from-black/70 to-gray-900/50 p-8 rounded-2xl border-2 border-red-500/30 hover:border-red-400/50 transition-all duration-300">
-                    <div className="text-gray-400 mb-3 text-lg">Conversas Ativas</div>
-                    <div className="text-3xl font-bold text-red-400 flex items-center space-x-3">
-                      <AlertTriangle className="w-8 h-8 animate-pulse" />
-                      <span>🚨 4 ativas</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-gradient-to-r from-black/80 to-gray-900/60 p-8 rounded-2xl border-2 border-yellow-500/40">
-                  <div className="text-gray-400 mb-4 text-xl font-semibold">Bio Detectada:</div>
-                  <div className="text-yellow-400 italic text-2xl font-medium">"Buscando algo real e divertido 🔥💕"</div>
-                </div>
-
+                {/* Removi a grade antiga, agora os dados principais ficam em <DiscoveredProfileInfo /> */}
                 <div className="flex flex-wrap gap-4 justify-center">
                   <Badge className="bg-red-500/80 hover:bg-red-500 text-white text-xl px-6 py-3 font-bold">🚨 Perfil Ativo</Badge>
                   <Badge className="bg-orange-500/80 hover:bg-orange-500 text-white text-xl px-6 py-3 font-bold">🔥 Matches Recentes</Badge>
                   <Badge className="bg-purple-500/80 hover:bg-purple-500 text-white text-xl px-6 py-3 font-bold">💬 Conversando</Badge>
                 </div>
-
                 {!showResults && (
                   <div className="text-center py-8">
                     <div className="animate-pulse text-yellow-400 text-2xl font-bold">
@@ -344,7 +311,6 @@ const Index = () => {
                     </div>
                   </div>
                 )}
-
                 {showResults && (
                   <div className="space-y-8 animate-fade-in">
                     <div className="border-t-2 border-gray-700/50 pt-10">
@@ -353,7 +319,6 @@ const Index = () => {
                         <span>Quer ver as FOTOS e CONVERSAS encontradas?</span>
                         <Heart className="w-10 h-10 animate-pulse" />
                       </h3>
-                      
                       <div className="space-y-6">
                         <Button 
                           className="w-full bg-gradient-to-r from-red-600 via-pink-600 to-red-700 hover:from-red-700 hover:via-pink-700 hover:to-red-800 text-white font-bold py-8 text-2xl transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-red-500/40"
@@ -363,7 +328,6 @@ const Index = () => {
                         >
                           🚨 SIM, MOSTRAR TUDO AGORA!
                         </Button>
-                        
                         <Button 
                           variant="outline" 
                           className="w-full border-2 border-gray-600 text-gray-300 hover:bg-gray-800 hover:text-white py-6 text-xl transition-all duration-300 hover:scale-105"
@@ -377,7 +341,6 @@ const Index = () => {
                         </Button>
                       </div>
                     </div>
-
                     <div className="text-center text-gray-500 space-y-2 border-t border-gray-800 pt-8">
                       <p className="text-sm">⚠️ Sistema de demonstração - Tinder Espião</p>
                       <p className="text-sm">🔒 Nenhum dado real foi acessado nesta simulação</p>
