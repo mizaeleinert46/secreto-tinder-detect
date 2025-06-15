@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -115,13 +114,13 @@ export default function IndexPage() {
   return (
     <div className="relative min-h-screen w-full bg-black text-green-400 font-mono flex items-center justify-center p-4 overflow-hidden">
       <HackerLinesBackground />
-      <HackerOverlay isVisible={isSearching} />
+      {isSearching && <HackerOverlay isVisible={isSearching} />}
       
       <div className="relative z-10 w-full max-w-3xl mx-auto">
         {step === 0 && (
           <div className="text-center bg-black/50 backdrop-blur-sm p-6 md:p-10 rounded-2xl border border-green-500/20 neon-glow-subtle">
             <Eye className="w-16 h-16 mx-auto mb-6 text-pink-400 animate-pulse" />
-            <TerminalTypingTitle />
+            <TerminalTypingTitle text="Ele(a) está no Tinder?" />
             <p className="text-lg md:text-xl text-gray-300 mt-4 mb-8 max-w-2xl mx-auto">
               Descubra de uma vez por todas se você está sendo <span className="text-pink-400 font-bold">enganada(o)</span>. Nossa ferramenta avançada varre o Tinder em busca de perfis ocultos.
             </p>
