@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -7,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Search, Shield, Eye, AlertTriangle, Zap, Heart, Target, Radar, Lock, Database, Signal, CheckCircle, Star, DollarSign, User } from "lucide-react";
 import HackerOverlay from "@/components/HackerOverlay";
 import DiscoveredProfileInfo from "@/components/DiscoveredProfileInfo";
+import BlurredTinderScreen from "@/components/BlurredTinderScreen";
 import HackerLinesBackground from "@/components/HackerLinesBackground";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
@@ -393,6 +393,7 @@ const Index = () => {
             </p>
             <div className="mt-2">
               <DiscoveredProfileInfo gender={targetGender as 'homem' | 'mulher'} />
+              <BlurredTinderScreen gender={targetGender as 'homem' | 'mulher'} />
             </div>
 
             {/* O QUE VOCÊ VAI DESCOBRIR */}
