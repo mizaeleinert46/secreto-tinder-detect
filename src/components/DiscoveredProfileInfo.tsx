@@ -4,9 +4,9 @@ import { Zap, AlertCircle, Lock, Eye, TrendingUp, Users, CalendarClock, MapPin, 
 
 // Data for men
 const manBlurredImages = [
-  "https://images.unsplash.com/photo-1616802872892-d967a531604a?w=400&q=80",
-  "https://images.unsplash.com/photo-1574015974293-817f0e726413?w=400&q=80",
-  "https://images.unsplash.com/photo-1543132649-2f317b4a6955?w=400&q=80",
+  "https://images.unsplash.com/photo-1574015974293-817f0e726413?w=400&q=80", // Homem na cama, sugestivo
+  "https://images.unsplash.com/photo-1543132649-2f317b4a6955?w=400&q=80", // Homem sem camisa, de costas
+  "https://images.unsplash.com/photo-1616802872892-d967a531604a?w=400&q=80", // Close no rosto/pescoço
 ];
 const manInfo = [
     { icon: Zap, text: "Última Atividade", value: "Hoje, 2:17 AM", colorClass: "border-yellow-400 text-yellow-300"},
@@ -19,9 +19,9 @@ const manInfo = [
 
 // Data for women
 const womanBlurredImages = [
-  "https://images.unsplash.com/photo-1521115846413-5a0a3a782241?w=400&q=80",
-  "https://images.unsplash.com/photo-1589422030048-6a42a59a7219?w=400&q=80",
-  "https://images.unsplash.com/photo-1517479149777-5f3b1511d5d0?w=400&q=80",
+  "https://images.unsplash.com/photo-1521115846413-5a0a3a782241?w=400&q=80", // Mulher na cama, sensual
+  "https://images.unsplash.com/photo-1589422030048-6a42a59a7219?w=400&q=80", // Close de lingerie
+  "https://images.unsplash.com/photo-1517479149777-5f3b1511d5d0?w=400&q=80", // Mulher olhando para a câmera, íntimo
 ];
 const womanInfo = [
     { icon: Zap, text: "Última Atividade", value: "Hoje, 1:45 AM", colorClass: "border-yellow-400 text-yellow-300"},
@@ -92,10 +92,10 @@ export default function DiscoveredProfileInfo({ gender }: { gender: 'homem' | 'm
                   src={img.src}
                   onError={e => { (e.currentTarget as HTMLImageElement).src = img.fallback; }}
                   alt={img.label}
-                  className="w-full h-full object-cover blur-lg scale-110 opacity-60 group-hover:blur-md group-hover:opacity-80 transition-all duration-300"
+                  className="w-full h-full object-cover blur-xl scale-110 opacity-70 group-hover:blur-lg group-hover:opacity-90 transition-all duration-300"
                   draggable={false}
                 />
-                <div className="absolute inset-0 bg-black/30 flex items-center justify-center text-center p-2">
+                <div className="absolute inset-0 flex items-center justify-center text-center p-2">
                   <span className="font-mono text-xs md:text-sm text-white bg-black/50 px-2 py-1 rounded">{img.label}</span>
                 </div>
                 <div className="absolute inset-0 scanlines-mix opacity-50"/>
