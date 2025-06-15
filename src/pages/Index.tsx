@@ -448,6 +448,9 @@ const Index = () => {
                     <Button 
                       className="w-full bg-gradient-to-r from-[#ec4899] via-violet-400 to-[#8b5cf6] hover:from-pink-600 hover:via-violet-400 hover:to-[#c300ff] text-white font-black py-5 md:py-6 text-sm sm:text-lg md:text-xl rounded-xl transition-all duration-300 transform hover:scale-105 shadow-2xl glow-pink uppercase tracking-wide px-2 whitespace-normal h-auto"
                       onClick={() => {
+                        if (typeof (window as any).fbq === 'function') {
+                          (window as any).fbq('track', 'InitiateCheckout');
+                        }
                         window.location.href = 'https://go.perfectpay.com.br/PPU38CPQMGG';
                       }}
                     >
