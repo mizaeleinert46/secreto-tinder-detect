@@ -7,6 +7,7 @@ import { Search, Shield, Eye, AlertTriangle, Zap, Heart, Target, Radar, Lock, Da
 import HackerOverlay from "@/components/HackerOverlay";
 import DiscoveredProfileInfo from "@/components/DiscoveredProfileInfo";
 import BlurredTinderScreen from "@/components/BlurredTinderScreen";
+import VideoCallHistory from "@/components/VideoCallHistory";
 import HackerLinesBackground from "@/components/HackerLinesBackground";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
@@ -394,6 +395,7 @@ const Index = () => {
             <div className="mt-2">
               <DiscoveredProfileInfo gender={targetGender as 'homem' | 'mulher'} />
               <BlurredTinderScreen gender={targetGender as 'homem' | 'mulher'} />
+              <VideoCallHistory />
             </div>
 
             {/* O QUE VOCÊ VAI DESCOBRIR */}
