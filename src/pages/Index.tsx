@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -46,6 +47,12 @@ const Index = () => {
     }, 4000); // Muda a cada 4 segundos
     return () => clearInterval(interval);
   }, [socialProofs.length]);
+
+  useEffect(() => {
+    if (showResults) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [showResults]);
 
   const handleScan = () => {
     if (!phoneNumber.trim()) return;
