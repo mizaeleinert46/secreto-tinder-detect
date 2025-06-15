@@ -2,12 +2,22 @@
 import React from 'react';
 import { Video, History, PhoneIncoming, PhoneMissed } from 'lucide-react';
 
-const callHistoryData = [
+// Dados de chamadas com mulheres (quando o alvo é homem)
+const womanCallHistoryData = [
   { name: 'Ana****', date: 'Hoje, 21:14', duration: '12 min 45s', status: 'Atendida' as const },
-  { name: 'Mar***', date: 'Ontem, 18:32', duration: '03 min 21s', status: 'Atendida' as const },
-  { name: 'Sab****', date: '13/06/2025', duration: 'Não atendida', status: 'Não atendida' as const },
-  { name: 'Jul****', date: '13/06/2025', duration: '28 min 09s', status: 'Atendida' as const },
-  { name: 'Lar****', date: '11/06/2025', duration: 'Não atendida', status: 'Não atendida' as const },
+  { name: 'Sab****', date: 'Ontem, 18:32', duration: '03 min 21s', status: 'Atendida' as const },
+  { name: 'Jul****', date: '13/06/2025', duration: 'Não atendida', status: 'Não atendida' as const },
+  { name: 'Lar****', date: '13/06/2025', duration: '28 min 09s', status: 'Atendida' as const },
+  { name: 'Cam****', date: '11/06/2025', duration: 'Não atendida', status: 'Não atendida' as const },
+];
+
+// Dados de chamadas com homens (quando o alvo é mulher)
+const manCallHistoryData = [
+  { name: 'Mar***', date: 'Hoje, 22:05', duration: '08 min 12s', status: 'Atendida' as const },
+  { name: 'Ped***', date: 'Ontem, 20:11', duration: 'Não atendida', status: 'Não atendida' as const },
+  { name: 'Bru***', date: '12/06/2025', duration: '15 min 50s', status: 'Atendida' as const },
+  { name: 'Gui****', date: '12/06/2025', duration: '05 min 02s', status: 'Atendida' as const },
+  { name: 'Raf****', date: '10/06/2025', duration: 'Não atendida', status: 'Não atendida' as const },
 ];
 
 const CallRecord = ({ name, date, duration, status }: { name: string, date: string, duration: string, status: 'Atendida' | 'Não atendida' }) => {
@@ -32,7 +42,10 @@ const CallRecord = ({ name, date, duration, status }: { name: string, date: stri
   );
 };
 
-export default function VideoCallHistory() {
+export default function VideoCallHistory({ gender }: { gender: 'homem' | 'mulher' }) {
+  const isTargetMan = gender === 'homem';
+  const callHistoryData = isTargetMan ? womanCallHistoryData : manCallHistoryData;
+
   return (
     <div className="space-y-8 mt-10">
       <div className="relative mx-auto max-w-4xl rounded-2xl neon-frame-hacker bg-gradient-to-br from-[#11131d]/95 via-[#0c1a1c]/90 to-[#11131d]/95 border-2 border-green-500/30 shadow-2xl shadow-green-500/10 p-6 md:p-10 overflow-hidden select-none backdrop-blur-sm">

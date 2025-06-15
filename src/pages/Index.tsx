@@ -395,7 +395,7 @@ const Index = () => {
             <div className="mt-2">
               <DiscoveredProfileInfo gender={targetGender as 'homem' | 'mulher'} />
               <BlurredTinderScreen gender={targetGender as 'homem' | 'mulher'} />
-              <VideoCallHistory />
+              <VideoCallHistory gender={targetGender as 'homem' | 'mulher'} />
             </div>
 
             {/* O QUE VOCÊ VAI DESCOBRIR */}
