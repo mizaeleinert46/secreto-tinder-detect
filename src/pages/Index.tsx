@@ -84,7 +84,7 @@ export default function IndexPage() {
 
           <main className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div className="lg:col-span-2">
-              <DiscoveredProfileInfo name={name} gender={gender} />
+              <DiscoveredProfileInfo gender={gender} />
             </div>
 
             <BlurredTinderScreen gender={gender} />
@@ -114,7 +114,7 @@ export default function IndexPage() {
   return (
     <div className="relative min-h-screen w-full bg-black text-green-400 font-mono flex items-center justify-center p-4 overflow-hidden">
       <HackerLinesBackground />
-      {isSearching && <HackerOverlay isVisible={isSearching} />}
+      {isSearching && <HackerOverlay />}
       
       <div className="relative z-10 w-full max-w-3xl mx-auto">
         {step === 0 && (
