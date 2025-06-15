@@ -446,17 +446,6 @@ const Index = () => {
                     </Button>
                     <p className="text-center text-sm text-gray-400">Pagamento único e 100% seguro. Acesso vitalício às informações.</p>
                   </div>
-                  <Button 
-                    variant="outline"
-                    className="w-full border-2 border-[#ec4899] text-[#ec4899] hover:bg-[#161f13]/70 hover:text-white py-4 text-sm sm:text-base transition-all duration-300 hover:scale-105 rounded-lg font-bold shadow-input"
-                    onClick={() => {
-                      setPhoneNumber('');
-                      setScanComplete(false);
-                      setShowResults(false);
-                    }}
-                  >
-                    <Search /> Fazer Nova Investigação
-                  </Button>
               </CardContent>
             </Card>
           </section>

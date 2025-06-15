@@ -1,11 +1,12 @@
+
 import React from "react";
 import { Zap, AlertCircle, Lock, Eye, TrendingUp, Users, CalendarClock, MapPin, MessageSquareQuote, AlertTriangle } from "lucide-react";
 
 // Data for men
 const manBlurredImages = [
-  "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&q=80",
-  "https://images.unsplash.com/photo-1542103749-8ef59b94f475?w=400&q=80",
-  "https://images.unsplash.com/photo-1583195764339-32247b913e8b?w=400&q=80",
+  "https://images.unsplash.com/photo-1616802872892-d967a531604a?w=400&q=80",
+  "https://images.unsplash.com/photo-1574015974293-817f0e726413?w=400&q=80",
+  "https://images.unsplash.com/photo-1543132649-2f317b4a6955?w=400&q=80",
 ];
 const manInfo = [
     { icon: Zap, text: "Última Atividade", value: "Hoje, 2:17 AM", colorClass: "border-yellow-400 text-yellow-300"},
@@ -18,9 +19,9 @@ const manInfo = [
 
 // Data for women
 const womanBlurredImages = [
-  "https://images.unsplash.com/photo-1594744806548-9931a7ea13de?w=400&q=80",
-  "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=400&q=80",
-  "https://images.unsplash.com/photo-1552695845-4a0237de1e74?w=400&q=80",
+  "https://images.unsplash.com/photo-1521115846413-5a0a3a782241?w=400&q=80",
+  "https://images.unsplash.com/photo-1589422030048-6a42a59a7219?w=400&q=80",
+  "https://images.unsplash.com/photo-1517479149777-5f3b1511d5d0?w=400&q=80",
 ];
 const womanInfo = [
     { icon: Zap, text: "Última Atividade", value: "Hoje, 1:45 AM", colorClass: "border-yellow-400 text-yellow-300"},
