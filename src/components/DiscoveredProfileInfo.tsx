@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Zap, AlertCircle, Lock, Eye, TrendingUp, Users, CalendarClock, MapPin, MessageSquareQuote, AlertTriangle } from "lucide-react";
 
@@ -82,7 +81,7 @@ export default function DiscoveredProfileInfo({ gender }: { gender: 'homem' | 'm
             {images.map((img, index) => (
               <div
                 key={index}
-                className={`w-full aspect-[4/5] rounded-lg bg-black/50 overflow-hidden relative group transition-all duration-300
+                className={`w-full aspect-[4/5] rounded-lg bg-gray-900 overflow-hidden relative group transition-all duration-300
                   ${index === 1 
                     ? 'border-2 border-cyan-400/50 shadow-lg shadow-cyan-400/20' 
                     : 'border border-pink-700/30 hover:border-pink-500 hover:shadow-xl hover:shadow-pink-500/20'
@@ -92,13 +91,12 @@ export default function DiscoveredProfileInfo({ gender }: { gender: 'homem' | 'm
                   src={img.src}
                   onError={e => { (e.currentTarget as HTMLImageElement).src = img.fallback; }}
                   alt={img.label}
-                  className="w-full h-full object-cover blur-xl scale-110 opacity-70 group-hover:blur-lg group-hover:opacity-90 transition-all duration-300"
+                  className="w-full h-full object-cover blur-lg scale-110 group-hover:blur-md transition-all duration-300"
                   draggable={false}
                 />
                 <div className="absolute inset-0 flex items-center justify-center text-center p-2">
                   <span className="font-mono text-xs md:text-sm text-white bg-black/50 px-2 py-1 rounded">{img.label}</span>
                 </div>
-                <div className="absolute inset-0 scanlines-mix opacity-50"/>
                 <Lock className="absolute top-2 right-2 w-5 h-5 text-white animate-pulse" />
               </div>
             ))}
