@@ -19,6 +19,7 @@ const CARD_GRADIENT = "from-[#152e1a]/90 via-[#351b44]/90 to-[#181722]/90";
 
 const Index = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [personName, setPersonName] = useState('');
   const [targetGender, setTargetGender] = useState('mulher');
   const [isScanning, setIsScanning] = useState(false);
   const [scanComplete, setScanComplete] = useState(false);
@@ -97,7 +98,7 @@ const Index = () => {
   };
 
   const handleScan = () => {
-    if (!phoneNumber.trim()) return;
+    if (!phoneNumber.trim() || !personName.trim()) return;
     fetchWhatsAppImage(phoneNumber);
   };
 
@@ -180,7 +181,7 @@ const Index = () => {
                   
                   {/* Info do perfil */}
                   <div className="absolute bottom-6 left-6 right-6 text-white">
-                    <h3 className="text-2xl font-bold mb-1">Perfil Encontrado</h3>
+                    <h3 className="text-2xl font-bold mb-1">{personName}</h3>
                     <p className="text-lg opacity-90 flex items-center gap-2">
                       <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
                       Ativo recentemente
@@ -230,7 +231,7 @@ const Index = () => {
               {/* Indicador de erro */}
               <div className="text-center mt-4">
                 <p className="text-yellow-400 text-sm">
-                  💡 Se não for a pessoa certa, verifique o número e tente novamente
+                  💡 Se não for a pessoa certa, verifique o nome e número e tente novamente
                 </p>
               </div>
             </div>
@@ -360,7 +361,7 @@ const Index = () => {
                   </span>
                 </CardTitle>
                 <p className="text-center text-lg md:text-xl text-gray-300 mt-4">
-                  Um simples número de telefone é tudo o que precisamos para revelar se a sua confiança está sendo traída.
+                  Digite o nome e número do WhatsApp da pessoa que você quer investigar.
                 </p>
               </CardHeader>
               <CardContent className="space-y-6 md:space-y-8 px-6 md:px-10 pb-8 md:pb-12">
@@ -406,7 +407,20 @@ const Index = () => {
 
                 <div>
                   <label className="block text-gray-200 text-xl md:text-2xl font-bold mb-4 md:mb-6 text-center">
-                    Número de telefone:
+                    Nome da pessoa:
+                  </label>
+                  <Input 
+                    type="text"
+                    placeholder="Digite o nome completo"
+                    value={personName}
+                    onChange={(e) => setPersonName(e.target.value)}
+                    className="bg-gray-900/80 border-3 border-pink-400/40 text-white text-center text-2xl md:text-3xl h-16 md:h-20 font-sans focus:border-pink-400 focus:ring-pink-400/30 transition-all duration-300 hover:border-pink-400/60 rounded-2xl shadow-xl mb-4"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-gray-200 text-xl md:text-2xl font-bold mb-4 md:mb-6 text-center">
+                    Número do WhatsApp:
                   </label>
                   <Input 
                     type="tel"
@@ -416,13 +430,16 @@ const Index = () => {
                     className="bg-gray-900/80 border-3 border-pink-400/40 text-white text-center text-2xl md:text-3xl h-16 md:h-20 font-mono focus:border-pink-400 focus:ring-pink-400/30 transition-all duration-300 hover:border-pink-400/60 rounded-2xl shadow-xl"
                     maxLength={15}
                   />
+                  <p className="text-center text-yellow-300 text-sm md:text-base mt-2 font-semibold">
+                    ⚠️ Certifique-se de que o número tem WhatsApp ativo
+                  </p>
                 </div>
                 <div className="text-center text-yellow-400 bg-yellow-900/50 border border-yellow-500 rounded-lg py-3 px-4 font-bold text-base md:text-xl mb-4 shadow-lg animate-pulse">
                   <AlertTriangle className="inline-block w-5 h-5 md:w-6 md:h-6 mr-2" /> Apenas 30 verificações gratuitas restantes hoje.
                 </div>
                 <Button 
                   onClick={handleScan}
-                  disabled={phoneNumber.length < 14}
+                  disabled={phoneNumber.length < 14 || personName.trim().length < 2}
                   className={`w-full py-5 md:py-8 text-xl md:text-3xl font-black tracking-wider rounded-2xl shadow-2xl bg-gradient-to-r ${CTA_GRADIENT} hover:from-pink-500 hover:via-violet-500 hover:to-pink-500 transition-all duration-300 transform hover:scale-105 uppercase`}
                 >
                   <Radar className="mr-3 md:mr-4 h-6 w-6 md:h-10 md:w-10 animate-spin" />
