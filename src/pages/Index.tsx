@@ -157,55 +157,83 @@ const Index = () => {
       </div>
 
       <div className="relative z-10 container mx-auto px-4 py-8 max-w-7xl">
-        {/* MODAL DE CONFIRMAÇÃO DE IDENTIDADE */}
+        {/* MODAL DE CONFIRMAÇÃO DE IDENTIDADE - ESTILO TINDER */}
         {showIdentityConfirmation && whatsappImage && (
-          <div className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-            <Card className="bg-gradient-to-br from-black/90 via-pink-900/20 to-violet-900/20 border border-pink-400/30 max-w-md w-full mx-auto">
-              <CardHeader className="text-center pb-4">
-                <CardTitle className="text-2xl font-bold text-pink-300">
-                  Confirme a Identidade
-                </CardTitle>
-                <p className="text-gray-300">
-                  Essa é a pessoa que você quer investigar?
-                </p>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <div className="flex justify-center">
-                  <div className="relative">
-                    <img 
-                      src={whatsappImage} 
-                      alt="Foto do WhatsApp" 
-                      className="w-48 h-48 rounded-full object-cover border-4 border-pink-400/50 shadow-lg"
-                      onError={() => {
-                        console.log('Erro ao carregar imagem, continuando com o scan...');
-                        handleStartScan();
-                      }}
-                    />
+          <div className="fixed inset-0 bg-black/95 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+            <div className="max-w-sm w-full mx-auto animate-fade-in-scale">
+              {/* Container do perfil estilo Tinder */}
+              <div className="relative bg-gradient-to-b from-white to-gray-100 rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
+                {/* Foto principal */}
+                <div className="relative aspect-[3/4] overflow-hidden">
+                  <img 
+                    src={whatsappImage} 
+                    alt="Perfil encontrado" 
+                    className="w-full h-full object-cover"
+                    onError={() => {
+                      console.log('Erro ao carregar imagem, continuando com o scan...');
+                      handleStartScan();
+                    }}
+                  />
+                  
+                  {/* Gradiente inferior estilo Tinder */}
+                  <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+                  
+                  {/* Info do perfil */}
+                  <div className="absolute bottom-6 left-6 right-6 text-white">
+                    <h3 className="text-2xl font-bold mb-1">Perfil Encontrado</h3>
+                    <p className="text-lg opacity-90 flex items-center gap-2">
+                      <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                      Ativo recentemente
+                    </p>
+                  </div>
+                  
+                  {/* Ícone do Tinder no canto */}
+                  <div className="absolute top-4 right-4 bg-gradient-to-r from-pink-500 to-red-500 p-2 rounded-full shadow-lg">
+                    <Heart className="w-6 h-6 text-white fill-white" />
                   </div>
                 </div>
-                <div className="flex gap-4">
-                  <Button 
-                    onClick={() => handleIdentityConfirmation(true)}
-                    className="flex-1 bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 text-white font-bold py-3 text-lg"
-                  >
-                    <CheckCircle className="w-5 h-5 mr-2" />
-                    Sim
-                  </Button>
-                  <Button 
-                    onClick={() => handleIdentityConfirmation(false)}
-                    className="flex-1 bg-gradient-to-r from-red-600 to-red-500 hover:from-red-700 hover:to-red-600 text-white font-bold py-3 text-lg"
-                  >
-                    <X className="w-5 h-5 mr-2" />
-                    Não
-                  </Button>
+                
+                {/* Área de ação */}
+                <div className="p-6 bg-white">
+                  <div className="text-center mb-6">
+                    <h4 className="text-xl font-bold text-gray-800 mb-2">
+                      Essa é a pessoa que você quer investigar?
+                    </h4>
+                    <p className="text-gray-600">
+                      Confirme para continuar com a análise completa
+                    </p>
+                  </div>
+                  
+                  {/* Botões de ação estilo Tinder */}
+                  <div className="flex gap-4 justify-center">
+                    <Button 
+                      onClick={() => handleIdentityConfirmation(false)}
+                      className="w-16 h-16 rounded-full bg-gradient-to-br from-gray-200 to-gray-300 hover:from-gray-300 hover:to-gray-400 text-gray-700 shadow-lg border-4 border-white transform hover:scale-110 transition-all duration-200"
+                    >
+                      <X className="w-8 h-8" />
+                    </Button>
+                    <Button 
+                      onClick={() => handleIdentityConfirmation(true)}
+                      className="w-16 h-16 rounded-full bg-gradient-to-br from-green-400 to-green-500 hover:from-green-500 hover:to-green-600 text-white shadow-lg border-4 border-white transform hover:scale-110 transition-all duration-200"
+                    >
+                      <CheckCircle className="w-8 h-8" />
+                    </Button>
+                  </div>
+                  
+                  <div className="flex justify-center mt-4 gap-6 text-sm text-gray-500">
+                    <span>REJEITAR</span>
+                    <span>CONFIRMAR</span>
+                  </div>
                 </div>
-                {!handleIdentityConfirmation && (
-                  <p className="text-center text-yellow-400 text-sm">
-                    Tente verificar se o número está correto e tente novamente.
-                  </p>
-                )}
-              </CardContent>
-            </Card>
+              </div>
+              
+              {/* Indicador de erro */}
+              <div className="text-center mt-4">
+                <p className="text-yellow-400 text-sm">
+                  💡 Se não for a pessoa certa, verifique o número e tente novamente
+                </p>
+              </div>
+            </div>
           </div>
         )}
 
