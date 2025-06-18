@@ -1,10 +1,9 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Search, Shield, Eye, AlertTriangle, Zap, Heart, Target, Radar, Lock, Database, Signal, CheckCircle, Star, DollarSign, User } from "lucide-react";
+import { Search, Shield, Eye, AlertTriangle, Zap, Heart, Target, Radar, Lock, Database, Signal, CheckCircle, Star, DollarSign, User, X } from "lucide-react";
 import HackerOverlay from "@/components/HackerOverlay";
 import DiscoveredProfileInfo from "@/components/DiscoveredProfileInfo";
 import BlurredTinderScreen from "@/components/BlurredTinderScreen";
@@ -26,6 +25,9 @@ const Index = () => {
   const [progress, setProgress] = useState(0);
   const [showResults, setShowResults] = useState(false);
   const [socialProofIndex, setSocialProofIndex] = useState(0);
+  const [showIdentityConfirmation, setShowIdentityConfirmation] = useState(false);
+  const [whatsappImage, setWhatsappImage] = useState('');
+  const [isLoadingImage, setIsLoadingImage] = useState(false);
 
   const scanningSteps = [
     { text: "🔐 Iniciando protocolo de quebra de sigilo...", duration: 1400 },
@@ -46,7 +48,7 @@ const Index = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setSocialProofIndex((prevIndex) => (prevIndex + 1) % socialProofs.length);
-    }, 4000); // Muda a cada 4 segundos
+    }, 4000);
     return () => clearInterval(interval);
   }, [socialProofs.length]);
 
@@ -56,8 +58,47 @@ const Index = () => {
     }
   }, [showResults]);
 
+  const fetchWhatsAppImage = async (phone: string) => {
+    setIsLoadingImage(true);
+    try {
+      // Remove formatação e adiciona DDI do Brasil se não tiver
+      const cleanPhone = phone.replace(/\D/g, '');
+      const phoneWithDDI = cleanPhone.startsWith('55') ? cleanPhone : `55${cleanPhone}`;
+      
+      const response = await fetch(`https://whatsapp-data.p.rapidapi.com/wspicture?phone=${phoneWithDDI}`, {
+        method: 'GET',
+        headers: {
+          'x-rapidapi-key': '1642a29e2emsha9cbf0936523495p14fdf5jsnefd16264d115',
+          'x-rapidapi-host': 'whatsapp-data.p.rapidapi.com'
+        }
+      });
+      
+      const data = await response.json();
+      console.log('WhatsApp API response:', data);
+      
+      if (data && data.picture_url) {
+        setWhatsappImage(data.picture_url);
+        setShowIdentityConfirmation(true);
+      } else {
+        // Se não encontrar imagem, pula direto para o scan
+        handleStartScan();
+      }
+    } catch (error) {
+      console.error('Erro ao buscar imagem do WhatsApp:', error);
+      // Em caso de erro, pula direto para o scan
+      handleStartScan();
+    } finally {
+      setIsLoadingImage(false);
+    }
+  };
+
   const handleScan = () => {
     if (!phoneNumber.trim()) return;
+    fetchWhatsAppImage(phoneNumber);
+  };
+
+  const handleStartScan = () => {
+    setShowIdentityConfirmation(false);
     setIsScanning(true);
     setCurrentStep(0);
     setProgress(0);
@@ -77,6 +118,15 @@ const Index = () => {
         }
       }, scanningSteps.slice(0, index).reduce((acc, s) => acc + s.duration, 0));
     });
+  };
+
+  const handleIdentityConfirmation = (isCorrect: boolean) => {
+    if (isCorrect) {
+      handleStartScan();
+    } else {
+      setShowIdentityConfirmation(false);
+      setWhatsappImage('');
+    }
   };
 
   const formatPhoneNumber = (value: string) => {
@@ -103,7 +153,72 @@ const Index = () => {
       </div>
 
       <div className="relative z-10 container mx-auto px-4 py-8 max-w-7xl">
-        {!isScanning && !scanComplete && (
+        {/* MODAL DE CONFIRMAÇÃO DE IDENTIDADE */}
+        {showIdentityConfirmation && whatsappImage && (
+          <div className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+            <Card className="bg-gradient-to-br from-black/90 via-pink-900/20 to-violet-900/20 border border-pink-400/30 max-w-md w-full mx-auto">
+              <CardHeader className="text-center pb-4">
+                <CardTitle className="text-2xl font-bold text-pink-300">
+                  Confirme a Identidade
+                </CardTitle>
+                <p className="text-gray-300">
+                  Essa é a pessoa que você quer investigar?
+                </p>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="flex justify-center">
+                  <div className="relative">
+                    <img 
+                      src={whatsappImage} 
+                      alt="Foto do WhatsApp" 
+                      className="w-48 h-48 rounded-full object-cover border-4 border-pink-400/50 shadow-lg"
+                      onError={() => {
+                        console.log('Erro ao carregar imagem, continuando com o scan...');
+                        handleStartScan();
+                      }}
+                    />
+                  </div>
+                </div>
+                <div className="flex gap-4">
+                  <Button 
+                    onClick={() => handleIdentityConfirmation(true)}
+                    className="flex-1 bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 text-white font-bold py-3 text-lg"
+                  >
+                    <CheckCircle className="w-5 h-5 mr-2" />
+                    Sim
+                  </Button>
+                  <Button 
+                    onClick={() => handleIdentityConfirmation(false)}
+                    className="flex-1 bg-gradient-to-r from-red-600 to-red-500 hover:from-red-700 hover:to-red-600 text-white font-bold py-3 text-lg"
+                  >
+                    <X className="w-5 h-5 mr-2" />
+                    Não
+                  </Button>
+                </div>
+                {!handleIdentityConfirmation && (
+                  <p className="text-center text-yellow-400 text-sm">
+                    Tente verificar se o número está correto e tente novamente.
+                  </p>
+                )}
+              </CardContent>
+            </Card>
+          </div>
+        )}
+
+        {/* INDICADOR DE CARREGAMENTO */}
+        {isLoadingImage && (
+          <div className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center">
+            <Card className="bg-gradient-to-br from-black/90 via-pink-900/20 to-violet-900/20 border border-pink-400/30 p-8">
+              <div className="text-center space-y-4">
+                <div className="animate-spin w-12 h-12 border-4 border-pink-400 border-t-transparent rounded-full mx-auto"></div>
+                <p className="text-xl font-bold text-pink-300">Verificando identidade...</p>
+                <p className="text-gray-300">Buscando foto do WhatsApp</p>
+              </div>
+            </Card>
+          </div>
+        )}
+
+        {!isScanning && !scanComplete && !showIdentityConfirmation && !isLoadingImage && (
           <section className="animate-fade-in">
             {/* Header Premium */}
             <div className="text-center space-y-12 pt-8 pb-12 md:pb-20">
