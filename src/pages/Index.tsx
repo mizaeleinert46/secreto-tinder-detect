@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -73,14 +74,17 @@ const Index = () => {
         }
       });
       
-      const data = await response.json();
-      console.log('WhatsApp API response:', data);
+      // A API retorna diretamente a URL da imagem como texto, não JSON
+      const imageUrl = await response.text();
+      console.log('WhatsApp API response:', imageUrl);
       
-      if (data && data.picture_url) {
-        setWhatsappImage(data.picture_url);
+      // Verifica se a resposta parece ser uma URL válida de imagem
+      if (imageUrl && imageUrl.startsWith('https://') && imageUrl.includes('whatsapp.net')) {
+        setWhatsappImage(imageUrl);
         setShowIdentityConfirmation(true);
       } else {
-        // Se não encontrar imagem, pula direto para o scan
+        // Se não encontrar imagem válida, pula direto para o scan
+        console.log('Imagem não encontrada ou inválida, continuando com o scan...');
         handleStartScan();
       }
     } catch (error) {
