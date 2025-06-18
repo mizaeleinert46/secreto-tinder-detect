@@ -158,7 +158,7 @@ const Index = () => {
       </div>
 
       <div className="relative z-10 container mx-auto px-4 py-8 max-w-7xl">
-        {/* MODAL DE CONFIRMAÇÃO DE IDENTIDADE - ESTILO TINDER */}
+        {/* MODAL DE CONFIRMAÇÃO DE IDENTIDADE - ESTILO TINDER APRIMORADO */}
         {showIdentityConfirmation && whatsappImage && (
           <div className="fixed inset-0 bg-black/95 backdrop-blur-sm z-50 flex items-center justify-center p-4">
             <div className="max-w-sm w-full mx-auto animate-fade-in-scale">
@@ -176,16 +176,40 @@ const Index = () => {
                     }}
                   />
                   
+                  {/* Indicadores de atividade suspeita */}
+                  <div className="absolute top-4 left-4 flex flex-col gap-2">
+                    <div className="bg-red-500/90 backdrop-blur-sm px-2 py-1 rounded-full text-xs font-bold text-white flex items-center gap-1 animate-pulse">
+                      <div className="w-2 h-2 bg-white rounded-full animate-ping"></div>
+                      ATIVO AGORA
+                    </div>
+                    <div className="bg-yellow-500/90 backdrop-blur-sm px-2 py-1 rounded-full text-xs font-bold text-black flex items-center gap-1">
+                      <AlertTriangle className="w-3 h-3" />
+                      ATIVIDADE SUSPEITA
+                    </div>
+                  </div>
+                  
                   {/* Gradiente inferior estilo Tinder */}
-                  <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
                   
                   {/* Info do perfil */}
                   <div className="absolute bottom-6 left-6 right-6 text-white">
-                    <h3 className="text-2xl font-bold mb-1">{personName}</h3>
-                    <p className="text-lg opacity-90 flex items-center gap-2">
-                      <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-                      Ativo recentemente
-                    </p>
+                    <div className="space-y-2">
+                      <h3 className="text-2xl font-bold">{personName}</h3>
+                      <div className="space-y-1">
+                        <p className="text-sm opacity-90 flex items-center gap-2">
+                          <span className="w-2 h-2 bg-red-400 rounded-full animate-pulse"></span>
+                          Último acesso: há 15 minutos
+                        </p>
+                        <p className="text-xs opacity-75 flex items-center gap-1">
+                          <Eye className="w-3 h-3" />
+                          3 conversas ativas encontradas
+                        </p>
+                        <p className="text-xs opacity-75 flex items-center gap-1">
+                          <Heart className="w-3 h-3" />
+                          7 matches nas últimas 48h
+                        </p>
+                      </div>
+                    </div>
                   </div>
                   
                   {/* Ícone do Tinder no canto */}
@@ -200,9 +224,23 @@ const Index = () => {
                     <h4 className="text-xl font-bold text-gray-800 mb-2">
                       Essa é a pessoa que você quer investigar?
                     </h4>
-                    <p className="text-gray-600">
-                      Confirme para continuar com a análise completa
+                    <p className="text-gray-600 mb-3">
+                      Confirme para revelar as evidências encontradas
                     </p>
+                    
+                    {/* Prévia das evidências */}
+                    <div className="bg-red-50 border border-red-200 rounded-lg p-3 mb-4">
+                      <div className="flex items-center justify-center gap-2 text-red-600 mb-2">
+                        <AlertTriangle className="w-4 h-4" />
+                        <span className="text-sm font-semibold">EVIDÊNCIAS DETECTADAS</span>
+                      </div>
+                      <div className="space-y-1 text-xs text-red-700">
+                        <p>• Perfil ativo em aplicativo de relacionamento</p>
+                        <p>• Múltiplas conversas em andamento</p>
+                        <p>• Atividade recente suspeita</p>
+                        <p className="font-semibold">+ Muito mais no relatório completo</p>
+                      </div>
+                    </div>
                   </div>
                   
                   {/* Botões de ação estilo Tinder */}
@@ -215,21 +253,27 @@ const Index = () => {
                     </Button>
                     <Button 
                       onClick={() => handleIdentityConfirmation(true)}
-                      className="w-16 h-16 rounded-full bg-gradient-to-br from-green-400 to-green-500 hover:from-green-500 hover:to-green-600 text-white shadow-lg border-4 border-white transform hover:scale-110 transition-all duration-200"
+                      className="w-16 h-16 rounded-full bg-gradient-to-br from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white shadow-lg border-4 border-white transform hover:scale-110 transition-all duration-200 animate-pulse"
                     >
-                      <CheckCircle className="w-8 h-8" />
+                      <AlertTriangle className="w-8 h-8" />
                     </Button>
                   </div>
                   
                   <div className="flex justify-center mt-4 gap-6 text-sm text-gray-500">
-                    <span>REJEITAR</span>
-                    <span>CONFIRMAR</span>
+                    <span>PESSOA ERRADA</span>
+                    <span className="text-red-600 font-semibold">VER EVIDÊNCIAS</span>
                   </div>
                 </div>
               </div>
               
-              {/* Indicador de erro */}
-              <div className="text-center mt-4">
+              {/* Indicador de urgência */}
+              <div className="text-center mt-4 space-y-2">
+                <div className="bg-red-900/80 border border-red-500 rounded-lg p-3">
+                  <p className="text-red-300 text-sm font-semibold flex items-center justify-center gap-2">
+                    <Zap className="w-4 h-4 animate-pulse" />
+                    ATIVIDADE DETECTADA NAS ÚLTIMAS HORAS
+                  </p>
+                </div>
                 <p className="text-yellow-400 text-sm">
                   💡 Se não for a pessoa certa, verifique o nome e número e tente novamente
                 </p>
