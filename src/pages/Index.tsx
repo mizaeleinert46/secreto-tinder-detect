@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -657,7 +656,7 @@ const Index = () => {
                     <Button 
                       className="w-full bg-gradient-to-r from-[#ec4899] via-violet-400 to-[#8b5cf6] hover:from-pink-600 hover:via-violet-400 hover:to-[#c300ff] text-white font-black py-5 md:py-6 text-sm sm:text-lg md:text-xl rounded-xl transition-all duration-300 transform hover:scale-105 shadow-2xl glow-pink uppercase tracking-wide px-2 whitespace-normal h-auto"
                       onClick={() => {
-                        window.location.href = 'https://go.tribopay.com.br/tbcslc8qfr';
+                        window.location.href = 'https://pay.kiwify.com.br/Dk6SJzz';
                       }}
                     >
                       <DollarSign className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 mr-2" />
