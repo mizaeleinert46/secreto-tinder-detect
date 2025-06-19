@@ -157,12 +157,12 @@ const Index = () => {
       </div>
 
       <div className="relative z-10 container mx-auto px-4 py-8 max-w-7xl">
-        {/* MODAL DE CONFIRMAÇÃO DE IDENTIDADE - ESTILO TINDER APRIMORADO */}
+        {/* MODAL DE CONFIRMAÇÃO DE IDENTIDADE - RESPONSIVO */}
         {showIdentityConfirmation && whatsappImage && (
-          <div className="fixed inset-0 bg-black/95 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-            <div className="max-w-sm w-full mx-auto animate-fade-in-scale">
+          <div className="fixed inset-0 bg-black/95 backdrop-blur-sm z-50 flex items-center justify-center p-2 sm:p-4">
+            <div className="max-w-xs sm:max-w-sm w-full mx-auto animate-fade-in-scale">
               {/* Container do perfil estilo Tinder */}
-              <div className="relative bg-gradient-to-b from-white to-gray-100 rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
+              <div className="relative bg-gradient-to-b from-white to-gray-100 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border-2 sm:border-4 border-white">
                 {/* Foto principal */}
                 <div className="relative aspect-[3/4] overflow-hidden">
                   <img 
@@ -176,64 +176,64 @@ const Index = () => {
                   />
                   
                   {/* Indicadores de atividade suspeita */}
-                  <div className="absolute top-4 left-4 flex flex-col gap-2">
-                    <div className="bg-red-500/90 backdrop-blur-sm px-2 py-1 rounded-full text-xs font-bold text-white flex items-center gap-1 animate-pulse">
-                      <div className="w-2 h-2 bg-white rounded-full animate-ping"></div>
-                      ATIVO AGORA
+                  <div className="absolute top-2 sm:top-4 left-2 sm:left-4 flex flex-col gap-1 sm:gap-2">
+                    <div className="bg-red-500/90 backdrop-blur-sm px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full text-xs font-bold text-white flex items-center gap-1 animate-pulse">
+                      <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white rounded-full animate-ping"></div>
+                      <span className="text-xs">ATIVO AGORA</span>
                     </div>
-                    <div className="bg-yellow-500/90 backdrop-blur-sm px-2 py-1 rounded-full text-xs font-bold text-black flex items-center gap-1">
-                      <AlertTriangle className="w-3 h-3" />
-                      ATIVIDADE SUSPEITA
+                    <div className="bg-yellow-500/90 backdrop-blur-sm px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full text-xs font-bold text-black flex items-center gap-1">
+                      <AlertTriangle className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
+                      <span className="text-xs">ATIVIDADE SUSPEITA</span>
                     </div>
                   </div>
                   
                   {/* Gradiente inferior estilo Tinder */}
-                  <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 h-32 sm:h-40 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
                   
                   {/* Info do perfil */}
-                  <div className="absolute bottom-6 left-6 right-6 text-white">
-                    <div className="space-y-2">
-                      <h3 className="text-2xl font-bold">{personName}</h3>
-                      <div className="space-y-1">
-                        <p className="text-sm opacity-90 flex items-center gap-2">
-                          <span className="w-2 h-2 bg-red-400 rounded-full animate-pulse"></span>
-                          Último acesso: há 15 minutos
+                  <div className="absolute bottom-3 sm:bottom-6 left-3 sm:left-6 right-3 sm:right-6 text-white">
+                    <div className="space-y-1 sm:space-y-2">
+                      <h3 className="text-lg sm:text-2xl font-bold">{personName}</h3>
+                      <div className="space-y-0.5 sm:space-y-1">
+                        <p className="text-xs sm:text-sm opacity-90 flex items-center gap-1 sm:gap-2">
+                          <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-red-400 rounded-full animate-pulse"></span>
+                          <span className="text-xs sm:text-sm">Último acesso: há 15 minutos</span>
                         </p>
                         <p className="text-xs opacity-75 flex items-center gap-1">
-                          <Eye className="w-3 h-3" />
-                          3 conversas ativas encontradas
+                          <Eye className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
+                          <span>3 conversas ativas encontradas</span>
                         </p>
                         <p className="text-xs opacity-75 flex items-center gap-1">
-                          <Heart className="w-3 h-3" />
-                          7 matches nas últimas 48h
+                          <Heart className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
+                          <span>7 matches nas últimas 48h</span>
                         </p>
                       </div>
                     </div>
                   </div>
                   
                   {/* Ícone do Tinder no canto */}
-                  <div className="absolute top-4 right-4 bg-gradient-to-r from-pink-500 to-red-500 p-2 rounded-full shadow-lg">
-                    <Heart className="w-6 h-6 text-white fill-white" />
+                  <div className="absolute top-2 sm:top-4 right-2 sm:right-4 bg-gradient-to-r from-pink-500 to-red-500 p-1.5 sm:p-2 rounded-full shadow-lg">
+                    <Heart className="w-4 h-4 sm:w-6 sm:h-6 text-white fill-white" />
                   </div>
                 </div>
                 
                 {/* Área de ação */}
-                <div className="p-6 bg-white">
-                  <div className="text-center mb-6">
-                    <h4 className="text-xl font-bold text-gray-800 mb-2">
+                <div className="p-3 sm:p-6 bg-white">
+                  <div className="text-center mb-4 sm:mb-6">
+                    <h4 className="text-lg sm:text-xl font-bold text-gray-800 mb-2">
                       Essa é a pessoa que você quer investigar?
                     </h4>
-                    <p className="text-gray-600 mb-3">
+                    <p className="text-sm sm:text-base text-gray-600 mb-2 sm:mb-3">
                       Confirme para revelar as evidências encontradas
                     </p>
                     
                     {/* Prévia das evidências */}
-                    <div className="bg-red-50 border border-red-200 rounded-lg p-3 mb-4">
-                      <div className="flex items-center justify-center gap-2 text-red-600 mb-2">
-                        <AlertTriangle className="w-4 h-4" />
-                        <span className="text-sm font-semibold">EVIDÊNCIAS DETECTADAS</span>
+                    <div className="bg-red-50 border border-red-200 rounded-lg p-2 sm:p-3 mb-3 sm:mb-4">
+                      <div className="flex items-center justify-center gap-1 sm:gap-2 text-red-600 mb-1 sm:mb-2">
+                        <AlertTriangle className="w-3 h-3 sm:w-4 sm:h-4" />
+                        <span className="text-xs sm:text-sm font-semibold">EVIDÊNCIAS DETECTADAS</span>
                       </div>
-                      <div className="space-y-1 text-xs text-red-700">
+                      <div className="space-y-0.5 sm:space-y-1 text-xs text-red-700">
                         <p>• Perfil ativo em aplicativo de relacionamento</p>
                         <p>• Múltiplas conversas em andamento</p>
                         <p>• Atividade recente suspeita</p>
@@ -243,22 +243,22 @@ const Index = () => {
                   </div>
                   
                   {/* Botões de ação estilo Tinder */}
-                  <div className="flex gap-4 justify-center">
+                  <div className="flex gap-3 sm:gap-4 justify-center mb-3 sm:mb-4">
                     <Button 
                       onClick={() => handleIdentityConfirmation(false)}
-                      className="w-16 h-16 rounded-full bg-gradient-to-br from-gray-200 to-gray-300 hover:from-gray-300 hover:to-gray-400 text-gray-700 shadow-lg border-4 border-white transform hover:scale-110 transition-all duration-200"
+                      className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-gray-200 to-gray-300 hover:from-gray-300 hover:to-gray-400 text-gray-700 shadow-lg border-2 sm:border-4 border-white transform hover:scale-110 transition-all duration-200"
                     >
-                      <X className="w-8 h-8" />
+                      <X className="w-5 h-5 sm:w-8 sm:h-8" />
                     </Button>
                     <Button 
                       onClick={() => handleIdentityConfirmation(true)}
-                      className="w-16 h-16 rounded-full bg-gradient-to-br from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white shadow-lg border-4 border-white transform hover:scale-110 transition-all duration-200 animate-pulse"
+                      className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white shadow-lg border-2 sm:border-4 border-white transform hover:scale-110 transition-all duration-200 animate-pulse"
                     >
-                      <AlertTriangle className="w-8 h-8" />
+                      <AlertTriangle className="w-5 h-5 sm:w-8 sm:h-8" />
                     </Button>
                   </div>
                   
-                  <div className="flex justify-center mt-4 gap-6 text-sm text-gray-500">
+                  <div className="flex justify-center gap-4 sm:gap-6 text-xs sm:text-sm text-gray-500">
                     <span>PESSOA ERRADA</span>
                     <span className="text-red-600 font-semibold">VER EVIDÊNCIAS</span>
                   </div>
@@ -266,14 +266,14 @@ const Index = () => {
               </div>
               
               {/* Indicador de urgência */}
-              <div className="text-center mt-4 space-y-2">
-                <div className="bg-red-900/80 border border-red-500 rounded-lg p-3">
-                  <p className="text-red-300 text-sm font-semibold flex items-center justify-center gap-2">
-                    <Zap className="w-4 h-4 animate-pulse" />
-                    ATIVIDADE DETECTADA NAS ÚLTIMAS HORAS
+              <div className="text-center mt-2 sm:mt-4 space-y-1 sm:space-y-2">
+                <div className="bg-red-900/80 border border-red-500 rounded-lg p-2 sm:p-3">
+                  <p className="text-red-300 text-xs sm:text-sm font-semibold flex items-center justify-center gap-1 sm:gap-2">
+                    <Zap className="w-3 h-3 sm:w-4 sm:h-4 animate-pulse" />
+                    <span>ATIVIDADE DETECTADA NAS ÚLTIMAS HORAS</span>
                   </p>
                 </div>
-                <p className="text-yellow-400 text-sm">
+                <p className="text-yellow-400 text-xs sm:text-sm px-2">
                   💡 Se não for a pessoa certa, verifique o nome e número e tente novamente
                 </p>
               </div>
@@ -457,7 +457,7 @@ const Index = () => {
                     placeholder="Digite o nome completo"
                     value={personName}
                     onChange={(e) => setPersonName(e.target.value)}
-                    className="bg-gray-900/80 border-3 border-pink-400/40 text-white text-center text-2xl md:text-3xl h-16 md:h-20 font-sans focus:border-pink-400 focus:ring-pink-400/30 transition-all duration-300 hover:border-pink-400/60 rounded-2xl shadow-xl mb-4"
+                    className="bg-gray-900/80 border-3 border-pink-400/40 text-white text-center text-2xl md:text-3xl h-16 md:h-20 font-mono focus:border-pink-400 focus:ring-pink-400/30 transition-all duration-300 hover:border-pink-400/60 rounded-2xl shadow-xl mb-4"
                   />
                 </div>
 
@@ -527,7 +527,7 @@ const Index = () => {
                   INVESTIGANDO
                 </h2>
                 <div className="rounded-full bg-gradient-to-tr from-violet-800/70 via-violet-500/60 to-violet-400/80 p-3 animate-glow-pulse border-2 border-violet-400 shadow-violet-500 shadow-md">
-                  <Database className="w-12 h-12 md:w-14 md:h-14 text-violet-200 animate-pulse" />
+                  <Database className="w-12 h-12 md:w-14 md:h-12 text-violet-200 animate-pulse" />
                 </div>
               </div>
               <div className="mx-auto rounded-xl bg-black/60 border-l-4 border-pink-400 text-pink-200 px-4 py-2 md:px-6 shadow-inner font-mono max-w-md text-sm md:text-base">
