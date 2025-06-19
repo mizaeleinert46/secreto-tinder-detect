@@ -281,16 +281,84 @@ const Index = () => {
           </div>
         )}
 
-        {/* INDICADOR DE CARREGAMENTO */}
+        {/* INDICADOR DE CARREGAMENTO MELHORADO */}
         {isLoadingImage && (
-          <div className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center">
-            <Card className="bg-gradient-to-br from-black/90 via-pink-900/20 to-violet-900/20 border border-pink-400/30 p-8">
-              <div className="text-center space-y-4">
-                <div className="animate-spin w-12 h-12 border-4 border-pink-400 border-t-transparent rounded-full mx-auto"></div>
-                <p className="text-xl font-bold text-pink-300">Verificando identidade...</p>
-                <p className="text-gray-300">Buscando foto do WhatsApp</p>
+          <div className="fixed inset-0 bg-black/95 backdrop-blur-md z-50 flex items-center justify-center p-4">
+            <div className="w-full max-w-sm mx-auto animate-fade-in">
+              {/* Container principal do loading */}
+              <div className="relative bg-gradient-to-br from-black/90 via-pink-900/30 to-violet-900/30 border border-pink-400/50 rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-xl">
+                {/* Efeito de brilho animado */}
+                <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-pink-400/20 via-transparent to-violet-400/20 animate-pulse"></div>
+                
+                {/* Conteúdo */}
+                <div className="relative text-center space-y-6">
+                  {/* Ícones animados */}
+                  <div className="flex justify-center items-center gap-4 mb-6">
+                    <div className="relative">
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-r from-pink-500 to-pink-600 flex items-center justify-center animate-pulse">
+                        <Search className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+                      </div>
+                      <div className="absolute inset-0 rounded-full bg-pink-400/30 animate-ping"></div>
+                    </div>
+                    
+                    <div className="flex items-center gap-1">
+                      <div className="w-2 h-2 bg-pink-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                      <div className="w-2 h-2 bg-violet-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                      <div className="w-2 h-2 bg-pink-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                    </div>
+                    
+                    <div className="relative">
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-r from-violet-500 to-violet-600 flex items-center justify-center animate-pulse">
+                        <Eye className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+                      </div>
+                      <div className="absolute inset-0 rounded-full bg-violet-400/30 animate-ping" style={{ animationDelay: '500ms' }}></div>
+                    </div>
+                  </div>
+
+                  {/* Título principal */}
+                  <div className="space-y-2">
+                    <h3 className="text-xl sm:text-2xl font-bold text-white drop-shadow-glow">
+                      Verificando Identidade
+                    </h3>
+                    <p className="text-sm sm:text-base text-pink-300 font-medium">
+                      Buscando foto do WhatsApp...
+                    </p>
+                  </div>
+
+                  {/* Barra de progresso animada */}
+                  <div className="w-full bg-gray-800/60 rounded-full h-2 sm:h-3 overflow-hidden">
+                    <div className="h-full bg-gradient-to-r from-pink-500 via-violet-500 to-pink-500 rounded-full animate-pulse bg-[length:200%_100%] animate-[shimmer_2s_ease-in-out_infinite]"></div>
+                  </div>
+
+                  {/* Indicadores de atividade */}
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-center gap-2 text-xs sm:text-sm text-yellow-300 animate-pulse">
+                      <Radar className="w-4 h-4 animate-spin" />
+                      <span className="font-medium">Escaneando bases de dados...</span>
+                    </div>
+                    
+                    <div className="flex items-center justify-center gap-2 text-xs sm:text-sm text-green-300">
+                      <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                      <span>Conexão segura estabelecida</span>
+                    </div>
+                  </div>
+
+                  {/* Aviso de privacidade */}
+                  <div className="bg-black/40 border border-gray-600/50 rounded-xl p-3 sm:p-4 mt-4">
+                    <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-300">
+                      <Shield className="w-4 h-4 text-green-400" />
+                      <span>Processo 100% anônimo e seguro</span>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </Card>
+
+              {/* Efeito de ondas no fundo */}
+              <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 sm:w-40 sm:h-40 border border-pink-400/20 rounded-full animate-ping"></div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 sm:w-56 sm:h-56 border border-violet-400/10 rounded-full animate-ping" style={{ animationDelay: '1s' }}></div>
+              </div>
+            </div>
           </div>
         )}
 
@@ -357,7 +425,7 @@ const Index = () => {
             <div className="grid md:grid-cols-3 gap-6 md:gap-8 mb-16 md:mb-20">
               <Card className="bg-gradient-to-br from-pink-950/50 to-black/70 border border-pink-400/30 hover:border-pink-400/50 transition-all duration-300 shadow-xl hover:shadow-pink-500/20">
                 <CardHeader className="text-center pb-4">
-                  <Heart className="w-12 h-12 md:w-16 md:h-16 text-pink-400 mx-auto mb-4 md:mb-6" />
+                  <Heart className="w-12 h-12 md:w-16 md:h-12 text-pink-400 mx-auto mb-4 md:mb-6" />
                   <CardTitle className="text-xl md:text-2xl text-pink-300 font-bold">Descubra a Verdade</CardTitle>
                 </CardHeader>
                 <CardContent>
