@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Search, Shield, Eye, AlertTriangle, Zap, Heart, Target, Radar, Lock, Database, Signal, CheckCircle, Star, DollarSign, User, X } from "lucide-react";
+import { Search, Shield, Eye, AlertTriangle, Zap, Heart, Target, Radar, Lock, Database, Signal, CheckCircle, Star, DollarSign, User, X, Wifi, Globe, Smartphone, Clock, Users, MessageCircle } from "lucide-react";
 import HackerOverlay from "@/components/HackerOverlay";
 import DiscoveredProfileInfo from "@/components/DiscoveredProfileInfo";
 import BlurredTinderScreen from "@/components/BlurredTinderScreen";
@@ -29,13 +29,51 @@ const Index = () => {
   const [showIdentityConfirmation, setShowIdentityConfirmation] = useState(false);
   const [whatsappImage, setWhatsappImage] = useState('');
   const [isLoadingImage, setIsLoadingImage] = useState(false);
+  const [scanningData, setScanningData] = useState({});
 
   const scanningSteps = [
-    { text: "🔐 Iniciando protocolo de quebra de sigilo...", duration: 1400 },
-    { text: "🛡️ Acessando servidores de apps de relacionamento...", duration: 2000 },
-    { text: "🎯 Cruzando dados com o número fornecido...", duration: 1900 },
-    { text: "🔍 Revelando perfis, fotos e matches ocultos...", duration: 1200 },
-    { text: "⚡ Compilando dossiê completo da atividade...", duration: 1600 },
+    { 
+      text: "🔐 Iniciando quebra de protocolos de segurança...", 
+      duration: 1400,
+      icon: Shield,
+      details: "Acessando servidores criptografados do Tinder",
+      status: "Bypassing security layers..."
+    },
+    { 
+      text: "🛡️ Interceptando dados de múltiplas plataformas...", 
+      duration: 2000,
+      icon: Database,
+      details: "Cruzando informações: Tinder, Bumble, Happn",
+      status: "Cross-referencing 847 databases..."
+    },
+    { 
+      text: "🎯 Localizando perfil ativo vinculado ao número...", 
+      duration: 1900,
+      icon: Target,
+      details: "Algoritmo de reconhecimento facial ativado",
+      status: "Facial recognition: 94% match found..."
+    },
+    { 
+      text: "🔍 Extraindo conversas e matches secretos...", 
+      duration: 1200,
+      icon: MessageCircle,
+      details: "Decodificando mensagens privadas",
+      status: "Decrypting private conversations..."
+    },
+    { 
+      text: "⚡ Compilando dossiê completo da atividade...", 
+      duration: 1600,
+      icon: Eye,
+      details: "Preparando relatório confidencial",
+      status: "Generating comprehensive profile..."
+    },
+  ];
+
+  const realTimeData = [
+    { label: "Perfis Escaneados", value: "1.247.891", icon: Users, color: "text-blue-400" },
+    { label: "Matches Detectados", value: "47", icon: Heart, color: "text-pink-400" },
+    { label: "Conversas Ativas", value: "12", icon: MessageCircle, color: "text-green-400" },
+    { label: "Última Atividade", value: "há 23 min", icon: Clock, color: "text-yellow-400" },
   ];
 
   const socialProofs = [
@@ -109,12 +147,23 @@ const Index = () => {
     setScanComplete(false);
     setShowResults(false);
 
+    // Simular dados em tempo real durante o scan
+    const dataInterval = setInterval(() => {
+      setScanningData(prev => ({
+        ...prev,
+        matches: Math.floor(Math.random() * 50) + 20,
+        conversations: Math.floor(Math.random() * 15) + 5,
+        lastActivity: `há ${Math.floor(Math.random() * 60)} min`
+      }));
+    }, 1500);
+
     scanningSteps.forEach((step, index) => {
       setTimeout(() => {
         setCurrentStep(index);
         setProgress(((index + 1) / scanningSteps.length) * 100);
         if (index === scanningSteps.length - 1) {
           setTimeout(() => {
+            clearInterval(dataInterval);
             setIsScanning(false);
             setScanComplete(true);
             setTimeout(() => setShowResults(true), 1000);
@@ -580,12 +629,14 @@ const Index = () => {
           </section>
         )}
 
-        {/* FASE DE SCAN */}
+        {/* FASE DE SCAN MELHORADA */}
         {isScanning && (
           <section className="text-center animate-fade-in relative z-30 pt-8">
             <div className="absolute inset-0 pointer-events-none z-0">
               <HackerLinesBackground />
             </div>
+            
+            {/* Header da análise */}
             <div className="space-y-6 mb-10">
               <div className="flex items-center justify-center gap-4 md:gap-5">
                 <div className="rounded-full bg-gradient-to-tr from-pink-800/70 via-pink-500/60 to-pink-400/80 p-3 animate-glow-pulse border-2 border-pink-400 shadow-pink-700 shadow-md">
@@ -598,51 +649,147 @@ const Index = () => {
                   <Database className="w-12 h-12 md:w-14 md:h-12 text-violet-200 animate-pulse" />
                 </div>
               </div>
+              
               <div className="mx-auto rounded-xl bg-black/60 border-l-4 border-pink-400 text-pink-200 px-4 py-2 md:px-6 shadow-inner font-mono max-w-md text-sm md:text-base">
                 Analisando: <span className="font-bold text-base md:text-lg text-[#ec4899]">{phoneNumber}</span>
               </div>
+              
+              <div className="mx-auto rounded-xl bg-red-900/30 border border-red-400/50 text-red-200 px-4 py-2 md:px-6 shadow-inner font-mono max-w-lg text-sm md:text-base animate-pulse">
+                🚨 ATIVIDADE SUSPEITA DETECTADA - Iniciando análise profunda
+              </div>
             </div>
+
+            {/* Container principal da análise */}
             <div className="flex justify-center items-center">
-              <div className="w-full max-w-4xl">
+              <div className="w-full max-w-6xl">
                 <div className="neon-frame-hacker shadow-2xl rounded-2xl p-0 bg-gradient-to-br from-black/70 via-pink-800/10 to-violet-900/10">
                   <div className="p-6 sm:p-10 md:p-14 space-y-8 md:space-y-10">
+                    
+                    {/* Barra de progresso principal */}
                     <div className="w-full">
+                      <div className="flex justify-between items-center mb-3">
+                        <span className="text-pink-300 font-mono text-sm md:text-base">PROGRESSO DA ANÁLISE</span>
+                        <span className="text-pink-300 font-mono text-sm md:text-base font-bold">{Math.round(progress)}%</span>
+                      </div>
                       <div className="h-6 w-full rounded-full bg-black overflow-hidden border border-pink-700 shadow-inner shadow-pink-400/20">
                         <div
                           style={{
                             width: `${progress}%`,
                             transition: "width 1s cubic-bezier(.65,0,.45,1)",
                           }}
-                          className="h-full rounded-full progress-hacker-neon"
-                        ></div>
+                          className="h-full rounded-full progress-hacker-neon relative overflow-hidden"
+                        >
+                          <div className="absolute inset-0 bg-gradient-to-r from-pink-500 via-violet-500 to-pink-500 animate-pulse"></div>
+                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-[shimmer_2s_ease-in-out_infinite]"></div>
+                        </div>
                       </div>
                     </div>
-                    <div className="space-y-4 md:space-y-5">
-                      {scanningSteps.map((step, index) => (
-                        <div
-                          key={index}
-                          className={`flex items-center space-x-4 md:space-x-6 p-4 md:p-5 rounded-2xl transition-all duration-700 font-mono text-base md:text-xl
-                            ${index === currentStep
-                              ? 'bg-gradient-to-r from-[#181f1a]/70 to-pink-950 text-pink-200 border-2 border-pink-400/60 shadow-xl scale-105 drop-shadow-glow'
-                              : index < currentStep
-                                ? 'bg-black/60 text-gray-500 border border-pink-800/50'
-                                : 'text-pink-700 border border-pink-900/20'
-                            }`}
-                        >
-                          <div className={`w-5 h-5 rounded-full transition-all duration-500
-                            ${index === currentStep
-                              ? 'bg-gradient-to-r from-pink-400 to-[#ec4899] animate-heart-beat'
-                              : index < currentStep
-                                ? 'bg-pink-500/50'
-                                : 'bg-pink-900/20'
-                            }`}
-                          ></div>
-                          <span className="flex-grow text-left font-semibold">{step.text}</span>
+
+                    {/* Dados em tempo real */}
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                      {realTimeData.map((data, index) => (
+                        <div key={index} className="bg-black/50 border border-gray-700 rounded-xl p-3 md:p-4 text-center backdrop-blur-sm">
+                          <div className="flex items-center justify-center mb-2">
+                            <data.icon className={`w-5 h-5 md:w-6 md:h-6 ${data.color}`} />
+                          </div>
+                          <div className={`text-lg md:text-xl font-bold ${data.color} font-mono`}>
+                            {scanningData[data.label] || data.value}
+                          </div>
+                          <div className="text-xs md:text-sm text-gray-400 font-semibold">
+                            {data.label}
+                          </div>
                         </div>
                       ))}
                     </div>
-                    <div className="text-center text-pink-400 pt-2 font-mono text-lg md:text-2xl">
-                      <p>📊 {Math.round(progress)}% CONCLUÍDO</p>
+
+                    {/* Etapas de scanning melhoradas */}
+                    <div className="space-y-4 md:space-y-5">
+                      {scanningSteps.map((step, index) => {
+                        const StepIcon = step.icon;
+                        return (
+                          <div
+                            key={index}
+                            className={`relative overflow-hidden rounded-2xl transition-all duration-700 font-mono border-2 ${
+                              index === currentStep
+                                ? 'bg-gradient-to-r from-[#181f1a]/90 via-pink-950/60 to-violet-950/60 text-pink-200 border-pink-400/60 shadow-xl scale-105 drop-shadow-glow transform-gpu' 
+                                : index < currentStep
+                                  ? 'bg-gradient-to-r from-green-900/40 to-green-800/60 text-green-300 border-green-500/50 shadow-lg'
+                                  : 'bg-black/40 text-pink-700 border-pink-900/20'
+                            }`}
+                          >
+                            {/* Efeito de brilho para step ativo */}
+                            {index === currentStep && (
+                              <div className="absolute inset-0 bg-gradient-to-r from-pink-400/10 via-violet-400/10 to-pink-400/10 animate-pulse"></div>
+                            )}
+                            
+                            <div className="relative flex items-center space-x-4 md:space-x-6 p-4 md:p-6">
+                              {/* Ícone da etapa */}
+                              <div className={`flex-shrink-0 p-3 rounded-lg transition-all duration-500 ${
+                                index === currentStep
+                                  ? 'bg-gradient-to-r from-pink-500/20 to-violet-500/20 border border-pink-400/40 shadow-lg'
+                                  : index < currentStep
+                                    ? 'bg-green-500/20 border border-green-400/40'
+                                    : 'bg-gray-900/40 border border-gray-700/40'
+                              }`}>
+                                <StepIcon className={`w-6 h-6 md:w-7 md:h-7 transition-all duration-500 ${
+                                  index === currentStep
+                                    ? 'text-pink-300 animate-pulse'
+                                    : index < currentStep
+                                      ? 'text-green-400'
+                                      : 'text-gray-600'
+                                }`} />
+                              </div>
+                              
+                              {/* Conteúdo da etapa */}
+                              <div className="flex-grow min-w-0">
+                                <div className="text-base md:text-xl font-semibold mb-1">
+                                  {step.text}
+                                </div>
+                                <div className="text-sm md:text-base opacity-80 mb-1">
+                                  {step.details}
+                                </div>
+                                {index === currentStep && (
+                                  <div className="text-xs md:text-sm font-mono text-yellow-300 animate-pulse">
+                                    {step.status}
+                                  </div>
+                                )}
+                              </div>
+                              
+                              {/* Indicador de status */}
+                              <div className={`flex-shrink-0 w-4 h-4 md:w-5 md:h-5 rounded-full transition-all duration-500 ${
+                                index === currentStep
+                                  ? 'bg-gradient-to-r from-pink-400 to-violet-400 animate-pulse shadow-lg'
+                                  : index < currentStep
+                                    ? 'bg-green-500 shadow-md'
+                                    : 'bg-gray-700'
+                              }`}>
+                                {index < currentStep && (
+                                  <CheckCircle className="w-full h-full text-white" />
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+
+                    {/* Status final da análise */}
+                    <div className="text-center space-y-4">
+                      <div className="flex items-center justify-center gap-3 text-pink-400 pt-2 font-mono text-lg md:text-2xl">
+                        <Database className="w-6 h-6 md:w-7 md:h-7 animate-pulse" />
+                        <span>📊 {Math.round(progress)}% CONCLUÍDO</span>
+                        <Signal className="w-6 h-6 md:w-7 md:h-7 animate-pulse" />
+                      </div>
+                      
+                      {progress > 60 && (
+                        <div className="bg-red-900/40 border border-red-400/50 rounded-xl p-4 animate-fade-in">
+                          <div className="flex items-center justify-center gap-2 text-red-300 font-semibold">
+                            <AlertTriangle className="w-5 h-5 animate-pulse" />
+                            <span>EVIDÊNCIAS COMPROMETEDORAS ENCONTRADAS</span>
+                            <AlertTriangle className="w-5 h-5 animate-pulse" />
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
