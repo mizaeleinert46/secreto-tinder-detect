@@ -1,11 +1,12 @@
+
 import React from "react";
 import { Zap, AlertCircle, Lock, Eye, TrendingUp, Users, CalendarClock, MapPin, MessageSquareQuote, AlertTriangle } from "lucide-react";
 
 // Data for men
 const manBlurredImages = [
-  "https://images.unsplash.com/photo-1574015974293-817f0e726413?w=400&q=80", // Homem na cama, sugestivo
-  "https://images.unsplash.com/photo-1543132649-2f317b4a6955?w=400&q=80", // Homem sem camisa, de costas
-  "https://images.unsplash.com/photo-1616802872892-d967a531604a?w=400&q=80", // Close no rosto/pescoço
+  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80", // Homem atraente
+  "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80", // Homem casual
+  "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80", // Homem sorrindo
 ];
 const manInfo = [
     { icon: Zap, text: "Última Atividade", value: "Hoje, 2:17 AM", colorClass: "border-yellow-400 text-yellow-300"},
@@ -18,9 +19,9 @@ const manInfo = [
 
 // Data for women
 const womanBlurredImages = [
-  "https://images.unsplash.com/photo-1521115846413-5a0a3a782241?w=400&q=80", // Mulher na cama, sensual
-  "https://images.unsplash.com/photo-1589422030048-6a42a59a7219?w=400&q=80", // Close de lingerie
-  "https://images.unsplash.com/photo-1517479149777-5f3b1511d5d0?w=400&q=80", // Mulher olhando para a câmera, íntimo
+  "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80", // Mulher atraente
+  "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&q=80", // Mulher sorrindo
+  "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=400&q=80", // Mulher elegante
 ];
 const womanInfo = [
     { icon: Zap, text: "Última Atividade", value: "Hoje, 1:45 AM", colorClass: "border-yellow-400 text-yellow-300"},
@@ -31,20 +32,19 @@ const womanInfo = [
     { icon: MapPin, text: "Localização Suspeita", value: "Login em bar popular", colorClass: "border-orange-500 text-orange-400"},
 ];
 
-
 const InfoPill = ({ icon: Icon, text, value, colorClass }: { icon: React.ElementType, text: string, value: string, colorClass: string }) => {
-    const borderColorClass = colorClass.split(' ')[0]; // ex: "border-yellow-400"
-    const textColorClass = colorClass.split(' ')[1]; // ex: "text-yellow-300"
+    const borderColorClass = colorClass.split(' ')[0];
+    const textColorClass = colorClass.split(' ')[1];
 
     return (
-        <div className={`relative overflow-hidden flex items-center gap-4 p-3 rounded-xl bg-black/50 border ${borderColorClass} transition-all duration-300 group hover:shadow-xl hover:scale-105`}>
+        <div className={`relative overflow-hidden flex items-center gap-4 p-4 rounded-xl bg-black/50 border ${borderColorClass} transition-all duration-300 group hover:shadow-xl hover:scale-105 backdrop-blur-sm`}>
             <div className={`absolute -left-8 -top-8 w-24 h-24 rounded-full bg-gradient-radial from-white/10 to-transparent opacity-0 group-hover:opacity-50 group-hover:scale-[6] transition-transform duration-700`}/>
-            <div className={`flex-shrink-0 p-2 rounded-lg bg-black/60 border ${borderColorClass}`}>
+            <div className={`flex-shrink-0 p-3 rounded-lg bg-black/60 border ${borderColorClass} shadow-lg`}>
                 <Icon className={`w-6 h-6 shrink-0 ${textColorClass}`} />
             </div>
             <div className="text-sm z-10">
-                <p className="text-gray-400">{text}</p>
-                <p className="font-bold text-base text-white">{value}</p>
+                <p className="text-gray-300 font-medium">{text}</p>
+                <p className="font-bold text-lg text-white drop-shadow-md">{value}</p>
             </div>
         </div>
     );
@@ -54,61 +54,80 @@ export default function DiscoveredProfileInfo({ gender }: { gender: 'homem' | 'm
   const isMan = gender === 'homem';
   const blurredImages = isMan ? manBlurredImages : womanBlurredImages;
   const infoData = isMan ? manInfo : womanInfo;
-  const fallbackImages = blurredImages; 
 
   const images = [
-    { src: blurredImages[0], fallback: fallbackImages[0], label: "Foto de Perfil" },
-    { src: blurredImages[1], fallback: fallbackImages[1], label: "Foto Oculta #1" },
-    { src: blurredImages[2], fallback: fallbackImages[2], label: "Foto Oculta #2" },
+    { src: blurredImages[0], label: "Foto Principal do Perfil" },
+    { src: blurredImages[1], label: "Foto Privada #1" },
+    { src: blurredImages[2], label: "Foto Privada #2" },
   ];
 
   return (
     <div className="space-y-8">
-      <div className="relative mx-auto max-w-4xl rounded-2xl neon-frame-hacker bg-gradient-to-br from-[#0c1c11]/90 via-[#11131d]/95 to-[#0e1d13]/90 border-2 border-green-500/30 shadow-2xl shadow-green-500/20 p-6 md:p-10 overflow-hidden select-none backdrop-blur-sm">
+      <div className="relative mx-auto max-w-4xl rounded-2xl neon-frame-hacker bg-gradient-to-br from-[#0c1c11]/95 via-[#11131d]/95 to-[#0e1d13]/95 border-2 border-green-500/40 shadow-2xl shadow-green-500/20 p-6 md:p-10 overflow-hidden select-none backdrop-blur-sm">
         
         <div className="text-center mb-10">
           <h3 className="text-3xl md:text-4xl font-black text-pink-400 flex items-center justify-center gap-4 drop-shadow-glow">
-            <AlertCircle className="w-10 h-10 animate-pulse"/> Perfil Detectado
+            <AlertCircle className="w-10 h-10 animate-pulse"/> Perfil Secreto Descoberto
           </h3>
-          <p className="text-gray-300 mt-3 text-lg">As informações a seguir foram detectadas e estão protegidas. Desbloqueie para ver os detalhes.</p>
+          <p className="text-gray-200 mt-4 text-lg max-w-2xl mx-auto leading-relaxed">
+            Encontramos evidências comprometedoras. As informações estão protegidas por questões de privacidade, mas você pode desbloqueá-las.
+          </p>
         </div>
 
-        <div className="mb-10">
-          <h4 className="text-xl font-semibold text-green-300 mb-4 border-b-2 border-green-400/20 pb-2 flex items-center gap-2">
-            <Eye className="w-5 h-5"/> Provas Visuais Encontradas
+        <div className="mb-12">
+          <h4 className="text-2xl font-bold text-green-300 mb-6 border-b-2 border-green-400/30 pb-3 flex items-center gap-3">
+            <Eye className="w-6 h-6 animate-pulse"/> Evidências Fotográficas Encontradas
           </h4>
-          <div className="grid grid-cols-3 gap-3 md:gap-4">
+          <div className="grid grid-cols-3 gap-4 md:gap-6">
             {images.map((img, index) => (
               <div
                 key={index}
-                className={`w-full aspect-[4/5] rounded-lg bg-gray-900 overflow-hidden relative group transition-all duration-300
+                className={`w-full aspect-[4/5] rounded-xl bg-gray-900 overflow-hidden relative group transition-all duration-300 border-2 shadow-xl
                   ${index === 1 
-                    ? 'border-2 border-cyan-400/50 shadow-lg shadow-cyan-400/20' 
-                    : 'border border-pink-700/30 hover:border-pink-500 hover:shadow-xl hover:shadow-pink-500/20'
+                    ? 'border-red-400/60 shadow-red-400/30 ring-2 ring-red-400/20' 
+                    : 'border-pink-400/40 hover:border-pink-400/70 hover:shadow-pink-400/30'
                   }`}
               >
                 <img
                   src={img.src}
-                  onError={e => { (e.currentTarget as HTMLImageElement).src = img.fallback; }}
                   alt={img.label}
-                  className="w-full h-full object-cover blur-lg scale-110 group-hover:blur-md transition-all duration-300"
+                  className="w-full h-full object-cover filter blur-md scale-105 group-hover:blur-sm transition-all duration-500"
                   draggable={false}
                 />
-                <div className="absolute inset-0 flex items-center justify-center text-center p-2">
-                  <span className="font-mono text-xs md:text-sm text-white bg-black/50 px-2 py-1 rounded">{img.label}</span>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40" />
+                
+                {/* Overlay de informações */}
+                <div className="absolute bottom-0 left-0 right-0 p-3 text-center">
+                  <div className="bg-black/70 backdrop-blur-sm rounded-lg p-2 border border-white/20">
+                    <span className="font-mono text-xs text-white font-semibold">{img.label}</span>
+                  </div>
                 </div>
-                <Lock className="absolute top-2 right-2 w-5 h-5 text-white animate-pulse" />
+                
+                {/* Ícone de bloqueio */}
+                <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-sm rounded-full p-2 border border-white/30">
+                  <Lock className="w-4 h-4 text-white animate-pulse" />
+                </div>
+                
+                {/* Indicador especial para foto suspeita */}
+                {index === 1 && (
+                  <div className="absolute top-3 left-3 bg-red-500/90 backdrop-blur-sm rounded-full px-2 py-1 border border-red-300">
+                    <span className="text-xs font-bold text-white">SUSPEITA</span>
+                  </div>
+                )}
               </div>
             ))}
           </div>
-          <p className="text-center text-sm text-pink-300 mt-4 animate-pulse">
-            <Eye className="inline w-4 h-4 mr-1"/> Mais 5 fotos e 2 vídeos foram encontrados e estão bloqueados.
-          </p>
+          <div className="text-center mt-6 bg-black/30 border border-pink-400/30 rounded-xl p-4">
+            <p className="text-pink-300 font-semibold animate-pulse flex items-center justify-center gap-2">
+              <Eye className="w-5 h-5"/> 
+              Mais 8 fotos íntimas e 3 vídeos foram detectados e estão protegidos
+            </p>
+          </div>
         </div>
         
         <div>
-          <h4 className="text-xl font-semibold text-green-300 mb-4 border-b-2 border-green-400/20 pb-2 flex items-center gap-2">
-            <TrendingUp className="w-5 h-5" /> Análise de Atividade e Comportamento
+          <h4 className="text-2xl font-bold text-green-300 mb-6 border-b-2 border-green-400/30 pb-3 flex items-center gap-3">
+            <TrendingUp className="w-6 h-6" /> Análise Comportamental Detalhada
           </h4>
           <div className="grid md:grid-cols-2 gap-4 font-mono">
              {infoData.map((info, index) => (
@@ -117,18 +136,24 @@ export default function DiscoveredProfileInfo({ gender }: { gender: 'homem' | 'm
           </div>
         </div>
 
-        <div className="mt-10 pt-8 border-t-2 border-green-500/20 text-center space-y-4">
-            <div className="bg-red-900/60 border border-red-500/70 rounded-lg p-4 max-w-lg mx-auto shadow-lg shadow-red-900/50">
-              <h5 className="text-lg font-bold text-red-300 flex items-center justify-center gap-2">
-                <AlertTriangle className="w-6 h-6 animate-pulse"/> Nível de Risco: Elevado
+        <div className="mt-12 pt-8 border-t-2 border-green-500/30 text-center space-y-6">
+            <div className="bg-gradient-to-r from-red-900/80 to-red-800/60 border-2 border-red-400/80 rounded-xl p-6 max-w-2xl mx-auto shadow-2xl shadow-red-900/40 backdrop-blur-sm">
+              <h5 className="text-xl font-bold text-red-200 flex items-center justify-center gap-3 mb-3">
+                <AlertTriangle className="w-7 h-7 animate-pulse"/> Nível de Risco: CRÍTICO
               </h5>
-              <p className="text-red-200 text-sm mt-1">
-                A atividade do perfil indica um alto risco de infidelidade e comportamento secreto.
+              <p className="text-red-100 leading-relaxed">
+                A análise revela padrões de comportamento altamente suspeitos com evidências de atividade secreta constante. 
+                <span className="font-bold text-yellow-300"> Ação imediata recomendada.</span>
               </p>
             </div>
-            <p className="text-lg text-gray-200 pt-4">
-              O dossiê completo contém as conversas, nomes dos matches e localizações exatas. <span className="font-bold text-green-300">A verdade está nos detalhes.</span>
-            </p>
+            <div className="bg-black/40 border border-gray-600/50 rounded-xl p-6 max-w-3xl mx-auto">
+              <p className="text-xl text-gray-100 leading-relaxed">
+                O relatório completo contém todas as conversas, perfis dos matches, horários de atividade e localizações precisas. 
+                <span className="font-bold text-green-300 block mt-2 text-2xl">
+                  💎 Tenha as provas que você precisa nas suas mãos.
+                </span>
+              </p>
+            </div>
         </div>
 
       </div>
