@@ -128,8 +128,56 @@ const Index = () => {
   };
 
   const handleScan = () => {
-    if (!phoneNumber.trim() || !personName.trim()) return;
-    fetchWhatsAppImage(phoneNumber);
+    console.log('handleScan chamado');
+    console.log('phoneNumber:', phoneNumber);
+    console.log('personName:', personName);
+    
+    if (!phoneNumber.trim() || !personName.trim()) {
+      console.log('Campos obrigatórios não preenchidos');
+      return;
+    }
+    
+    console.log('Iniciando simulação do scan...');
+    
+    // Pular a busca da imagem do WhatsApp e ir direto para o scan
+    setShowIdentityConfirmation(false);
+    setIsScanning(true);
+    setCurrentStep(0);
+    setProgress(0);
+    setScanComplete(false);
+    setShowResults(false);
+
+    const dataInterval = setInterval(() => {
+      setScanningData(prev => ({
+        ...prev,
+        "WhatsApp Conversas": Math.floor(Math.random() * 50) + 20,
+        "Fotos Encontradas": Math.floor(Math.random() * 150) + 50,
+        "Vídeos Íntimos": Math.floor(Math.random() * 15) + 3,
+        "Plataformas Ativas": Math.floor(Math.random() * 20) + 5,
+      }));
+    }, 1500);
+
+    let totalTime = 0;
+    scanningSteps.forEach((step, index) => {
+      setTimeout(() => {
+        console.log(`Executando step ${index}: ${step.text}`);
+        setCurrentStep(index);
+        setProgress(((index + 1) / scanningSteps.length) * 100);
+        if (index === scanningSteps.length - 1) {
+          setTimeout(() => {
+            console.log('Scan completo!');
+            clearInterval(dataInterval);
+            setIsScanning(false);
+            setScanComplete(true);
+            setTimeout(() => {
+              console.log('Mostrando resultados...');
+              setShowResults(true);
+            }, 1000);
+          }, step.duration);
+        }
+      }, totalTime);
+      totalTime += step.duration;
+    });
   };
 
   const handleStartScan = () => {
@@ -545,7 +593,7 @@ const Index = () => {
                 <Button 
                   onClick={handleScan}
                   disabled={phoneNumber.length < 14 || personName.trim().length < 2}
-                  className={`w-full py-5 md:py-8 text-xl md:text-3xl font-black tracking-wider rounded-2xl shadow-2xl bg-gradient-to-r ${CTA_GRADIENT} hover:from-green-500 hover:via-purple-500 hover:to-red-500 transition-all duration-300 transform hover:scale-105 uppercase`}
+                  className={`w-full py-5 md:py-8 text-xl md:text-3xl font-black tracking-wider rounded-2xl shadow-2xl bg-gradient-to-r ${CTA_GRADIENT} hover:from-green-500 hover:via-purple-500 hover:to-red-500 transition-all duration-300 transform hover:scale-105 uppercase disabled:opacity-50 disabled:cursor-not-allowed`}
                 >
                   <Radar className="mr-3 md:mr-4 h-6 w-6 md:h-10 md:w-10 animate-spin" />
                   Iniciar Investigação Completa
