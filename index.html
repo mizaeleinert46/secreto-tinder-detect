@@ -325,8 +325,14 @@
         .conversation-item {
             display: flex;
             align-items: center;
-            padding: 12px 0;
-            border-bottom: 1px solid #e9ecef;
+            padding: 16px 20px;
+            border-bottom: 1px solid #f0f0f0;
+            background: white;
+            transition: background-color 0.2s ease;
+        }
+
+        .conversation-item:hover {
+            background-color: #f5f5f5;
         }
 
         .conversation-item:last-child {
@@ -334,131 +340,92 @@
         }
 
         .conversation-avatar {
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            margin-right: 12px;
+            margin-right: 16px;
             background: #ddd;
+            flex-shrink: 0;
         }
 
         .conversation-info {
             flex: 1;
+            min-width: 0;
+        }
+
+        .conversation-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 4px;
         }
 
         .conversation-name {
-            font-weight: 600;
-            color: #333;
-            font-size: 14px;
-        }
-
-        .conversation-preview {
-            color: #666;
-            font-size: 12px;
-            margin-top: 2px;
+            font-weight: 500;
+            color: #111b21;
+            font-size: 17px;
+            flex: 1;
         }
 
         .conversation-time {
-            color: #999;
-            font-size: 11px;
+            color: #667781;
+            font-size: 12px;
+            margin-left: 8px;
+            flex-shrink: 0;
         }
 
-        .media-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 8px;
-            margin: 20px 0;
-        }
-
-        .media-item {
-            aspect-ratio: 1;
-            background: #ddd;
-            border-radius: 8px;
-            position: relative;
+        .conversation-preview {
+            color: #667781;
+            font-size: 14px;
+            margin-top: 2px;
             overflow: hidden;
-            cursor: pointer;
-            transition: transform 0.2s ease;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
 
-        .media-item:hover {
-            transform: scale(1.05);
+        .conversation-preview.unread {
+            color: #111b21;
+            font-weight: 500;
         }
 
-        .media-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .message-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
         }
 
-        .media-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.7);
+        .message-status .emoji {
+            font-size: 14px;
+        }
+
+        .unread-badge {
+            background: #25d366;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 20px;
-        }
-
-        .location-map {
-            width: 100%;
-            height: 200px;
-            background: #e9ecef;
-            border-radius: 15px;
-            margin: 20px 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .location-pin {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #ff4757;
-            font-size: 24px;
-        }
-
-        .unlock-button {
-            background: linear-gradient(45deg, #ff4757, #ff3742);
-            color: white;
-            border: none;
-            border-radius: 15px;
-            padding: 20px 30px;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 30px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(255, 71, 87, 0.4);
-            animation: pulse-red 2s infinite;
-        }
-
-        @keyframes pulse-red {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-        }
-
-        .unlock-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(255, 71, 87, 0.5);
-        }
-
-        .free-notice {
-            background: #fff3cd;
-            border: 1px solid #ffeaa7;
-            color: #856404;
-            padding: 12px;
-            border-radius: 10px;
             font-size: 12px;
-            margin: 15px 0;
             font-weight: 600;
+            margin-left: 8px;
+        }
+
+        .whatsapp-header {
+            background: #25d366;
+            color: white;
+            padding: 16px 20px;
+            font-weight: 600;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .whatsapp-header::before {
+            content: '💬';
+            font-size: 24px;
         }
 
         .section-title {
@@ -616,69 +583,114 @@
             </div>
             
             <div class="conversations-list">
-                <div class="conversation-item">
-                    <div class="conversation-avatar" style="background: url('https://images.unsplash.com/photo-1494790108755-2616b612b786?w=40&h=40&fit=crop&crop=face') center/cover;"></div>
-                    <div class="conversation-info">
-                        <div class="conversation-name">Mamá</div>
-                        <div class="conversation-preview">Hola cariño, ¿cómo estás?</div>
-                    </div>
-                    <div class="conversation-time">12:45</div>
+                <div class="whatsapp-header">
+                    WhatsApp - Conversas Encontradas
                 </div>
+                
                 <div class="conversation-item">
-                    <div class="conversation-avatar" style="background: url('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face') center/cover;"></div>
+                    <div class="conversation-avatar" style="background: url('https://images.unsplash.com/photo-1494790108755-2616b612b786?w=50&h=50&fit=crop&crop=face') center/cover;"></div>
                     <div class="conversation-info">
-                        <div class="conversation-name">Carlos</div>
-                        <div class="conversation-preview">¿Nos vemos esta noche?</div>
+                        <div class="conversation-header">
+                            <div class="conversation-name">Mariana Rodrigues</div>
+                            <div class="conversation-time">10:58</div>
+                        </div>
+                        <div class="conversation-preview unread">
+                            <span class="message-status">📷 Foto <span class="emoji">😍</span></span>
+                        </div>
                     </div>
-                    <div class="conversation-time">11:20</div>
+                    <div class="unread-badge">3</div>
                 </div>
+                
                 <div class="conversation-item">
-                    <div class="conversation-avatar" style="background: url('https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=40&h=40&fit=crop&crop=face') center/cover;"></div>
+                    <div class="conversation-avatar" style="background: url('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=50&h=50&fit=crop&crop=face') center/cover;"></div>
                     <div class="conversation-info">
-                        <div class="conversation-name">Ana Silva</div>
-                        <div class="conversation-preview">📷 Foto</div>
+                        <div class="conversation-header">
+                            <div class="conversation-name">Fernando Silva</div>
+                            <div class="conversation-time">10:58</div>
+                        </div>
+                        <div class="conversation-preview unread">
+                            Oi linda, vamos nos encontrar? <span class="emoji">😘</span>
+                        </div>
                     </div>
-                    <div class="conversation-time">10:15</div>
+                    <div class="unread-badge">1</div>
                 </div>
+                
                 <div class="conversation-item">
-                    <div class="conversation-avatar" style="background: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face') center/cover;"></div>
+                    <div class="conversation-avatar" style="background: url('https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=50&h=50&fit=crop&crop=face') center/cover;"></div>
                     <div class="conversation-info">
-                        <div class="conversation-name">Trabalho Grupo</div>
-                        <div class="conversation-preview">Reunião amanhã às 9h</div>
+                        <div class="conversation-header">
+                            <div class="conversation-name">Bruno</div>
+                            <div class="conversation-time">10:58</div>
+                        </div>
+                        <div class="conversation-preview">
+                            Você é muito gostosa, princesa <span class="emoji">🔥</span>
+                        </div>
                     </div>
-                    <div class="conversation-time">ONTEM</div>
                 </div>
+                
                 <div class="conversation-item">
-                    <div class="conversation-avatar" style="background: url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=40&h=40&fit=crop&crop=face') center/cover;"></div>
+                    <div class="conversation-avatar" style="background: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=50&h=50&fit=crop&crop=face') center/cover;"></div>
                     <div class="conversation-info">
-                        <div class="conversation-name">João Pedro</div>
-                        <div class="conversation-preview">🎵 Áudio</div>
+                        <div class="conversation-header">
+                            <div class="conversation-name">Guilherme Santos</div>
+                            <div class="conversation-time">10:57</div>
+                        </div>
+                        <div class="conversation-preview">
+                            🎵 Áudio • 2:43 • Te amo muito amor
+                        </div>
                     </div>
-                    <div class="conversation-time">ONTEM</div>
                 </div>
+                
                 <div class="conversation-item">
-                    <div class="conversation-avatar" style="background: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=40&h=40&fit=crop&crop=face') center/cover;"></div>
+                    <div class="conversation-avatar" style="background: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=50&h=50&fit=crop&crop=face') center/cover;"></div>
                     <div class="conversation-info">
-                        <div class="conversation-name">Lucas</div>
-                        <div class="conversation-preview">Valeu, mano!</div>
+                        <div class="conversation-header">
+                            <div class="conversation-name">Diego Silva</div>
+                            <div class="conversation-time">YESTERDAY</div>
+                        </div>
+                        <div class="conversation-preview">
+                            📹 Vídeo • Conteúdo íntimo
+                        </div>
                     </div>
-                    <div class="conversation-time">19/12</div>
                 </div>
+                
                 <div class="conversation-item">
-                    <div class="conversation-avatar" style="background: url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=40&h=40&fit=crop&crop=face') center/cover;"></div>
+                    <div class="conversation-avatar" style="background: url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=50&h=50&fit=crop&crop=face') center/cover;"></div>
                     <div class="conversation-info">
-                        <div class="conversation-name">Fernanda</div>
-                        <div class="conversation-preview">📹 Vídeo</div>
+                        <div class="conversation-header">
+                            <div class="conversation-name">Rodrigo Dias</div>
+                            <div class="conversation-time">YESTERDAY</div>
+                        </div>
+                        <div class="conversation-preview">
+                            Que saudade de você, gata
+                        </div>
                     </div>
-                    <div class="conversation-time">18/12</div>
                 </div>
+                
                 <div class="conversation-item">
-                    <div class="conversation-avatar" style="background: url('https://images.unsplash.com/photo-1517841905240-472988babdf9?w=40&h=40&fit=crop&crop=face') center/cover;"></div>
+                    <div class="conversation-avatar" style="background: url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=50&h=50&fit=crop&crop=face') center/cover;"></div>
                     <div class="conversation-info">
-                        <div class="conversation-name">Irmã</div>
-                        <div class="conversation-preview">Te amo ❤️</div>
+                        <div class="conversation-header">
+                            <div class="conversation-name">Bárbara F</div>
+                            <div class="conversation-time">YESTERDAY</div>
+                        </div>
+                        <div class="conversation-preview">
+                            📷 Foto • Nudes trocadas
+                        </div>
                     </div>
-                    <div class="conversation-time">17/12</div>
+                </div>
+                
+                <div class="conversation-item">
+                    <div class="conversation-avatar" style="background: url('https://images.unsplash.com/photo-1517841905240-472988babdf9?w=50&h=50&fit=crop&crop=face') center/cover;"></div>
+                    <div class="conversation-info">
+                        <div class="conversation-header">
+                            <div class="conversation-name">Kau</div>
+                            <div class="conversation-time">YESTERDAY</div>
+                        </div>
+                        <div class="conversation-preview">
+                            🎵 Áudio • 0:45
+                        </div>
+                    </div>
                 </div>
             </div>
             
