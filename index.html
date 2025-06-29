@@ -1,59 +1,881 @@
 
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>secreto-tinder-detect</title>
-    <meta name="description" content="Lovable Generated Project" />
-    <meta name="author" content="Lovable" />
-
-    <meta property="og:title" content="secreto-tinder-detect" />
-    <meta property="og:description" content="Lovable Generated Project" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@lovable_dev" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-
-    <!-- Twitter conversion tracking base code -->
-<script>
-!function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);
-},s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='https://static.ads-twitter.com/uwt.js',
-a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a))}(window,document,'script');
-twq('config','oc69u');
-</script>
-<!-- End Twitter conversion tracking base code -->
-
-    <!-- Facebook Pixel Code -->
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Spy - Revelar Conversas Secretas</title>
+    
+    <!-- Facebook Pixel -->
     <script>
-      !function(f,b,e,v,n,t,s)
-      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)}(window, document,'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', '1374664721059267');
-      fbq('track', 'PageView');
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1374664721059267');
+        fbq('track', 'PageView');
     </script>
-    <!-- End Facebook Pixel Code -->
-  </head>
-
-  <body>
     <noscript><img height="1" width="1" style="display:none"
-      src="https://www.facebook.com/tr?id=1374664721059267&ev=PageView&noscript=1"
+        src="https://www.facebook.com/tr?id=1374664721059267&ev=PageView&noscript=1"
     /></noscript>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-    <script
-      src="https://cdn.utmify.com.br/scripts/utms/latest.js"
-      data-utmify-prevent-xcod-sck
-      data-utmify-prevent-subids
-      async
-      defer
-    ></script>
-  </body>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 40px 30px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .whatsapp-icon {
+            width: 80px;
+            height: 80px;
+            background: #25D366;
+            border-radius: 18px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .whatsapp-icon::before {
+            content: '';
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .whatsapp-icon::after {
+            content: '💬';
+            font-size: 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 30px;
+            line-height: 1.4;
+        }
+
+        .step-button {
+            background: #25D366;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 10px 0;
+            width: 100%;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step-button:hover {
+            background: #128C7E;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+        }
+
+        .step-button:active {
+            transform: translateY(0);
+        }
+
+        .step-description {
+            color: #666;
+            font-size: 14px;
+            margin: 15px 0;
+            line-height: 1.5;
+        }
+
+        .phone-input-container {
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .country-select {
+            display: flex;
+            align-items: center;
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 12px 15px;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+
+        .flag {
+            width: 24px;
+            height: 18px;
+            margin-right: 10px;
+            background: linear-gradient(to bottom, #009739 33%, #ffffff 33%, #ffffff 66%, #009739 66%);
+            border-radius: 2px;
+        }
+
+        .phone-input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .phone-input:focus {
+            border-color: #25D366;
+        }
+
+        .reveal-button {
+            background: linear-gradient(45deg, #25D366, #128C7E);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            padding: 18px 30px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+        }
+
+        .reveal-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.5);
+        }
+
+        .warning {
+            background: linear-gradient(45deg, #ff4757, #ff3742);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 12px;
+            margin: 15px 0;
+            font-weight: 600;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        /* Loading Screen Styles */
+        .loading-screen {
+            display: none;
+        }
+
+        .loading-active .loading-screen {
+            display: block;
+        }
+
+        .loading-active .step1-screen {
+            display: none;
+        }
+
+        .progress-container {
+            margin: 30px 0;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #25D366, #128C7E);
+            width: 0%;
+            transition: width 0.5s ease;
+            border-radius: 4px;
+        }
+
+        .scanning-text {
+            color: #666;
+            font-size: 16px;
+            margin: 20px 0;
+            font-weight: 500;
+        }
+
+        .phone-display {
+            background: #f8f9fa;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            color: #25D366;
+            margin: 15px 0;
+            border: 2px solid #25D366;
+        }
+
+        .scanning-steps {
+            text-align: left;
+            margin: 20px 0;
+        }
+
+        .scanning-step {
+            display: flex;
+            align-items: center;
+            padding: 8px 0;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .scanning-step.active {
+            color: #25D366;
+            font-weight: 600;
+        }
+
+        .scanning-step::before {
+            content: '⏳';
+            margin-right: 10px;
+            font-size: 16px;
+        }
+
+        .scanning-step.active::before {
+            content: '✅';
+            animation: bounce 0.5s ease;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 60%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            80% { transform: translateY(-5px); }
+        }
+
+        /* Results Screen Styles */
+        .results-screen {
+            display: none;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .results-active .results-screen {
+            display: block;
+        }
+
+        .results-active .step1-screen,
+        .results-active .loading-screen {
+            display: none;
+        }
+
+        .accuracy-badge {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e53);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin: 10px 0;
+            display: inline-block;
+        }
+
+        .profile-pic {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 15px auto;
+            display: block;
+            border: 3px solid #25D366;
+        }
+
+        .conversations-list {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .conversation-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .conversation-item:last-child {
+            border-bottom: none;
+        }
+
+        .conversation-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 12px;
+            background: #ddd;
+        }
+
+        .conversation-info {
+            flex: 1;
+        }
+
+        .conversation-name {
+            font-weight: 600;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .conversation-preview {
+            color: #666;
+            font-size: 12px;
+            margin-top: 2px;
+        }
+
+        .conversation-time {
+            color: #999;
+            font-size: 11px;
+        }
+
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+            margin: 20px 0;
+        }
+
+        .media-item {
+            aspect-ratio: 1;
+            background: #ddd;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .media-item:hover {
+            transform: scale(1.05);
+        }
+
+        .media-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .media-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+        }
+
+        .location-map {
+            width: 100%;
+            height: 200px;
+            background: #e9ecef;
+            border-radius: 15px;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .location-pin {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #ff4757;
+            font-size: 24px;
+        }
+
+        .unlock-button {
+            background: linear-gradient(45deg, #ff4757, #ff3742);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            padding: 20px 30px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 30px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 71, 87, 0.4);
+            animation: pulse-red 2s infinite;
+        }
+
+        @keyframes pulse-red {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .unlock-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 71, 87, 0.5);
+        }
+
+        .free-notice {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 12px;
+            margin: 15px 0;
+            font-weight: 600;
+        }
+
+        .section-title {
+            color: #333;
+            font-size: 16px;
+            font-weight: 700;
+            margin: 25px 0 15px 0;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 20px;
+                border-radius: 15px;
+            }
+            
+            .media-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="mainContainer">
+        <!-- TELA 1: Input do Número -->
+        <div class="step1-screen">
+            <div class="whatsapp-icon"></div>
+            
+            <div class="step-title">En 5 Minutos Lo Descubriremos Todos</div>
+            
+            <div class="step-button" onclick="nextStep(1)">
+                Primer paso
+            </div>
+            <div class="step-description">INGRESE EL NÚMERO QUE DESEJA MONITORAR.</div>
+            
+            <div class="step-button" onclick="nextStep(2)">
+                Segundo paso
+            </div>
+            <div class="step-description">ESPEREM QUE CARGUEN LAS CONVERSACIONES.</div>
+            
+            <div class="step-button" onclick="nextStep(3)">
+                Tercer paso
+            </div>
+            <div class="step-description">ACCEDE A CONVERSACIONES EN MODO PRIVADO.</div>
+            
+            <div style="margin: 30px 0;">
+                <div style="color: #ff4757; font-weight: 700; font-size: 16px; margin-bottom: 10px;">
+                    NÚMERO DE WHATSAPP 👇
+                </div>
+                <div style="color: #666; font-size: 14px; margin-bottom: 15px;">
+                    Seleccione la bandera del país e ingrese el número.
+                </div>
+            </div>
+            
+            <div class="phone-input-container">
+                <div class="country-select">
+                    <div class="flag"></div>
+                    <span>+55 ▼</span>
+                </div>
+                <input type="tel" class="phone-input" id="phoneInput" placeholder="11 96123-4567" maxlength="15">
+            </div>
+            
+            <div class="warning">
+                ⚠️ Has usado tu última prueba gratuita. Permanece en esta página; de lo contrario, no podrás usar más pruebas.
+            </div>
+            
+            <button class="reveal-button" onclick="startScan()">
+                ✅ HAGA CLIC PARA REVELAR CONVERSACIONES
+            </button>
+        </div>
+
+        <!-- TELA 2: Loading/Scanning -->
+        <div class="loading-screen">
+            <div class="whatsapp-icon"></div>
+            
+            <div class="warning">
+                ⚠️ Has usado tu última prueba gratuita. Permanece en esta página; de lo contrario, no podrás usar más pruebas.
+            </div>
+            
+            <div class="step-title">MIENTRAS ESCANEAMOS...</div>
+            
+            <div style="background: #e3f2fd; padding: 15px; border-radius: 10px; margin: 20px 0;">
+                <div style="color: #1976d2; font-weight: 600; font-size: 14px; margin-bottom: 5px;">
+                    MIRA ESTE VIDEO RÁPIDO SOBRE CÓMO FUNCIONA NUESTRA APLICACIÓN DE CLONACIÓN SECRETA 👇
+                </div>
+            </div>
+            
+            <div style="background: #5865f2; color: white; padding: 20px; border-radius: 15px; margin: 20px 0; cursor: pointer;" onclick="toggleSound()">
+                <div style="font-size: 40px; margin-bottom: 10px;">🔇</div>
+                <div style="font-weight: 600;">haga clic aquí</div>
+                <div style="font-size: 14px; margin-top: 5px;">para activar el sonido</div>
+            </div>
+            
+            <div style="font-size: 12px; color: #666; margin: 15px 0;">
+                EN TIEMPO REAL DE FORMA 100% DISCRETA.
+            </div>
+            
+            <div style="background: #f8f9fa; padding: 15px; border-radius: 10px; font-size: 12px; color: #666; line-height: 1.4;">
+                Desciframos el cifrado de números y todos sus datos permanecen hidenciales. Todo sujeto a nuestros términos de uso.
+            </div>
+            
+            <div class="phone-display" id="phoneDisplay"></div>
+            
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="scanning-text" id="progressText">0%</div>
+            </div>
+            
+            <div class="scanning-steps" id="scanningSteps">
+                <div class="scanning-step" id="step1">Conectando ao servidor...</div>
+                <div class="scanning-step" id="step2">Descriptografando conversas...</div>
+                <div class="scanning-step" id="step3">Baixando mídias...</div>
+                <div class="scanning-step" id="step4">Analisando dados...</div>
+                <div class="scanning-step" id="step5">Finalizando...</div>
+            </div>
+        </div>
+
+        <!-- TELA 3: Resultados -->
+        <div class="results-screen">
+            <div style="background: #ff4757; color: white; padding: 10px; border-radius: 10px; font-weight: 600; font-size: 14px; margin-bottom: 20px;">
+                ¡Descubriremos Todo!
+            </div>
+            
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face" class="profile-pic" alt="Profile">
+            
+            <div class="accuracy-badge">
+                Informe exportado con una precisión del 98%
+            </div>
+            
+            <div style="font-size: 12px; color: #666; margin: 15px 0; line-height: 1.4;">
+                ✅ Hice una investigación completa sobre el usuario.<br>
+                ✅ Su búsqueda se realizó de forma completamente anónima.<br>
+                ✅ Hemos recopilado todos los archivos importantes de su dispositivo.
+            </div>
+            
+            <div class="section-title">
+                REGISTRO DE CONVERSACIONES DE LOS ÚLTIMOS 30 DÍAS.
+            </div>
+            <div style="color: #ff4757; font-size: 12px; font-weight: 600; margin-bottom: 15px;">
+                (Obtenga acceso a la aplicación para ver los mensajes)
+            </div>
+            
+            <div class="conversations-list">
+                <div class="conversation-item">
+                    <div class="conversation-avatar" style="background: url('https://images.unsplash.com/photo-1494790108755-2616b612b786?w=40&h=40&fit=crop&crop=face') center/cover;"></div>
+                    <div class="conversation-info">
+                        <div class="conversation-name">Mamá</div>
+                        <div class="conversation-preview">Hola cariño, ¿cómo estás?</div>
+                    </div>
+                    <div class="conversation-time">12:45</div>
+                </div>
+                <div class="conversation-item">
+                    <div class="conversation-avatar" style="background: url('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face') center/cover;"></div>
+                    <div class="conversation-info">
+                        <div class="conversation-name">Carlos</div>
+                        <div class="conversation-preview">¿Nos vemos esta noche?</div>
+                    </div>
+                    <div class="conversation-time">11:20</div>
+                </div>
+                <div class="conversation-item">
+                    <div class="conversation-avatar" style="background: url('https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=40&h=40&fit=crop&crop=face') center/cover;"></div>
+                    <div class="conversation-info">
+                        <div class="conversation-name">Ana Silva</div>
+                        <div class="conversation-preview">📷 Foto</div>
+                    </div>
+                    <div class="conversation-time">10:15</div>
+                </div>
+                <div class="conversation-item">
+                    <div class="conversation-avatar" style="background: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face') center/cover;"></div>
+                    <div class="conversation-info">
+                        <div class="conversation-name">Trabalho Grupo</div>
+                        <div class="conversation-preview">Reunião amanhã às 9h</div>
+                    </div>
+                    <div class="conversation-time">ONTEM</div>
+                </div>
+                <div class="conversation-item">
+                    <div class="conversation-avatar" style="background: url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=40&h=40&fit=crop&crop=face') center/cover;"></div>
+                    <div class="conversation-info">
+                        <div class="conversation-name">João Pedro</div>
+                        <div class="conversation-preview">🎵 Áudio</div>
+                    </div>
+                    <div class="conversation-time">ONTEM</div>
+                </div>
+                <div class="conversation-item">
+                    <div class="conversation-avatar" style="background: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=40&h=40&fit=crop&crop=face') center/cover;"></div>
+                    <div class="conversation-info">
+                        <div class="conversation-name">Lucas</div>
+                        <div class="conversation-preview">Valeu, mano!</div>
+                    </div>
+                    <div class="conversation-time">19/12</div>
+                </div>
+                <div class="conversation-item">
+                    <div class="conversation-avatar" style="background: url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=40&h=40&fit=crop&crop=face') center/cover;"></div>
+                    <div class="conversation-info">
+                        <div class="conversation-name">Fernanda</div>
+                        <div class="conversation-preview">📹 Vídeo</div>
+                    </div>
+                    <div class="conversation-time">18/12</div>
+                </div>
+                <div class="conversation-item">
+                    <div class="conversation-avatar" style="background: url('https://images.unsplash.com/photo-1517841905240-472988babdf9?w=40&h=40&fit=crop&crop=face') center/cover;"></div>
+                    <div class="conversation-info">
+                        <div class="conversation-name">Irmã</div>
+                        <div class="conversation-preview">Te amo ❤️</div>
+                    </div>
+                    <div class="conversation-time">17/12</div>
+                </div>
+            </div>
+            
+            <div class="section-title">
+                Hemos detectado fotos y videos que contienen desnudez.
+            </div>
+            <div style="color: #ff4757; font-size: 12px; font-weight: 600; margin-bottom: 15px;">
+                (Obtén acceso a la aplicación para ver fotos sin censura)
+            </div>
+            
+            <div class="media-grid">
+                <div class="media-item">
+                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop" alt="">
+                    <div class="media-overlay">🔒</div>
+                </div>
+                <div class="media-item">
+                    <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop" alt="">
+                    <div class="media-overlay">🔒</div>
+                </div>
+                <div class="media-item">
+                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop" alt="">
+                    <div class="media-overlay">🔒</div>
+                </div>
+                <div class="media-item">
+                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&h=100&fit=crop" alt="">
+                    <div class="media-overlay">🔒</div>
+                </div>
+                <div class="media-item">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop" alt="">
+                    <div class="media-overlay">🔒</div>
+                </div>
+                <div class="media-item">
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop" alt="">
+                    <div class="media-overlay">🔒</div>
+                </div>
+                <div class="media-item">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop" alt="">
+                    <div class="media-overlay">🔒</div>
+                </div>
+                <div class="media-item">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop" alt="">
+                    <div class="media-overlay">🔒</div>
+                </div>
+                <div class="media-item">
+                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop" alt="">
+                    <div class="media-overlay">🔒</div>
+                </div>
+                <div class="media-item">
+                    <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop" alt="">
+                    <div class="media-overlay">🔒</div>
+                </div>
+            </div>
+            
+            <div class="location-map">
+                <div class="location-pin">📍</div>
+                <div style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); background: rgba(255,255,255,0.9); padding: 5px 10px; border-radius: 5px; font-size: 12px; font-weight: 600;">
+                    Localização detectada
+                </div>
+            </div>
+            
+            <div style="background: #d4edda; border: 1px solid #c3e6cb; color: #155724; padding: 12px; border-radius: 10px; font-size: 12px; margin: 20px 0; text-align: center;">
+                La aplicación es gratuita, solo pagarás una tarifa simbólica para mantener nuestro sistema en funcionamiento.
+                <div style="font-weight: 700; margin-top: 5px; color: #ff4757;">SOLO HOY</div>
+            </div>
+            
+            <button class="unlock-button" onclick="redirectToPayment()">
+                OBTENER ACCESO COMPLETO - $4.99
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 1;
+        let phoneNumber = '';
+        let progressInterval;
+        let currentProgress = 0;
+        let scanningStepIndex = 0;
+
+        function nextStep(step) {
+            // Visual feedback for step buttons
+            event.target.style.background = '#128C7E';
+            setTimeout(() => {
+                event.target.style.background = '#25D366';
+            }, 200);
+        }
+
+        function startScan() {
+            const phoneInput = document.getElementById('phoneInput');
+            phoneNumber = phoneInput.value.trim();
+            
+            if (!phoneNumber) {
+                alert('Por favor, insira um número de telefone válido.');
+                return;
+            }
+
+            // Track Facebook Pixel event
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'InitiateCheckout');
+            }
+
+            // Show loading screen
+            document.getElementById('mainContainer').classList.add('loading-active');
+            document.getElementById('phoneDisplay').textContent = '+55 ' + phoneNumber;
+            
+            // Start progress animation
+            startProgress();
+        }
+
+        function startProgress() {
+            const steps = [
+                'Conectando ao servidor...',
+                'Descriptografando conversas...',
+                'Baixando mídias...',
+                'Analisando dados...',
+                'Finalizando...'
+            ];
+
+            progressInterval = setInterval(() => {
+                currentProgress += Math.random() * 15 + 5;
+                
+                if (currentProgress >= 100) {
+                    currentProgress = 100;
+                    clearInterval(progressInterval);
+                    setTimeout(showResults, 1000);
+                }
+                
+                document.getElementById('progressFill').style.width = currentProgress + '%';
+                document.getElementById('progressText').textContent = Math.round(currentProgress) + '%';
+                
+                // Update scanning steps
+                const stepIndex = Math.floor((currentProgress / 100) * steps.length);
+                if (stepIndex !== scanningStepIndex && stepIndex < steps.length) {
+                    if (scanningStepIndex > 0) {
+                        document.getElementById('step' + scanningStepIndex).classList.add('active');
+                    }
+                    scanningStepIndex = stepIndex + 1;
+                    if (scanningStepIndex <= 5) {
+                        document.getElementById('step' + scanningStepIndex).classList.add('active');
+                    }
+                }
+            }, 300);
+        }
+
+        function showResults() {
+            // Track Facebook Pixel event
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'ViewContent');
+            }
+
+            document.getElementById('mainContainer').classList.remove('loading-active');
+            document.getElementById('mainContainer').classList.add('results-active');
+            
+            // Expand container for results
+            document.getElementById('mainContainer').style.maxWidth = '500px';
+        }
+
+        function toggleSound() {
+            const soundButton = event.currentTarget;
+            const icon = soundButton.querySelector('div');
+            
+            if (icon.textContent === '🔇') {
+                icon.textContent = '🔊';
+                soundButton.style.background = '#25D366';
+            } else {
+                icon.textContent = '🔇';
+                soundButton.style.background = '#5865f2';
+            }
+        }
+
+        function redirectToPayment() {
+            // Track Facebook Pixel event
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'Purchase', {
+                    value: 4.99,
+                    currency: 'USD'
+                });
+            }
+
+            // Redirect to payment page
+            window.location.href = 'https://go.tribopay.com.br/tbcslc8qfr';
+        }
+
+        // Format phone input
+        document.getElementById('phoneInput').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length <= 11) {
+                value = value.replace(/(\d{2})(\d{5})(\d{4})/, '$1 $2-$3');
+                e.target.value = value;
+            }
+        });
+
+        // Auto-focus phone input
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                document.getElementById('phoneInput').focus();
+            }, 500);
+        });
+    </script>
+</body>
 </html>
